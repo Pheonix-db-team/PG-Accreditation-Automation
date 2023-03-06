@@ -8,16 +8,26 @@ import { useState } from 'react';
 function App() {
   //  const num = 46;
   //const str = "xyz";
-  const students = ['A', 'B', 'C', 'D'];
-  const listItems = students.map(person => <li>{person}</li>);
+  //const students = ['A', 'B', 'C', 'D'];
   const [name, setName] = useState("");
+  const [students, setStudents] = useState(['A', 'B', 'C', 'D']);
+
   const handleSubmit = (event) => {
     //prevent redirect to oth. page
     event.preventDefault();
-    alert("My name is " + name);
-
+    //alert("My name is " + name);
+    // spread syntax   commonly used to make shallow copies
+    setStudents(currentStudents => [...currentStudents, name]);
+    setName('');
   }
-  //array
+  const handleDelete = (deleting_student) => {
+    const newStudents = students.filter((student) => student !== deleting_student);
+    //prevent redirect to oth. page
+    setStudents(newStudents)
+    alert(deleting_student + " Deleted!");
+  }
+  const listItems = students.map(student => <li>{student} <button onClick={() => handleDelete(student)}>Delete</button></li>);
+
 
   return (
     <div className="App">
@@ -25,12 +35,12 @@ function App() {
       <br></br>
       <form onSubmit={handleSubmit
       }>
-        <div >{name}</div>
+        <div > Add new Student</div>
         <input type="text" value={name} onChange={(e) => setName(e.target.value)}></input>
         <input type="submit"></input>
       </form>
       Student List
-      <ul>{listItems}</ul>
+      <li>{listItems} </li>
     </div>
   );
 }
