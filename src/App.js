@@ -8,6 +8,8 @@ import { useState } from 'react';
 function App() {
   //  const num = 46;
   //const str = "xyz";
+  const students = ['A', 'B', 'C', 'D'];
+  const listItems = students.map(person => <li>{person}</li>);
   const [name, setName] = useState("");
   const handleSubmit = (event) => {
     //prevent redirect to oth. page
@@ -15,6 +17,8 @@ function App() {
     alert("My name is " + name);
 
   }
+  //array
+
   return (
     <div className="App">
       <NavBar></NavBar>
@@ -25,6 +29,8 @@ function App() {
         <input type="text" value={name} onChange={(e) => setName(e.target.value)}></input>
         <input type="submit"></input>
       </form>
+      Student List
+      <ul>{listItems}</ul>
     </div>
   );
 }
