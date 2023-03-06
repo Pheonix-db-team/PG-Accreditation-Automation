@@ -1,6 +1,6 @@
 import React from 'react'
-
-function HelloWorld(props) {
+//multi prop
+function HelloWorld({ propnum, propstr }) {
     //add props argument
     const greeting = "Hello World!!";
     const followup_greeting = "I am getting started with react";
@@ -13,7 +13,8 @@ function HelloWorld(props) {
         <div>
             <div>{greeting}</div>
             <div>{followup_greeting}</div>
-            <div> Props passed num is {props.num}</div>
+            <div> Props passed num is {propnum}</div>
+            <div> Props passed str is {propstr}</div>
             <div> Computing {num1} + {num2} to {num1 + num2}</div>
             //internal link react router dom
             <a href={link}> Go to google</a>
