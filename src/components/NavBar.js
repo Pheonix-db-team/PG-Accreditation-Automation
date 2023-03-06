@@ -1,5 +1,5 @@
 import React from 'react'
-//import './App.css'
+import { Link } from "react-router-dom";
 function NavBar() {
     return (
         <div className='navbar'>
@@ -7,11 +7,11 @@ function NavBar() {
                 Pilot
             </div>
             <div className='navbar-menu'>
-                <li><a href='/'>Home</a></li>
-                <li><a href='/blog'>Blog</a></li>
-                <li><a href='/contact'>Contact</a></li>
+                <Link to="/" style={{ textDecoration: 'none', color: 'white' }}>Home</Link>
+                <Link to="/blog" style={{ textDecoration: 'none', color: 'white' }}>Blog</Link>
+                <Link to="/contact" style={{ textDecoration: 'none', color: 'white' }}>Contact</Link>
             </div>
-        </div>
+        </div >
     )
 }
 
