@@ -10,7 +10,7 @@ function HelloWorld({ propnum, propstr }) {
     return (
         //in curly braces look for var else string
         //React functional component can only return only one ele
-        <div>
+        <div style={{ backgroundColor: 'red' }}>
             <div>{greeting}</div>
             <div>{followup_greeting}</div>
             <div> Props passed num is {propnum}</div>
