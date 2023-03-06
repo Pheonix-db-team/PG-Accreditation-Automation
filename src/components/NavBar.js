@@ -4,7 +4,7 @@ function NavBar() {
     return (
         <div className='navbar'>
             <div className='logo'>
-                logo goes here
+                Pilot
             </div>
             <div className='navbar-menu'>
                 <li><a href='/'>Home</a></li>
