@@ -15,7 +15,7 @@ import./<path>/file_name.css
 - CSS modules
 
 ## Shortcut
-Rfce to augto fill vs code extenstion
+Rfce to auto fill vs code extenstion
 
 ## Events 
 Same as HTML // camel case syntax
@@ -26,3 +26,22 @@ event handler
 - Click
 - Change 
 - Mouseover 
+
+---
+## Firebase
+Firebase => new project
+Add web < / >
+- Register app
+Use SDK, run npm install firebase
+Copy code snippet w. keys and paste in file below
+src> config> [new file] => firebase.js
+	- const app = initializeApp(firebaseConfig);
+	Above to use all firebase service
+	npm install  -g firebase-tools//g for global
+// f(X)	 to set up authentication
+import { getAuth } from "firebase/app";
+import { initializeApp } from "firebase/app";
+import {auth} from '../config/firebase'
+// above acc to copy code file 
+
+	

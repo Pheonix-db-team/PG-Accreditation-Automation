@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import LoginPage from './pages/LoginPage';
 //import reportWebVitals from './reportWebVitals';
 import {
   createBrowserRouter,
@@ -9,7 +10,7 @@ import {
 } from "react-router-dom";
 import BlogPage from './pages/BlogPage';
 import ContactPage from './pages/ContactPage';
-import LoginPage from './pages/LoginPage';
+import SignupPage from './pages/SignupPage';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -27,6 +28,12 @@ const router = createBrowserRouter([
     path: "contact",
 
     element: <ContactPage />,
+
+  },
+  {
+    path: "signup",
+
+    element: <SignupPage />,
 
   },
   {

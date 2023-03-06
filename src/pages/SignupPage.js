@@ -1,21 +1,22 @@
 import React from 'react'
 import { useState } from 'react';
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"
+//import { initializeApp } from "firebase/app";
 import { auth } from '../config/firebase'
-function LoginPage() {
+function SignupPage() {
     const auth = getAuth();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const handleSubmit = (event) => {
         //prevent redirect to oth. page
         event.preventDefault();
-        signInWithEmailAndPassword(auth, email, password)
+        createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
 
 
-                // Signed in 
+                // Signed up
                 const user = userCredential.user;
-                alert("Login " + user.email);
+                alert("Signed up " + user.email);
                 // ...
             })
             .catch((error) => {
@@ -26,14 +27,15 @@ function LoginPage() {
                 // ..
             });
 
+
     }
     return (
-        <div>Login
+        <div>Signup
             Page
             <br></br>
             <form onSubmit={handleSubmit
             }>
-                <div >Login</div>
+                <div > Signup</div>
                 <br></br>
                 <div>Email</div>
                 <input type="email" value={email} onChange={(e) => setEmail(e.target.value)}></input>
@@ -47,4 +49,4 @@ function LoginPage() {
     )
 }
 
-export default LoginPage
+export default SignupPage

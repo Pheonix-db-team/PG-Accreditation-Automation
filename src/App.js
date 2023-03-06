@@ -34,7 +34,9 @@ function App() {
     <div className="App">
       <NavBar></NavBar>
       <br></br>
-      <Link to="/Login" ><button variant="contained" color="success">LogIn</button></Link>
+      <Link to="/signup" ><button variant="contained" color="success">SignUp</button></Link>
+      <br></br>
+      <Link to="/login" ><button variant="contained" color="success">Login</button></Link>
       <form onSubmit={handleSubmit
       }>
         <div > Add new Student</div>
