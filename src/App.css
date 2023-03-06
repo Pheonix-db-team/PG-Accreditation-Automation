@@ -1,6 +1,40 @@
+* {
+  /*default*/
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  background-color: #4066FA;
+  padding: 10px;
+  margin-bottom: 16px;
+}
+
+.navbar-logo {
+  color: 'white';
+  font-size: 20px;
+}
+
+.navbar-menu {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  gap: 30px;
+  align-items: center;
+
+}
+
+.navbar-menu li a {
+  color: white;
+  text-decoration: none;
+}
+
 .App {
   text-align: center;
 }
+
 
 .App-logo {
   height: 40vmin;
@@ -32,6 +66,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
