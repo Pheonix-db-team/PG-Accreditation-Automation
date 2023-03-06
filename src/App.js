@@ -1,4 +1,5 @@
 //import logo from './logo.svg';
+import { Link } from 'react-router-dom';
 import './App.css';
 import HelloWorld from './components/HelloWorld';
 import NavBar from './components/NavBar';
@@ -33,6 +34,7 @@ function App() {
     <div className="App">
       <NavBar></NavBar>
       <br></br>
+      <Link to="/Login" ><button variant="contained" color="success">LogIn</button></Link>
       <form onSubmit={handleSubmit
       }>
         <div > Add new Student</div>

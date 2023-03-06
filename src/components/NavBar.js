@@ -8,7 +8,7 @@ function NavBar() {
             </div>
             <div className='navbar-menu'>
                 <Link to="/" style={{ textDecoration: 'none', color: 'white' }}>Home</Link>
-                <Link to="/blog" style={{ textDecoration: 'none', color: 'white' }}>Blog</Link>
+                <Link to="/blog" state={{ some: "value I passed" }} style={{ textDecoration: 'none', color: 'white' }} >Blog</Link>
                 <Link to="/contact" style={{ textDecoration: 'none', color: 'white' }}>Contact</Link>
             </div>
         </div >
