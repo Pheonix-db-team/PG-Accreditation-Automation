@@ -1,9 +1,15 @@
 import React from 'react'
 import { useState } from 'react';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from '../config/firebase'
+//import { Navigate } from "react-router-dom";
+//import { initializeApp } from "firebase/app";
+import { useNavigate } from "react-router-dom";
+import { auth } from '../config/firebase';
+//import { auth } from '../config/firebase'
 function LoginPage() {
-    const auth = getAuth();
+    //    const app = initializeApp(firebaseConfig);
+    // const auth = getAuth();
+    const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const handleSubmit = (event) => {
@@ -15,13 +21,18 @@ function LoginPage() {
 
                 // Signed in 
                 const user = userCredential.user;
-                alert("Login " + user.email);
+                console.log("Logged in " + user.email);
+                const user_email = user.email;
+                //<Link to="/blog" state={{ some: "value I passed" }} style={{ textDecoration: 'none', color: 'white' }} >Blog</Link>
+                console.log("Routing done");
+                navigate('/dashboard', { state: { user_email: user_email } });
+                // alert("Login " + user.email);
                 // ...
             })
             .catch((error) => {
-                const errorCode = error.code;
+                //const errorCode = error.code;
                 const errorMessage = error.message;
-                alert("Error " + errorMessage);
+                //alert("Error " + errorMessage);
 
                 // ..
             });

@@ -1,10 +1,11 @@
 import React from 'react'
 import { useState } from 'react';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"
+
 //import { initializeApp } from "firebase/app";
 import { auth } from '../config/firebase'
 function SignupPage() {
-    const auth = getAuth();
+    //const auth = getAuth();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const handleSubmit = (event) => {
@@ -20,7 +21,7 @@ function SignupPage() {
                 // ...
             })
             .catch((error) => {
-                const errorCode = error.code;
+                // const errorCode = error.code;
                 const errorMessage = error.message;
                 alert("Error " + errorMessage);
 
