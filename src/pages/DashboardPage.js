@@ -15,9 +15,7 @@ function DashboardPage() {
 
             //Read data
 
-            const getStudentList = async () => {
 
-            }
             // const  querySnapshot = await getDocs(
             //     studentsCollectionRef
             // );
@@ -30,7 +28,10 @@ function DashboardPage() {
 
             try {
                 const data = await getDocs(studentsCollectionRef);
-                console.log(data);
+
+                const filtered_data = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+                console.log(filtered_data);
+                setStudentList(filtered_data);
             }
             catch (err) {
                 console.error(err);
@@ -43,7 +44,16 @@ function DashboardPage() {
     return (
         <div>DashboardPage
             <br></br>
-            <div>{state.user_email}</div>
+            <div> Logged in {state.user_email}</div>
+            <br></br>
+            <div>
+                {
+                    studentList.map((student) => <div key={student.id}>
+                        <h4>{student.name}</h4>
+                        <h6>{student.enrolment_number}</h6>
+                    </div>)
+                }
+            </div>
         </div>
     )
 }

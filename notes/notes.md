@@ -75,7 +75,7 @@ import {auth} from '../config/firebase'
 				moviesCollectionRef 
 				);
 				//better readabiloty
-				const precise_data= data.docs.map((doc)=>({...doc.data(),id:doc.id}));
+				const filter_data= data.docs.map((doc)=>({...doc.data(),id:doc.id}));
 				console.log(data);
 				console.log(precise_data);
 			//set state to that data	
@@ -86,7 +86,7 @@ import {auth} from '../config/firebase'
 		catch(err){
 			console.error(err);
 		}
-		setMoviesList(filters data);
+		setMoviesList(filter_data);
 	},[]);
 
 	
