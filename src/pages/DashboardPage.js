@@ -1,7 +1,7 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react'
-import { addDoc, getDocs, collection, doc, setDoc } from 'firebase/firestore';
+import { deleteDoc, getDocs, collection, doc, setDoc } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { auth } from '../config/firebase';
 async function refreshList() {
@@ -27,7 +27,20 @@ function DashboardPage() {
     const [name, setName] = useState("");
     const [enroll, setEnroll] = useState("");
     const [studentList, setStudentList] = useState([])
+    const handleDelete = async (deleting_student) => {
 
+        try {
+            await deleteDoc(doc(db, "test_pilot", deleting_student.id));
+            const updated_list = await refreshList();
+            console.log(updated_list);
+            setStudentList(updated_list);
+            //prevent redirect to oth. page
+            //setStudents(newStudents)
+            alert(deleting_student.name + " Deleted!");
+        } catch (error) {
+            console.error("Error adding document: ", error);
+        }
+    }
     const handleSubmit = async (event) => {
         //prevent redirect to oth. page
         event.preventDefault();
@@ -100,7 +113,7 @@ function DashboardPage() {
             <div>
                 {
                     studentList.map((student) => <div key={student.id}>
-                        <h6>{student.name} {student.enrolment_number}</h6>
+                        <h6>{student.name} {student.enrolment_number}<button onClick={() => handleDelete(student)}>Delete</button></h6>
                     </div>)
                 }
             </div>
