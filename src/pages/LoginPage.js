@@ -1,14 +1,9 @@
 import React from 'react'
 import { useState } from 'react';
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-//import { Navigate } from "react-router-dom";
-//import { initializeApp } from "firebase/app";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { auth } from '../config/firebase';
-//import { auth } from '../config/firebase'
 function LoginPage() {
-    //    const app = initializeApp(firebaseConfig);
-    // const auth = getAuth();
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -32,7 +27,7 @@ function LoginPage() {
             .catch((error) => {
                 //const errorCode = error.code;
                 const errorMessage = error.message;
-                //alert("Error " + errorMessage);
+                alert("Error " + errorMessage);
 
                 // ..
             });

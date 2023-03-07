@@ -3,14 +3,16 @@ import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react'
 import { getDocs, collection } from 'firebase/firestore';
 import { db } from '../config/firebase';
+import { auth } from '../config/firebase';
 
 function DashboardPage() {
     let { state } = useLocation();
     console.log(state.user_email);
     const [studentList, setStudentList] = useState([])
-    const studentsCollectionRef = collection(db, "test_pilot");
+
     // key is collection name
     useEffect(() => {
+        const studentsCollectionRef = collection(db, "test_pilot");
         const getStudentList = async () => {
 
             //Read data
@@ -27,6 +29,7 @@ function DashboardPage() {
             //const data= await getDocs()
 
             try {
+                console.log(auth.currentUser.email);
                 const data = await getDocs(studentsCollectionRef);
 
                 const filtered_data = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));

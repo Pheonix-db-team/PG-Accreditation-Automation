@@ -98,3 +98,5 @@ import {auth} from '../config/firebase'
 			</div>
 			})
 	}
+	-	 Firebase Data update
+	[Link](https://firebase.google.com/docs/firestore/transaction-data-contention)
