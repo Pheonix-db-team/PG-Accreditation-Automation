@@ -100,3 +100,7 @@ import {auth} from '../config/firebase'
 	}
 	-	 Firebase Data update
 	[Link](https://firebase.google.com/docs/firestore/transaction-data-contention)
+
+	-	Signout
+		//Auth.signOut()
+		Signs out the current user.
