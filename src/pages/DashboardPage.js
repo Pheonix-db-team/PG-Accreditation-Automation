@@ -47,7 +47,7 @@ function DashboardPage() {
         //alert("My name is " + name);
         // spread syntax   commonly used to make shallow copies
         try {
-            const studentsCollectionRef = collection(db, "test_pilot");
+            //  const studentsCollectionRef = collection(db, "test_pilot");
             // const docRef = await addDoc(studentsCollectionRef, {
 
             //     enrolment_number: enroll, name: name,

@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import LoginPage from './pages/LoginPage';
-//import reportWebVitals from './reportWebVitals';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -13,6 +12,7 @@ import ContactPage from './pages/ContactPage';
 import SignupPage from './pages/SignupPage';
 import DashboardPage from './pages/DashboardPage';
 import FacultySignupPage from './pages/FacultySignupPage';
+import FacultySigninPage from './pages/FacultySigninPage';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -54,6 +54,12 @@ const router = createBrowserRouter([
     path: "facultysignup",
 
     element: <FacultySignupPage />,
+
+  },
+  {
+    path: "facultysignin",
+
+    element: <FacultySigninPage />,
 
   },
 ]);

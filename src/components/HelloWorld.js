@@ -11,13 +11,13 @@ function HelloWorld({ propnum, propstr }) {
     return (
         //in curly braces look for var else string
         //React functional component can only return only one ele
-
+        //  <div> Computing {num1} + {num2} to {num1 + num2}</div>
         <div style={myStyle}>
             <div>{greeting}</div>
             <div>{followup_greeting}</div>
             <div> Props passed num is {propnum}</div>
             <div> Props passed str is {propstr}</div>
-            <div> Computing {num1} + {num2} to {num1 + num2}</div>
+
             //internal link react router dom
             <a href={link}> Go to google</a>
         </div>

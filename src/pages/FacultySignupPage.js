@@ -1,25 +1,26 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth"
-import { auth, temp_auth } from '../config/firebase'
+import { auth } from '../config/firebase'
 import { getDocs, collection, doc, setDoc } from 'firebase/firestore';
 import { db } from '../config/firebase';
 
 function FacultySignupPage() {
     const password_from_prop = "test123";
     const email_from_prop = "test1@gmail.com";
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [facultyID, setFacultyID] = useState("");
-    const [name, setName] = useState("");
-    const [department, setDepartment] = useState("⬇️ Select department⬇️")
-
     const departments = [
         { label: "COMPUTER SCIENCE AND ENGINEERING", value: "COMPUTER SCIENCE AND ENGINEERING" },
         { label: "ELECTRICAL ENGINEERING", value: "ELECTRICAL ENGINEERING" },
         { label: "MECHANICAL ENGINEERING", value: "MECHANICAL ENGINEERING" }
 
     ]
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [facultyID, setFacultyID] = useState("");
+    const [name, setName] = useState("");
+    const [department, setDepartment] = useState(departments[0].value)
+
+
 
 
 
@@ -47,11 +48,11 @@ function FacultySignupPage() {
     const handleSubmit = async (event) => {
 
         event.preventDefault();
-        const docRef = await setDoc(doc(db, "faculty", facultyID), {
+        const docRef = await setDoc(doc(db, "faculty", email), {
             Courses_assigned: [], Department: department, EmailID: email,
             FacultyID: facultyID, Name: name
         });
-
+        console.log(docRef);
         console.log("Added " + facultyID + " with name " + name);
 
         await createUserWithEmailAndPassword(auth, email, password)
@@ -70,13 +71,13 @@ function FacultySignupPage() {
         await signInWithEmailAndPassword(auth, email_from_prop, password_from_prop)
             .then((userCredential) => {
                 // Signed in 
-                const user = userCredential.user;
+                // const user = userCredential.user;
 
                 // ...
             })
             .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
+                //const errorCode = error.code;
+                //const errorMessage = error.message;
             });
         console.log("Finally You are " + auth.currentUser.email);
 
@@ -84,6 +85,7 @@ function FacultySignupPage() {
         setPassword('');
         setFacultyID('');
         setDepartment('');
+        setName('');
 
     }
 
@@ -106,9 +108,10 @@ function FacultySignupPage() {
                 <br></br>
                 {department}
                 <br></br>
+                {"⬇️ Select department ⬇️"}
+                <br></br>
                 <select onChange={handleDepartmentChange}>
-                    <option value="⬇️ Select department ⬇️"> -- Select a department -- </option>
-                    { }
+
                     {departments.map((department) => <option key={department.label
                     } value={department.value}>{department.label}</option>)}
                 </select>
