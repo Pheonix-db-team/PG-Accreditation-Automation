@@ -2,7 +2,9 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import { signInWithEmailAndPassword } from "firebase/auth"
 import { auth } from '../config/firebase'
+import { useNavigate } from "react-router-dom";
 function FacultySigninPage() {
+    const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -28,7 +30,7 @@ function FacultySigninPage() {
 
         setEmail('');
         setPassword('');
-
+        navigate('/facultydashboard', { state: {} });
     }
 
     return (
