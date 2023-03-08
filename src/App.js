@@ -1,6 +1,7 @@
 //import logo from './logo.svg';
 import { Link } from 'react-router-dom';
 import './App.css';
+import Button from 'react-bootstrap/Button';
 import HelloWorld from './components/HelloWorld';
 import NavBar from './components/NavBar';
 import './App.css';
@@ -34,7 +35,7 @@ function App() {
     <div className="App">
       <NavBar></NavBar>
       <br></br>
-      <Link to="/signup" ><button variant="contained" color="success">SignUp</button></Link>
+      <Link to="/signup" ><Button variant="contained" color="success">SignUp</Button></Link>
       <br></br>
       <Link to="/login" ><button variant="contained" color="success">Login</button></Link>
       <form onSubmit={handleSubmit
