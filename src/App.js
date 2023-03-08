@@ -1,11 +1,9 @@
 //import logo from './logo.svg';
 import { Link } from 'react-router-dom';
 import './App.css';
-import Button from 'react-bootstrap/Button';
-import HelloWorld from './components/HelloWorld';
 import NavBar from './components/NavBar';
 import './App.css';
-import Greeting from './components/Greeting';
+//import Greeting from './components/Greeting';
 import { useState } from 'react';
 function App() {
   //  const num = 46;
@@ -28,16 +26,20 @@ function App() {
     setStudents(newStudents)
     alert(deleting_student + " Deleted!");
   }
-  const listItems = students.map(student => <li>{student} <button onClick={() => handleDelete(student)}>Delete</button></li>);
+  const listItems = students.map(student => <li style={{
+    margin: 3
+  }}  > {student} < button className='deletebutton' onClick={() => handleDelete(student)}> Delete</button ></li >);
 
 
   return (
     <div className="App">
       <NavBar></NavBar>
       <br></br>
-      <Link to="/signup" ><Button variant="contained" color="success">SignUp</Button></Link>
+
+      <Link to="/signup" ><button className='styledbutton'>SignUp</button></Link>
       <br></br>
-      <Link to="/login" ><button variant="contained" color="success">Login</button></Link>
+      <br></br>
+      <Link to="/login" ><button className='styledbutton'>Login</button></Link>
       <form onSubmit={handleSubmit
       }>
         <div > Add new Student</div>
@@ -45,7 +47,7 @@ function App() {
         <input type="submit"></input>
       </form>
       Student List
-      <li>{listItems} </li>
+      <li>{listItems}</li>
     </div>
   );
 }

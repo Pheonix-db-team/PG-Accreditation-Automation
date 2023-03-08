@@ -106,6 +106,7 @@ function DashboardPage() {
                     <input type="text" value={name} onChange={(e) => setName(e.target.value)}></input>
                     <div>Enrollment</div>
                     <input type="text" value={enroll} onChange={(e) => setEnroll(e.target.value)}></input>
+                    <br></br>
                     <input type="submit"></input>
                 </form>
             </div>
@@ -113,7 +114,7 @@ function DashboardPage() {
             <div>
                 {
                     studentList.map((student) => <div key={student.id}>
-                        <h6>{student.name} {student.enrolment_number}<button onClick={() => handleDelete(student)}>Delete</button></h6>
+                        <h6>{student.name} {student.enrolment_number}<button className='deletebutton' onClick={() => handleDelete(student)}>Delete</button></h6>
                     </div>)
                 }
             </div>

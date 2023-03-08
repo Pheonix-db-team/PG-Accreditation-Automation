@@ -1,12 +1,77 @@
-* {
-  /*default*/
-  margin: 0;
-  padding: 0;
+/*Salmon Sushi color combination */
+/* https://www.canva.com/colors/color-palettes/salmon-sushi/*/
+:root {
+  --color_primary: #74BDCB;
+  --color_secondary: #FFA384;
+  --color_1: #EFE7BC;
 }
+
+input[type=text] {
+  padding: 5px;
+  border: 2px solid #ccc;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
+input[type=text]:focus {
+  border-color: #333;
+}
+
+input[type=submit] {
+  padding: 5px 15px;
+  background: var(--color_primary);
+  border: 0 none;
+  cursor: pointer;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
+input[type=submit]:hover {
+  background-color: var(--color_secondary);
+  color: white;
+}
+
+.styledbutton {
+  display: inline-block;
+  padding: .5rem 1rem;
+  border: none;
+  border-radius: 5rem;
+  background-color: var(--color_primary);
+  z-index: 1;
+  cursor: pointer;
+  transition-duration: 0.4s;
+
+}
+
+.styledbutton:hover {
+  background-color: var(--color_secondary);
+  color: white;
+}
+
+.deletebutton {
+  display: inline-block;
+  padding: .5rem .75rem;
+  border: none;
+  border-radius: 4rem;
+  background-color: red;
+  color: white;
+  z-index: 1;
+  cursor: pointer;
+  transition-duration: 0.4s;
+
+}
+
+.deletebutton:hover {
+  background-color: whitesmoke;
+  color: red;
+}
+
 
 .logo {
   color: white;
 }
+
+
 
 .navbar {
   display: flex;
