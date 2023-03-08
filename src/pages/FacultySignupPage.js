@@ -1,22 +1,62 @@
 import React from 'react'
-import { useState } from 'react';
-import { createUserWithEmailAndPassword } from "firebase/auth"
-import { auth } from '../config/firebase'
-//Department Array in app.js
+import { useState, useEffect } from 'react';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth"
+import { auth, temp_auth } from '../config/firebase'
+import { getDocs, collection, doc, setDoc } from 'firebase/firestore';
+import { db } from '../config/firebase';
+
 function FacultySignupPage() {
+    const password_from_prop = "test123";
+    const email_from_prop = "test1@gmail.com";
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [facultyID, setFacultyID] = useState("");
     const [name, setName] = useState("");
+    const [department, setDepartment] = useState("⬇️ Select department⬇️")
 
-    //const [department, setDepartment] = useState("");
-    const handleSubmit = (event) => {
+    const departments = [
+        { label: "COMPUTER SCIENCE AND ENGINEERING", value: "COMPUTER SCIENCE AND ENGINEERING" },
+        { label: "ELECTRICAL ENGINEERING", value: "ELECTRICAL ENGINEERING" },
+        { label: "MECHANICAL ENGINEERING", value: "MECHANICAL ENGINEERING" }
+
+    ]
+
+
+
+    useEffect(() => {
+        const fetchListTest = async () => {
+
+            //Read data
+            try {
+                const data = await getDocs(collection(db, "faculty"));
+
+                const filtered_data = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+                console.log(filtered_data);
+
+            }
+            catch (err) {
+                console.error(err);
+            }
+
+        }; fetchListTest();
+    }
+        , []);
+    const handleDepartmentChange = (e) => {
+        setDepartment(e.target.value)
+    }
+    const handleSubmit = async (event) => {
 
         event.preventDefault();
-        createUserWithEmailAndPassword(auth, email, password)
+        const docRef = await setDoc(doc(db, "faculty", facultyID), {
+            Courses_assigned: [], Department: department, EmailID: email,
+            FacultyID: facultyID, Name: name
+        });
+
+        console.log("Added " + facultyID + " with name " + name);
+
+        await createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                const user = userCredential.user;
-                alert("Signed up " + user.email);
+                // console.log("You are " + userCredential.user.email);
 
             })
             .catch((error) => {
@@ -26,9 +66,27 @@ function FacultySignupPage() {
 
 
             });
+        console.log("Now you are " + auth.currentUser.email);
+        await signInWithEmailAndPassword(auth, email_from_prop, password_from_prop)
+            .then((userCredential) => {
+                // Signed in 
+                const user = userCredential.user;
 
+                // ...
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+            });
+        console.log("Finally You are " + auth.currentUser.email);
+
+        setEmail('');
+        setPassword('');
+        setFacultyID('');
+        setDepartment('');
 
     }
+
     return (
         <div>
             <br></br>
@@ -46,6 +104,14 @@ function FacultySignupPage() {
                 <br></br>
                 *Faculty ID must be unique
                 <br></br>
+                {department}
+                <br></br>
+                <select onChange={handleDepartmentChange}>
+                    <option value="⬇️ Select department ⬇️"> -- Select a department -- </option>
+                    { }
+                    {departments.map((department) => <option key={department.label
+                    } value={department.value}>{department.label}</option>)}
+                </select>
                 <div>Email</div>
                 <input type="email" value={email} onChange={(e) => setEmail(e.target.value)}></input>
                 <div>Password</div>
