@@ -1,6 +1,10 @@
-# Getting Started with Create React App
+# Pilot App to learn and build basics
 
+![class diagram](notes/class_diagram.jpg)
+
+![er diagram](notes/er_diagram.png)
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
 
 ## Get scripts after clone
 📜 `npm install react-scripts --save`
