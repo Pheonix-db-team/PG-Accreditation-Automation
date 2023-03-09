@@ -31,7 +31,7 @@ function StudentDashboard() {
             }
 
         }; fetchDetails();
-        console.log("Fac obj");
+        console.log("Student obj");
         console.log(student);
     }
         , []);

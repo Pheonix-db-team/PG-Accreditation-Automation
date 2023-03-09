@@ -17,6 +17,7 @@ import FacultyDashboard from './pages/FacultyDashboard';
 import StudentSignupPage from './pages/StudentSignupPage';
 import StudentSigninPage from './pages/StudentSigninPage';
 import StudentDashboard from './pages/StudentDashboard';
+import CheckBoxDemoPage from './pages/CheckBoxDemoPage';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -90,6 +91,14 @@ const router = createBrowserRouter([
     element: <StudentDashboard />,
 
   },
+  {
+
+    path: "checkboxdemo",
+
+    element: <CheckBoxDemoPage />,
+
+  },
+  //CheckBoxDemoPage
 
 ]);
 const root = ReactDOM.createRoot(document.getElementById('root'));
