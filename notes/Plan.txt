@@ -1,0 +1,17 @@
+ER changes 
+FK and Keys are email because of sync w firebase auth 
+Subject Table: Add subject name entry, drop branch
+Student Table : add CES done table // array of subject ID FILLED FORM
+Faculty Table : add CES done table // array of subject ID FILLED FORM
+Survey Table : Faculty ID replace w Fac Email
+CES Suvey Page
+Load sub from fac course assigned list
+show CESAv= False @ dropdown
+add ques and options
+submit create survey_id and add to subject
+question array of dict [{
+q1:{
+prompt:"str"
+option:["str"]}]
+Submit by unique id
+Student surveyfilled_ids here
