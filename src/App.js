@@ -60,5 +60,13 @@ export const departments = [
   { label: "COMPUTER SCIENCE AND ENGINEERING", value: "COMPUTER SCIENCE AND ENGINEERING" },
   { label: "ELECTRICAL ENGINEERING", value: "ELECTRICAL ENGINEERING" },
   { label: "MECHANICAL ENGINEERING", value: "MECHANICAL ENGINEERING" }
-
 ]
+export const subject_test_array = [
+  {
+    SubjectID: "CS101",
+    SubjectName: "FIS"
+  },
+  {
+    SubjectID: "CS201",
+    SubjectName: "Distributed System"
+  },]

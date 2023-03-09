@@ -5,6 +5,7 @@ import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../config/firebase';
 //import { useNavigate } from "react-router-dom";
 import { student_test_email } from "../App.js";
+
 function StudentDashboard() {
     //const navigate = useNavigate();
     const [student, setStudent] = useState({});
@@ -49,6 +50,7 @@ function StudentDashboard() {
 }) */}
             Courses_Registered status:{(Array.isArray(student['Courses_Registered']) && student['Courses_Registered'].length) ? "✅" : "❌"}
             <br></br>
+
 
 
         </div>

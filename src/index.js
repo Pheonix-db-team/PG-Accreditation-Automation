@@ -18,6 +18,7 @@ import StudentSignupPage from './pages/StudentSignupPage';
 import StudentSigninPage from './pages/StudentSigninPage';
 import StudentDashboard from './pages/StudentDashboard';
 import CheckBoxDemoPage from './pages/CheckBoxDemoPage';
+import StudentCourseRegPage from './pages/StudentCourseRegPage';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -96,6 +97,13 @@ const router = createBrowserRouter([
     path: "checkboxdemo",
 
     element: <CheckBoxDemoPage />,
+
+  },
+  {
+
+    path: "studentcoursereg",
+
+    element: <StudentCourseRegPage />,
 
   },
   //CheckBoxDemoPage
