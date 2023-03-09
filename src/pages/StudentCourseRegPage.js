@@ -5,6 +5,7 @@ import { getDocs, collection, doc, setDoc } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { student_test } from "../App.js";
 function StudentCourseRegPage() {
+    const student_data = student_test;
     const [checkedState, setCheckedState] = useState(
         new Array(subject_test_array.length).fill(false)
         // fill array size w false
@@ -14,7 +15,7 @@ function StudentCourseRegPage() {
         //prevent redirect to oth. page
         event.preventDefault();
         try {
-            const docRef = await setDoc(doc(db, "Student", student_test.EmailID), {
+            const docRef = await setDoc(doc(db, "Student", student_data.EmailID), {
                 Courses_Registered: ssubjects,
 
             }, { merge: true });
@@ -49,43 +50,46 @@ function StudentCourseRegPage() {
         console.log(ssubjectsSubjectID_arr);
         setSsubjects(ssubjectsSubjectID_arr);
     };
-    // if (test)
-    return (
-        <div>Student Course RegPage
-            <br></br>
-            <ul >
-                {subject_test_array.map(({ SubjectName, SubjectID }, index) => {
-                    return (
-                        <li key={index}>
-                            <div>
-                                <div >
-                                    <input
-                                        type="checkbox"
-                                        id={`custom-checkbox-${index}`}
-                                        name={SubjectName}
-                                        value={SubjectName}
-                                        checked={checkedState[index]}
-                                        onChange={() => handleOnChange(index)}
-                                    />
-                                    <label htmlFor={`custom-checkbox-${index}`}>{SubjectName}</label>
+    if (student_data.Courses_Registered.length > 0)
+        return (
+            <div>Student Course RegPage
+                <br></br>
+                <ul >
+                    {subject_test_array.map(({ SubjectName, SubjectID }, index) => {
+                        return (
+                            <li key={index}>
+                                <div>
+                                    <div >
+                                        <input
+                                            type="checkbox"
+                                            id={`custom-checkbox-${index}`}
+                                            name={SubjectName}
+                                            value={SubjectName}
+                                            checked={checkedState[index]}
+                                            onChange={() => handleOnChange(index)}
+                                        />
+                                        <label htmlFor={`custom-checkbox-${index}`}>{SubjectName}</label>
+                                    </div>
+                                    <br></br>
+                                    <div >{getFormattedSubjectID(SubjectID)}</div>
                                 </div>
-                                <br></br>
-                                <div >{getFormattedSubjectID(SubjectID)}</div>
-                            </div>
-                        </li>
+                            </li>
 
-                    );
-                })}
-                <button onClick={handleRegisterSubmit} >Register</button>
-                <div >Subjects selected :</div>
-                <li><div>{ssubjects.map((subject) => <div key={subject}>
-                    <h6> {subject}</h6>
-                </div>)}
-                </div>
-                </li>
-            </ul>
-        </div>
-    )
+                        );
+                    })}
+                    <button onClick={handleRegisterSubmit} >Register</button>
+                    <div >Subjects selected :</div>
+                    <li><div>{ssubjects.map((subject) => <div key={subject}>
+                        <h6> {subject}</h6>
+                    </div>)}
+                    </div>
+                    </li>
+                </ul>
+            </div>
+        );
+    else {
+        return (<div>Registered </div>)
+    }
 }
 
 export default StudentCourseRegPage

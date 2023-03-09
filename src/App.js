@@ -68,6 +68,19 @@ export const student_test = {
   "Courses_Registered": [],
   "Department": "COMPUTER SCIENCE AND ENGINEERING"
 };
+export const faculties_arr_test = [{
+  "EmailID": "testmsd@gmail.com",
+  "Name": "Madhu SD",
+  "Courses_assigned": [],
+  "Department": "ELECTRICAL ENGINEERING",
+  "FacultyID": "MSD"
+}, {
+  "EmailID": "testppn@gmail.com",
+  "Name": "Pournami PN",
+  "Courses_assigned": [],
+  "Department": "ELECTRICAL ENGINEERING",
+  "FacultyID": "PPN"
+},];
 export const subject_test_array = [
   {
     SubjectID: "CS101",

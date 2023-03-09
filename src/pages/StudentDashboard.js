@@ -10,6 +10,7 @@ function StudentDashboard() {
     //const navigate = useNavigate();
     const [student, setStudent] = useState({});
     useEffect(() => {
+
         const fetchDetails = async () => {
 
             //Read data
@@ -33,10 +34,12 @@ function StudentDashboard() {
 
         }; fetchDetails();
         console.log("Student obj");
-        console.log(student);
+
     }
         , []);
+    console.log(student);
     return (
+
         <div className='div-margin'>Student Dashboard
             <br></br>
             Name :{student['Name']}

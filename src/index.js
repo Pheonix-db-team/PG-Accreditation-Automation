@@ -19,6 +19,7 @@ import StudentSigninPage from './pages/StudentSigninPage';
 import StudentDashboard from './pages/StudentDashboard';
 import CheckBoxDemoPage from './pages/CheckBoxDemoPage';
 import StudentCourseRegPage from './pages/StudentCourseRegPage';
+import AddSubjectPage from './pages/AddSubjectPage';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -106,8 +107,13 @@ const router = createBrowserRouter([
     element: <StudentCourseRegPage />,
 
   },
-  //CheckBoxDemoPage
+  {
 
+    path: "addsubject",
+
+    element: <AddSubjectPage />,
+
+  },
 ]);
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

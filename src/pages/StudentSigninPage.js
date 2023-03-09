@@ -2,11 +2,11 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import { signInWithEmailAndPassword } from "firebase/auth"
 import { auth } from '../config/firebase'
-import { useNavigate } from "react-router-dom";
-import { getDoc, collection, doc, setDoc } from 'firebase/firestore';
+//import { useNavigate } from "react-router-dom";
+import { getDoc, doc } from 'firebase/firestore';
 import { db } from '../config/firebase';
 function StudentSigninPage() {
-    const navigate = useNavigate();
+    //const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
