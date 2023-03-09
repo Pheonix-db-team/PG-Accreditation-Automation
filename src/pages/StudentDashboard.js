@@ -4,10 +4,10 @@ import { useState, useEffect } from 'react';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../config/firebase';
 //import { useNavigate } from "react-router-dom";
-
-function FacultyDashboard() {
+import { student_test_email } from "../App.js";
+function StudentDashboard() {
     //const navigate = useNavigate();
-    const [fac, setFac] = useState({});
+    const [student, setStudent] = useState({});
     useEffect(() => {
         const fetchDetails = async () => {
 
@@ -17,13 +17,11 @@ function FacultyDashboard() {
                 //const email = curr?.email;
                 // console.log("Welcome " + email);
 
-                const data = await getDoc(doc(db, "faculty", "testmsd@gmail.com"));
-                //const data = await getDoc(collection(db, "faculty", "testmsd@gmail.com"));
-
+                const data = await getDoc(doc(db, "Student", student_test_email));
                 const filtered_data = data.data();
                 console.log("Fetched data");
                 console.log(filtered_data);
-                setFac(filtered_data);
+                setStudent(filtered_data);
                 // return filtered_data;
 
             }
@@ -34,21 +32,27 @@ function FacultyDashboard() {
 
         }; fetchDetails();
         console.log("Fac obj");
-        console.log(fac);
+        console.log(student);
     }
         , []);
     return (
-        <div className='div-margin'>Faculty Dashboard
+        <div className='div-margin'>Student Dashboard
             <br></br>
-            Name :{fac['Name']}
+            Name :{student['Name']}
             <br></br>
-            Email :{fac['EmailID']}
+            Email :{student['EmailID']}
             <br></br>
-            Department :{fac['Department']}
+            Department :{student['Department']}
             <br></br>
+            {/* if(if (Array.isArray(array) && array.length) {
+    // array exists and is not empty
+}) */}
+            Courses_Registered status:{(Array.isArray(student['Courses_Registered']) && student['Courses_Registered'].length) ? "✅" : "❌"}
+            <br></br>
+
 
         </div>
     )
 }
 
-export default FacultyDashboard
+export default StudentDashboard

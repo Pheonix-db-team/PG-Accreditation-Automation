@@ -16,6 +16,7 @@ import FacultySigninPage from './pages/FacultySigninPage';
 import FacultyDashboard from './pages/FacultyDashboard';
 import StudentSignupPage from './pages/StudentSignupPage';
 import StudentSigninPage from './pages/StudentSigninPage';
+import StudentDashboard from './pages/StudentDashboard';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -81,6 +82,12 @@ const router = createBrowserRouter([
     path: "studentsignup",
 
     element: <StudentSigninPage />,
+
+  },
+  {
+    path: "studentdashboard",
+
+    element: <StudentDashboard />,
 
   },
 
