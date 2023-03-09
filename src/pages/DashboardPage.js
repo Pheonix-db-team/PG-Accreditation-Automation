@@ -23,7 +23,7 @@ async function refreshList() {
 
 function DashboardPage() {
     let { state } = useLocation();
-    console.log(state.user_email);
+    console.log(state?.user_email);
     const [name, setName] = useState("");
     const [enroll, setEnroll] = useState("");
     const [studentList, setStudentList] = useState([])
@@ -73,6 +73,22 @@ function DashboardPage() {
     }
     // key is collection name
     useEffect(() => {
+        const fetchListTest = async () => {
+
+            //Read data
+            try {
+                const data = await getDocs(collection(db, "Student"));
+
+                const filtered_data = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+                //console.log(data);
+                console.log(filtered_data[0]);
+
+            }
+            catch (err) {
+                console.error(err);
+            }
+
+        }; fetchListTest();
         const studentsCollectionRef = collection(db, "test_pilot");
         const getStudentList = async () => {
 

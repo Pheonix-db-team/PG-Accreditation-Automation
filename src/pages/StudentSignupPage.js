@@ -5,7 +5,8 @@ import { auth } from '../config/firebase'
 import { getDocs, collection, doc, setDoc } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { password_from_prop, email_from_prop, departments } from "../App.js";
-function FacultySignupPage() {
+//import {password_from_prop} from 
+function StudentSignupPage() {
     // const password_from_prop = "test123";
     // const email_from_prop = "test1@gmail.com";
     // const departments = [
@@ -16,7 +17,7 @@ function FacultySignupPage() {
     // ]
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [facultyID, setFacultyID] = useState("");
+    const [enrolmentNo, setEnrolmentNo] = useState("");
     const [name, setName] = useState("");
     const [department, setDepartment] = useState(departments[0].value)
 
@@ -29,7 +30,7 @@ function FacultySignupPage() {
 
             //Read data
             try {
-                const data = await getDocs(collection(db, "faculty"));
+                const data = await getDocs(collection(db, "Student"));
 
                 const filtered_data = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
                 console.log(filtered_data);
@@ -48,12 +49,25 @@ function FacultySignupPage() {
     const handleSubmit = async (event) => {
 
         event.preventDefault();
-        const docRef = await setDoc(doc(db, "faculty", email), {
-            Courses_assigned: [], Department: department, EmailID: email,
-            FacultyID: facultyID, Name: name
+        const docRef = await setDoc(doc(db, "Student", email), {
+
+            Courses_Registered: [], Department: department, EmailID: email,
+            Enrolment_No: enrolmentNo, Name: name
         });
+
+
+        //     "Courses_Registered": [
+        //         "FIS",
+        //         "Distt"
+        //     ],
+        //     "Department": "COMPUTER SCIENCE AND ENGINEERING",
+        //     "Name": "Yugam Parashar",
+        //     "Enrolment_No": "M220256CS",
+        //     "id": "M220256CS"
+        // }
+
         console.log(docRef);
-        console.log("Added " + facultyID + " with name " + name);
+        console.log("Added " + enrolmentNo + " with name " + name);
 
         await createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
@@ -83,7 +97,7 @@ function FacultySignupPage() {
 
         setEmail('');
         setPassword('');
-        setFacultyID('');
+        setEnrolmentNo('');
         setDepartment('');
         setName('');
 
@@ -94,17 +108,17 @@ function FacultySignupPage() {
             <br></br>
             <form onSubmit={handleSubmit
             }>
-                <div > Signup Faculty</div>
+                <div > Signup Student</div>
                 <br></br>
-                Faculty ID
+                Student ID
                 <br></br>
-                <input type="text" value={facultyID} onChange={(e) => setFacultyID(e.target.value)}></input>
+                <input type="text" value={enrolmentNo} onChange={(e) => setEnrolmentNo(e.target.value)}></input>
                 <br></br>
-                Faculty Name
+                Student Name
                 <br></br>
                 <input type="text" value={name} onChange={(e) => setName(e.target.value)}></input>
                 <br></br>
-                *Faculty ID must be unique
+                *Student ID must be unique
                 <br></br>
                 {department}
                 <br></br>
@@ -128,4 +142,4 @@ function FacultySignupPage() {
     )
 }
 
-export default FacultySignupPage
+export default StudentSignupPage

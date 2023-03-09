@@ -14,6 +14,7 @@ import DashboardPage from './pages/DashboardPage';
 import FacultySignupPage from './pages/FacultySignupPage';
 import FacultySigninPage from './pages/FacultySigninPage';
 import FacultyDashboard from './pages/FacultyDashboard';
+import StudentSignupPage from './pages/StudentSignupPage';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -69,6 +70,13 @@ const router = createBrowserRouter([
     element: <FacultyDashboard />,
 
   },
+  {
+    path: "studentsignup",
+
+    element: <StudentSignupPage />,
+
+  },
+
 ]);
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

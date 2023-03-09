@@ -53,3 +53,11 @@ function App() {
 }
 
 export default App;
+export const password_from_prop = "test123";
+export const email_from_prop = "test1@gmail.com";
+export const departments = [
+  { label: "COMPUTER SCIENCE AND ENGINEERING", value: "COMPUTER SCIENCE AND ENGINEERING" },
+  { label: "ELECTRICAL ENGINEERING", value: "ELECTRICAL ENGINEERING" },
+  { label: "MECHANICAL ENGINEERING", value: "MECHANICAL ENGINEERING" }
+
+]

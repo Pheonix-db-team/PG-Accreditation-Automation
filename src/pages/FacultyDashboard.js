@@ -1,7 +1,7 @@
 import React from 'react';
 import { auth } from '../config/firebase';
 import { useState, useEffect } from 'react';
-import { doc, getDoc, collection } from 'firebase/firestore';
+import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { useNavigate } from "react-router-dom";
 
@@ -38,7 +38,7 @@ function FacultyDashboard() {
     }
         , []);
     return (
-        <div>Faculty Dashboard
+        <div className='div-margin'>Faculty Dashboard
             <br></br>
             Name :{fac['Name']}
             <br></br>
