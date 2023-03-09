@@ -3,11 +3,13 @@ import { useState, useEffect } from 'react';
 import { signInWithEmailAndPassword } from "firebase/auth"
 import { auth } from '../config/firebase'
 import { useNavigate } from "react-router-dom";
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from '../config/firebase';
 function FacultySigninPage() {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
+    const [fac, setFac] = useState({});
     useEffect(() => {
         //No Need
     }
@@ -28,10 +30,22 @@ function FacultySigninPage() {
             });
         console.log("You are " + auth.currentUser.email);
 
+        const data = await getDoc(doc(db, "faculty", email));
+        //const data = await getDoc(collection(db, "faculty", "testmsd@gmail.com"));
+
+        const filtered_data = data.data();
+        console.log("Fetched data");
+        console.log(filtered_data);
+        setFac(JSON.parse(JSON.stringify(filtered_data)));
+        // console.log("Fac set");
+        // console.log(fac);
+
+        navigate('/facultydashboard', { state: { fac: filtered_data, fac_email: email } });
         setEmail('');
         setPassword('');
-        navigate('/facultydashboard', { state: {} });
+
     }
+
 
     return (
         <div>

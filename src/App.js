@@ -84,7 +84,7 @@ export const faculties_arr_test = [{
   "Department": "Computer Science", "id": "pathari@nitc.ac.in"
 },
 {
-  "Courses_assigned": [], "Name": "Madhu SD", "Department": "ELECTRICAL ENGINEERING",
+  "Courses_assigned": ['DS'], "Name": "Madhu SD", "Department": "ELECTRICAL ENGINEERING",
   "EmailID": "testmsd@gmail.com", "FacultyID": "MSD", "id": "testmsd@gmail.com"
 },
 {

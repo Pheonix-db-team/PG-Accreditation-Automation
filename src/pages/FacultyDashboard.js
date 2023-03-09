@@ -3,12 +3,15 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../config/firebase';
-//import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function FacultyDashboard() {
-    //const navigate = useNavigate();
-    const [fac, setFac] = useState({});
+    const navigate = useNavigate();
+    const { state } = useLocation();
+    const [fac, setFac] = useState(state.fac);
     useEffect(() => {
+        console.log("Dashboard state")
+        console.log(state);
         const fetchDetails = async () => {
 
             //Read data
@@ -17,7 +20,7 @@ function FacultyDashboard() {
                 //const email = curr?.email;
                 // console.log("Welcome " + email);
 
-                const data = await getDoc(doc(db, "faculty", "testmsd@gmail.com"));
+                const data = await getDoc(doc(db, "faculty", state.fac_email));
                 //const data = await getDoc(collection(db, "faculty", "testmsd@gmail.com"));
 
                 const filtered_data = data.data();
@@ -32,23 +35,41 @@ function FacultyDashboard() {
                 //return "";
             }
 
-        }; fetchDetails();
-        console.log("Fac obj");
-        console.log(fac);
+        };
+        if (0) {
+            // if (state.fac_email) {
+            fetchDetails();
+            console.log("Fac obj");
+            console.log(fac);
+        }
     }
         , []);
-    return (
-        <div className='div-margin'>Faculty Dashboard
-            <br></br>
-            Name :{fac['Name']}
-            <br></br>
-            Email :{fac['EmailID']}
-            <br></br>
-            Department :{fac['Department']}
-            <br></br>
-
-        </div>
-    )
+    if (state.fac_email) {
+        return (
+            <div className='div-margin'>Faculty Dashboard
+                <br></br>
+                Name :{fac['Name']}
+                <br></br>
+                Email :{fac['EmailID']}
+                <br></br>
+                Department :{fac['Department']}
+                <br></br>
+                Subjects
+                <br></br>
+                <div>
+                    {
+                        (state.fac['Courses_assigned']) ?
+                            fac['Courses_assigned'].map((course) => <div key={course}>
+                                {course}
+                            </div>) : <div>"No subject assigned"</div>
+                    }
+                </div>
+            </div>
+        );
+    }
+    else {
+        return <div>Account Authentication issue go to home</div>
+    }
 }
 
 export default FacultyDashboard

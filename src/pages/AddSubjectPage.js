@@ -68,7 +68,7 @@ function AddSubjectPage() {
         console.log("Found at " + faculties_from_prop[fac_index]);
         console.log(faculties_from_prop[fac_index].Courses_assigned);
         const docRef1 = await setDoc(doc(db, "faculty", faculty), {
-            Courses_Registered: arrayUnion(subjectID),
+            Courses_assigned: arrayUnion(subjectID),
 
         }, { merge: true });
         alert("Added " + name);
