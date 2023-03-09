@@ -51,7 +51,17 @@ function App() {
     </div>
   );
 }
+export function getValueByKey(data, key, value_to_look,) {
+  var i, len = data.length;
+  console.log("looking for value  " + value_to_look + " in key " + key)
+  for (i = 0; i < len; i++) {
+    if (data[i] && data[i][key] == value_to_look) {
+      return i;
+    }
+  }
 
+  return -1;
+};
 export default App;
 export const password_from_prop = "test123";
 export const email_from_prop = "test1@gmail.com";
@@ -69,24 +79,33 @@ export const student_test = {
   "Department": "COMPUTER SCIENCE AND ENGINEERING"
 };
 export const faculties_arr_test = [{
-  "EmailID": "testmsd@gmail.com",
-  "Name": "Madhu SD",
-  "Courses_assigned": [],
-  "Department": "ELECTRICAL ENGINEERING",
-  "FacultyID": "MSD"
-}, {
-  "EmailID": "testppn@gmail.com",
-  "Name": "Pournami PN",
-  "Courses_assigned": [],
-  "Department": "ELECTRICAL ENGINEERING",
-  "FacultyID": "PPN"
-},];
-export const subject_test_array = [
-  {
-    SubjectID: "CS101",
-    SubjectName: "FIS"
-  },
-  {
-    SubjectID: "CS201",
-    SubjectName: "Distributed System"
-  },]
+  "Courses_assigned": [], "Name": "Vinod Patheri",
+  "EmailID": "pathari@nitc.ac.in", "FacultyID": "VPatheri",
+  "Department": "Computer Science", "id": "pathari@nitc.ac.in"
+},
+{
+  "Courses_assigned": [], "Name": "Madhu SD", "Department": "ELECTRICAL ENGINEERING",
+  "EmailID": "testmsd@gmail.com", "FacultyID": "MSD", "id": "testmsd@gmail.com"
+},
+{
+  "FacultyID": "NZR", "Courses_assigned": [], "Department": "COMPUTER SCIENCE AND ENGINEERING",
+  "Name": "Nazir", "EmailID": "testnzr@gmail.com", "id": "testnzr@gmail.com"
+},
+{
+  "Courses_assigned": [], "Department": "COMPUTER SCIENCE AND ENGINEERING",
+  "EmailID": "testppn@gmail.com", "Name": "pournami PN", "FacultyID": "ppn",
+  "id": "testppn@gmail.com"
+}];
+export const subject_test_array = [{
+  "SubjectID": "CS101", "Students_Enrolled": [],
+  "Name": "Artifiicial Intelligence", "Faculty_Assigned": "testppn@gmail.com",
+  "Question_List": [], "CourseExitSurveyAvailable": false, "Department": "",
+  "last_date": null, "id": "CS101",
+},
+{
+  "Faculty_Assigned": "testppn@gmail.com", "SubjectID": "saAx",
+  "Name": "s", "Question_List": null,
+  "CourseExitSurveyAvailable": false, "Students_Enrolled": [],
+  "Department": "COMPUTER SCIENCE AND ENGINEERING", "last_date": null,
+  "id": "saAx"
+}]

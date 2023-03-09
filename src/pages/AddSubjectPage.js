@@ -1,20 +1,10 @@
 import React from 'react'
-import { useState } from 'react';
-import { doc, setDoc } from 'firebase/firestore';
+import { useState, useEffect } from 'react';
+import { doc, setDoc, getDocs, collection, arrayUnion } from 'firebase/firestore';
 import { db } from '../config/firebase';
-import { faculties_arr_test, departments } from "../App.js";
-import { Alert } from 'bootstrap';
+import { faculties_arr_test, departments, getValueByKey } from "../App.js";
 function AddSubjectPage() {
-    // const password_from_prop = "test123";
-    // const email_from_prop = "test1@gmail.com";
-    // const departments = [
-    //     { label: "COMPUTER SCIENCE AND ENGINEERING", value: "COMPUTER SCIENCE AND ENGINEERING" },
-    //     { label: "ELECTRICAL ENGINEERING", value: "ELECTRICAL ENGINEERING" },
-    //     { label: "MECHANICAL ENGINEERING", value: "MECHANICAL ENGINEERING" }
 
-    // ]
-    // const [email, setEmail] = useState("");
-    // const [password, setPassword] = useState("");
     const faculties_from_prop = faculties_arr_test;
     const [subjectID, setsubjectID] = useState("");
     const [name, setName] = useState("");
@@ -24,25 +14,29 @@ function AddSubjectPage() {
 
 
 
+    useEffect(() => {
+        const fetchListTest = async () => {
 
-    // useEffect(() => {
-    //     const fetchListTest = async () => {
+            //Read data
+            try {
+                const data_1 = await getDocs(collection(db, "subject"));
 
-    //         //Read data
-    //         try {
-    //             const data = await getDocs(collection(db, "subject"));
+                const filtered_data_1 = data_1.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+                console.log(filtered_data_1);
 
-    //             const filtered_data = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-    //             console.log(filtered_data);
+                const data_2 = await getDocs(collection(db, "faculty"));
 
-    //         }
-    //         catch (err) {
-    //             console.error(err);
-    //         }
+                const filtered_data_2 = data_2.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+                console.log(filtered_data_2);
 
-    //     }; fetchListTest();
-    // }
-    //     , []);
+            }
+            catch (err) {
+                console.error(err);
+            }
+
+        }; fetchListTest();
+    }
+        , []);
 
     const handleFacultyChange = (e) => {
         setFaculty(e.target.value);
@@ -68,8 +62,17 @@ function AddSubjectPage() {
 
 
         });
-        alert("Added " + name);
+
         console.log(docRef);
+        const fac_index = getValueByKey(faculties_from_prop, "EmailID", faculty);
+        console.log("Found at " + faculties_from_prop[fac_index]);
+        console.log(faculties_from_prop[fac_index].Courses_assigned);
+        const docRef1 = await setDoc(doc(db, "faculty", faculty), {
+            Courses_Registered: arrayUnion(subjectID),
+
+        }, { merge: true });
+        alert("Added " + name);
+        console.log("DocRef ", docRef1);
         console.log("Added " + subjectID + " with name " + name);
         setsubjectID('');
         setDepartment('');
