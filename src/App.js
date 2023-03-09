@@ -61,6 +61,13 @@ export const departments = [
   { label: "ELECTRICAL ENGINEERING", value: "ELECTRICAL ENGINEERING" },
   { label: "MECHANICAL ENGINEERING", value: "MECHANICAL ENGINEERING" }
 ]
+export const student_test = {
+  "Name": "Yugam Parashar",
+  "EmailID": "testy@gmail.com",
+  "Enrolment_No": "M220256CS",
+  "Courses_Registered": [],
+  "Department": "COMPUTER SCIENCE AND ENGINEERING"
+};
 export const subject_test_array = [
   {
     SubjectID: "CS101",

@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import { signInWithEmailAndPassword } from "firebase/auth"
 import { auth } from '../config/firebase'
 import { useNavigate } from "react-router-dom";
+import { getDoc, collection, doc, setDoc } from 'firebase/firestore';
+import { db } from '../config/firebase';
 function StudentSigninPage() {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
@@ -27,6 +29,10 @@ function StudentSigninPage() {
                 //   const errorMessage = error.message;
             });
         console.log("You are " + auth.currentUser.email);
+        const data = await getDoc(doc(db, "Student", email));
+        const filtered_data = data.data();
+        console.log("Fetched data");
+        console.log(filtered_data);
 
         setEmail('');
         setPassword('');

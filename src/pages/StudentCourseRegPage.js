@@ -1,24 +1,57 @@
 import React from 'react';
 import { subject_test_array } from "../App.js";
 import { useState, useEffect } from 'react';
-
+import { getDocs, collection, doc, setDoc } from 'firebase/firestore';
+import { db } from '../config/firebase';
+import { student_test } from "../App.js";
 function StudentCourseRegPage() {
-
-    const getFormattedSubjectID = (SubjectID) => SubjectID;
     const [checkedState, setCheckedState] = useState(
         new Array(subject_test_array.length).fill(false)
         // fill array size w false
     );
-    const [total, setTotal] = useState(0);
+    const [ssubjects, setSsubjects] = useState([]);
+    const handleRegisterSubmit = async (event) => {
+        //prevent redirect to oth. page
+        event.preventDefault();
+        try {
+            const docRef = await setDoc(doc(db, "Student", student_test.EmailID), {
+                Courses_Registered: ssubjects,
+
+            }, { merge: true });
+
+            console.log("DocRef ", docRef);
+            setCheckedState(new Array(subject_test_array.length).fill(false));
+            setSsubjects([]);
+        } catch (e) {
+            console.error("Error adding document: ", e);
+        }
+
+    }
+
+    const getFormattedSubjectID = (SubjectID) => SubjectID;
+
+
     const handleOnChange = (position) => {
         const updatedCheckedState = checkedState.map((item, index) => index === position ? !item : item);
         setCheckedState(updatedCheckedState);
-        const totalSubjectID = updatedCheckedState.reduce((sum, currentState, index) => { if (currentState === true) { return sum + subject_test_array[index].SubjectID; } return sum; }, 0);
-        setTotal(totalSubjectID);
-    };
+        // sub_temp_arr=[]
+        const ssubjectsSubjectID = updatedCheckedState.reduce((sum, currentState, index) => { if (currentState === true) { return sum + subject_test_array[index].SubjectID; } return sum; }, 0);
+        let i = 0;
+        const ssubjectsSubjectID_arr = [];
+        while (i < updatedCheckedState.length) {
 
+            if (updatedCheckedState[i]) {
+                //   console.log(i + " th index has value :" + updatedCheckedState[i]);
+                ssubjectsSubjectID_arr.push(subject_test_array[i].SubjectID);
+            }
+            i++;
+        }
+        console.log(ssubjectsSubjectID_arr);
+        setSsubjects(ssubjectsSubjectID_arr);
+    };
+    // if (test)
     return (
-        <div>Student Course Reg Page
+        <div>Student Course RegPage
             <br></br>
             <ul >
                 {subject_test_array.map(({ SubjectName, SubjectID }, index) => {
@@ -36,16 +69,19 @@ function StudentCourseRegPage() {
                                     />
                                     <label htmlFor={`custom-checkbox-${index}`}>{SubjectName}</label>
                                 </div>
+                                <br></br>
                                 <div >{getFormattedSubjectID(SubjectID)}</div>
                             </div>
                         </li>
+
                     );
                 })}
-                <li>
-                    <div >
-                        <div >Total:</div>
-                        <div >{getFormattedSubjectID(total)}</div>
-                    </div>
+                <button onClick={handleRegisterSubmit} >Register</button>
+                <div >Subjects selected :</div>
+                <li><div>{ssubjects.map((subject) => <div key={subject}>
+                    <h6> {subject}</h6>
+                </div>)}
+                </div>
                 </li>
             </ul>
         </div>
