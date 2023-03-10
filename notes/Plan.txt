@@ -1,10 +1,10 @@
 ER changes 
 FK and Keys are email because of sync w firebase auth 
 Subject Table: Add subject name entry, drop branch
-Student Table : add CES done table // array of subject ID FILLED FORM
-Faculty Table : add CES done table // array of subject ID FILLED FORM
+Student Table : add CES done table // array of subject ID FILLED CES
+Faculty Table : add CES done table // array of subject ID created CES
 Survey Table : Faculty ID replace w Fac Email
-CES Suvey Page
+CES Survey Page
 Load sub from fac course assigned list
 show CESAv= False @ dropdown
 add ques and options
