@@ -1,7 +1,7 @@
 import React from 'react';
 //import { auth } from '../config/firebase';
 import { useState, useEffect } from 'react';
-import { doc, getDoc } from 'firebase/firestore';
+import { getDocs, collection, setDoc, getDoc, doc } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { useNavigate, useLocation } from "react-router-dom";
 
@@ -14,6 +14,7 @@ function FacultyDashboard() {
 
     }
     const [fac, setFac] = useState(state.fac);
+
     useEffect(() => {
         console.log("Dashboard state")
         console.log(state);

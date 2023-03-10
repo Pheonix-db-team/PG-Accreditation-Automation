@@ -42,6 +42,7 @@ function FacultySignupPage() {
         }; fetchListTest();
     }
         , []);
+
     const handleDepartmentChange = (e) => {
         setDepartment(e.target.value)
     }

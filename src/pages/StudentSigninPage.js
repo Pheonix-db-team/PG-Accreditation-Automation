@@ -2,11 +2,11 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import { signInWithEmailAndPassword } from "firebase/auth"
 import { auth } from '../config/firebase'
-//import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { getDoc, doc } from 'firebase/firestore';
 import { db } from '../config/firebase';
 function StudentSigninPage() {
-    //const navigate = useNavigate();
+    const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -17,26 +17,25 @@ function StudentSigninPage() {
     const handleSubmit = async (event) => {
 
         event.preventDefault();
-        await signInWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                // Signed in 
-                // const user = userCredential.user;
+        try {
+            const userCredential = await signInWithEmailAndPassword(auth, email, password)
 
-                // ...
-            })
-            .catch((error) => {
-                //   const errorCode = error.code;
-                //   const errorMessage = error.message;
-            });
-        console.log("You are " + auth.currentUser.email);
-        const data = await getDoc(doc(db, "Student", email));
-        const filtered_data = data.data();
-        console.log("Fetched data");
-        console.log(filtered_data);
+            console.log("You are " + auth.currentUser.email);
+            const data = await getDoc(doc(db, "Student", email));
+            const filtered_data = data.data();
+            console.log("Fetched data");
+            console.log(filtered_data);
 
-        setEmail('');
-        setPassword('');
-        // navigate('/facultydashboard', { state: {} });
+            setEmail('');
+            setPassword('');
+            navigate('/studentdashboard', { state: { student: filtered_data, } });
+        }
+        catch (error) {
+            console.log(error.code)
+            alert("Signin Issue⚠" + error.message);
+            //   const errorCode = error.code;
+            //   const errorMessage = error.message;
+        }
     }
 
     return (

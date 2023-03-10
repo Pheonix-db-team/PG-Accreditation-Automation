@@ -17,6 +17,7 @@ function StudentCourseRegPage() {
         try {
             const docRef = await setDoc(doc(db, "Student", student_data.EmailID), {
                 Courses_Registered: ssubjects,
+                CES_Remaining: ssubjects,
 
             }, { merge: true });
 
