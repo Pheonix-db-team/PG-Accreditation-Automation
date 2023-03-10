@@ -8,6 +8,11 @@ import { useNavigate, useLocation } from "react-router-dom";
 function FacultyDashboard() {
     const navigate = useNavigate();
     const { state } = useLocation();
+    function addCESPageNavigation() {
+        console.log("CES Button tapped Calling navigation ")
+        navigate('/addces', { state: { fac: state.fac } });
+
+    }
     const [fac, setFac] = useState(state.fac);
     useEffect(() => {
         console.log("Dashboard state")
@@ -30,8 +35,11 @@ function FacultyDashboard() {
                 // return filtered_data;
 
             }
-            catch (err) {
-                console.error(err);
+            catch (error) {
+                console.error(error);
+
+                console.log(error.code)
+                alert("Signin Issue⚠" + error.message);
                 //return "";
             }
 
@@ -47,6 +55,8 @@ function FacultyDashboard() {
     if (state.fac_email) {
         return (
             <div className='div-margin'>Faculty Dashboard
+                <br></br>
+                <button className='styledbutton' onClick={() => navigate(-1)}>Logout</button>
                 <br></br>
                 Name :{fac['Name']}
                 <br></br>
@@ -64,6 +74,8 @@ function FacultyDashboard() {
                             </div>) : <div>"No subject assigned"</div>
                     }
                 </div>
+                <button className='styledbutton' onClick={() => addCESPageNavigation()}>Add CES</button>
+
             </div>
         );
     }

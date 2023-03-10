@@ -47,9 +47,9 @@ function StudentSigninPage() {
                 <div > Signin Student</div>
                 <br></br>
                 <div>Email</div>
-                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)}></input>
+                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required ></input>
                 <div>Password</div>
-                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
+                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required ></input>
                 <br></br>
 
                 <input type="submit"></input>

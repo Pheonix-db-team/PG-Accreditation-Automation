@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { deleteDoc, getDocs, collection, doc, setDoc } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { auth } from '../config/firebase';
+import { useNavigate } from "react-router-dom";
 async function refreshList() {
     try {
         const studentsCollectionRef = collection(db, "test_pilot");
@@ -22,6 +23,7 @@ async function refreshList() {
 
 
 function DashboardPage() {
+    const navigate = useNavigate();
     let { state } = useLocation();
     console.log(state?.user_email);
     const [name, setName] = useState("");
@@ -41,6 +43,7 @@ function DashboardPage() {
             console.error("Error adding document: ", error);
         }
     }
+
     const handleSubmit = async (event) => {
         //prevent redirect to oth. page
         event.preventDefault();

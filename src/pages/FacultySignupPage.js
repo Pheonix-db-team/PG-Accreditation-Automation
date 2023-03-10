@@ -98,7 +98,7 @@ function FacultySignupPage() {
                 <br></br>
                 Faculty ID
                 <br></br>
-                <input type="text" value={facultyID} onChange={(e) => setFacultyID(e.target.value)}></input>
+                <input type="email" value={facultyID} onChange={(e) => setFacultyID(e.target.value)}></input>
                 <br></br>
                 Faculty Name
                 <br></br>
