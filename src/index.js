@@ -21,6 +21,7 @@ import CheckBoxDemoPage from './pages/CheckBoxDemoPage';
 import StudentCourseRegPage from './pages/StudentCourseRegPage';
 import AddSubjectPage from './pages/AddSubjectPage';
 import AddCESPage from './pages/AddCESPage';
+import RadioButtonPage from './pages/RadioButtonPage';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -120,6 +121,13 @@ const router = createBrowserRouter([
     path: "addces",
 
     element: <AddCESPage />,
+
+  },
+  {
+
+    path: "radiobutton",
+
+    element: <RadioButtonPage />,
 
   },
 
