@@ -3,21 +3,20 @@ import { useState, useEffect } from 'react';
 import { doc, setDoc, getDocs, collection, arrayUnion, query, where } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { faculty_test_email, departments, getValueByKey, faculties_arr_test } from "../App.js";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 function AddCESPage() {
-    const faculties_from_prop = faculties_arr_test;
     const faculty_mail_from_prop = faculty_test_email;
-    const [subjectID, setsubjectID] = useState("");
     const [questionPrompt, setQuestionPrompt] = useState("");
+    const [startDate, setStartDate] = useState(new Date());
     const [optionA, setOptionA] = useState("");
     const [optionB, setOptionB] = useState("");
     const [optionC, setOptionC] = useState("");
     const [optionD, setOptionD] = useState("");
-    const [subject, setSubject] = useState("No department Available")
+    const [subject, setSubject] = useState("No Subject Available")
+    const [quesArr, setQuesArr] = useState([])
     const [subjectArr, setSubjectArr] = useState([])
-
-
-
     useEffect(() => {
         const fetch_and_update_subject = async () => {
 
@@ -34,8 +33,10 @@ function AddCESPage() {
                     fetched_sub_wo_CES.push(doc.data());
                 });
                 setSubjectArr(fetched_sub_wo_CES);
-                setSubject(subjectArr[0]);
                 console.log(fetched_sub_wo_CES);
+                console.log("subID to set in dropdown " + fetched_sub_wo_CES[0].SubjectID);
+                setSubject(fetched_sub_wo_CES[0].SubjectID);
+
 
                 //const filtered_data_1 = data_1.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
                 //console.log(filtered_data_1);
@@ -56,49 +57,103 @@ function AddCESPage() {
     }
         , []);
 
+    function getSemID() {
+        // M monsoon W winter
+        const date_today = new Date();
+        const year_now = date_today.getFullYear();
+        const month_now = date_today.getMonth();
+        const sem_char = (month_now <= 5) ? 'Monsoon' : 'Winter';//zero based
+        const curr_sem_id = sem_char + year_now;
 
+        return curr_sem_id
+    }
     const handleSubjectChange = (e) => {
         setSubject(e.target.value)
     }
-    const handleSubmit = async (event) => {
+    const handleDelete = (deleting_ques) => {
+        console.log("Delete function called on " + deleting_ques.question_prompt)
+        const ques_arr_temp_del = quesArr.filter((ques) => ques.tag !== deleting_ques.tag);
+        //prevent redirect to oth. page
+        setQuesArr(ques_arr_temp_del)
+        // alert("Ques Deleted!");
+    }
+    const handleAddQuestion = async (event) => {
 
         event.preventDefault();
-        //console.log(faculty);
-        const docRef = await setDoc(doc(db, "subject", subjectID), {
-            SubjectID: subjectID,
-            Name: questionPrompt,
-            Department: subject,
-            // Faculty_Assigned: faculty,
-            CourseExitSurveyAvailable: false,
-            Question_List: [],
-            last_date: null,
-            Students_Enrolled: [],
+        console.log("Before")
+        console.log(quesArr);
+        const temp_index = quesArr.length;
+        let temp_ques_arr = [];
+        if (quesArr.length) {
+            temp_ques_arr = [...quesArr];
+        }
 
+        //         y.map(({ myVariable }) =>
+        //         temp_ques_arr.push({
+        //       myVariable: false
+        //     })
+        // );
+        const dict_temp = {
+            tag: temp_index,
+            question_prompt: questionPrompt,
+            option_A: optionA,
+            option_B: optionB,
+            option_C: optionC,
+            option_D: optionD,
+        }
+        // dict_temp[temp_index] = {
+        //     question_prompt: questionPrompt,
+        //     option_A: optionA,
+        //     option_B: optionB,
+        //     option_C: optionC,
+        //     option_D: optionD,
 
+        // }
 
+        temp_ques_arr.push(
+            dict_temp
+        );
+        // console.log(temp_ques_arr);
+        // setQuesArr([
+        //     [...quesArr],
+        //     dict_temp,
+        // ]);
+        console.log("curr " + dict_temp[temp_index])
+        setQuesArr(temp_ques_arr);
+
+        // setQuestionPrompt('');
+        // setOptionA('');
+        // setOptionB('');
+        // setOptionC('');
+        // setOptionD('');
+        console.log(quesArr);
+    }
+    const handleSubmit = async (event) => {
+        // const test_survey_id = "ldnk"
+        //const test_sem_id = "W22"
+        // event.preventDefault();
+        const sem_id = getSemID();
+        console.log("sem ID " + sem_id);
+        const survey_id = subject + sem_id;
+        console.log("survey ID " + survey_id);
+        const docRef = await setDoc(doc(db, "survey", survey_id), {
+            Question_List: quesArr, facultyEmail: faculty_mail_from_prop,
+            Survey_ID: survey_id, Sem_ID: sem_id, SubjectID: subject
         });
+        const docRef1 = await setDoc(doc(db, "subject", subject), {
+            "Question_List": quesArr, "CourseExitSurveyAvailable": true,
+            "last_date": startDate,
+        }, { merge: true });
 
         console.log(docRef);
-        //const fac_index = getValueByKey(faculties_from_prop, "EmailID", faculty);
-        // console.log("Found at " + faculties_from_prop[fac_index]);
-        // console.log(faculties_from_prop[fac_index].Courses_assigned);
-        // const docRef1 = await setDoc(doc(db, "faculty", faculty), {
-        //     Courses_assigned: arrayUnion(subjectID),
+        console.log("Added " + survey_id);
 
-        // }, { merge: true });
-        // alert("Added " + questionPrompt);
-        // console.log("DocRef ", docRef1);
-        // console.log("Added " + subjectID + " with name " + questionPrompt);
-        setsubjectID('');
-        setSubject('');
-        setQuestionPrompt('');
 
     }
-
     return (
-        <div>
+        <body>
             <br></br>
-            <form onSubmit={handleSubmit
+            <form onSubmit={handleAddQuestion
             }>
                 <div > Add CES</div>
                 <br></br>
@@ -135,10 +190,33 @@ function AddCESPage() {
                 <input type="text" value={optionD} onChange={(e) => setOptionD(e.target.value)}></input>
                 <br></br>
 
-                <input type="submit"></input>
+                <input type="submit" value="Add" ></input>
             </form>
 
-        </div>
+            <br></br>
+            CES Closing Date
+            <div>
+                <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+
+            </div>
+            <div>
+                <button className='styledbutton' onClick={() => handleSubmit()}>Submit CES</button>
+                Questions
+                {
+
+                    quesArr.map((ques, index) =>
+
+                        //console.log(quesk[index])
+                        <div key={index}>
+                            {ques.question_prompt}
+                            <br></br>
+                            A. {ques.option_A} B. {ques.option_B} C. {ques.option_C} D. {ques.option_D}
+                            <button className='deletebutton' onClick={() => handleDelete(ques)}>Delete</button>
+                        </div>
+                    )
+                }
+            </div>
+        </body>
     )
 }
 
