@@ -67,10 +67,10 @@ function RadioButtonPage() {
                     Question tag: {ques['tag']}
                     <br></br>
                     {ques['question_prompt']}<br></br>
-                    <label ><input type="radio" name={ques['tag']} value={'A'} defaultChecked={optionsDict['tag'] === 'A'} onChange={(e) => handleMultiRadioChange(e, ques['tag'])} />{ques['option_A']}</label>
-                    <label ><input type="radio" name={ques['tag']} value={'B'} defaultChecked={optionsDict['tag'] === 'B'} onChange={(e) => handleMultiRadioChange(e, ques['tag'])} />{ques['option_B']}</label>
-                    <label ><input type="radio" name={ques['tag']} value={'C'} defaultChecked={optionsDict['tag'] === 'C'} onChange={(e) => handleMultiRadioChange(e, ques['tag'])} />{ques['option_C']}</label>
-                    <label ><input type="radio" name={ques['tag']} value={'D'} defaultChecked={optionsDict['tag'] === 'D'} onChange={(e) => handleMultiRadioChange(e, ques['tag'])} />{ques['option_D']}</label>
+                    <label ><input type="radio" name={ques['tag']} value={'A'} defaultChecked={optionsDict[ques['tag']] === 'A'} onChange={(e) => handleMultiRadioChange(e, ques['tag'])} />{ques['option_A']}</label>
+                    <label ><input type="radio" name={ques['tag']} value={'B'} defaultChecked={optionsDict[ques['tag']] === 'B'} onChange={(e) => handleMultiRadioChange(e, ques['tag'])} />{ques['option_B']}</label>
+                    <label ><input type="radio" name={ques['tag']} value={'C'} defaultChecked={optionsDict[ques['tag']] === 'C'} onChange={(e) => handleMultiRadioChange(e, ques['tag'])} />{ques['option_C']}</label>
+                    <label ><input type="radio" name={ques['tag']} value={'D'} defaultChecked={optionsDict[ques['tag']] === 'D'} onChange={(e) => handleMultiRadioChange(e, ques['tag'])} />{ques['option_D']}</label>
 
                     <br></br>
                 </div>
