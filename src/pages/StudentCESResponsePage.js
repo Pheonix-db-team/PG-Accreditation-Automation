@@ -28,8 +28,26 @@ function StudentCESResponsePage() {
         setOptionsDict(dict_temp);
         console.log(tag + " tag changed to " + optionsDict[tag]);
     }
+    const local_update_subject = async (subject_id) => {
+        const temp_sub_arr = [];
+        subjectArr.map((ele) => {
+            if (ele['SubjectID'] != subject_id) {
+                temp_sub_arr.push(ele);
+            }
+        });
+        if (temp_sub_arr.length) {
+            setSubjectArr(temp_sub_arr);
+            setSubject(temp_sub_arr[0]['SubjectID']);
+            setSubjectMap(temp_sub_arr[0]);
+        } else {
 
-    const fetch_and_update_subject = async () => {
+            setSubjectArr([]);
+            setSubject("");
+            setSubjectMap({});
+        }
+
+    }
+    const fetch_and_update_subject = async (subject_id) => {
         try {
 
             const subjectsRef = collection(db, "subject");
@@ -64,16 +82,8 @@ function StudentCESResponsePage() {
                             fetched_sub_w_CES.push(data_here);
                         }
                     }
-
-
-
-
-
                 };
             });
-
-
-
             setSubjectArr(fetched_sub_w_CES);
             console.log("fetched sub");
             console.log(fetched_sub_w_CES);
@@ -132,6 +142,8 @@ function StudentCESResponsePage() {
                 CES_Remaining: arrayRemove(subject_id)
             }, { merge: true }); console.log(docRef);
             console.log("Added " + survey_id + " with " + survey_response_unique_id);
+            //fetch_and_update_subject(subject_id);
+            local_update_subject(subject_id);
         } catch (error) {
             console.log(error.code)
             alert("Issue⚠" + error.message);
@@ -144,7 +156,7 @@ function StudentCESResponsePage() {
         return <br></br>;
     }
     if (subjectArr && subjectArr.length <= 0) {
-        return (<body><button className="styledButton" onClick={goBack}>Back</button>	No course available for ces</body>)
+        return (<body><button className="styledButton" onClick={goBack}>Back</button>	No CES survey available for you</body>)
     }
     return (
         <body>
@@ -171,6 +183,6 @@ function StudentCESResponsePage() {
                 </div>
             )
             }
-            <ButtonShow( <button className='styledbutton' onClick={() => handleSubmit()}>Submit CES Response</button>)   />     </body>
+            {(quesArr.length) ? <button className='styledbutton' onClick={() => handleSubmit()}>Submit CES Response</button> : <div>No questions</div>}  </body>
     )
 } export default StudentCESResponsePage
