@@ -14,26 +14,44 @@ function StudentDashboard() {
     async function subjectCESAv() {
         try {
             const subjectsRef = collection(db, "subject");
+            const CES_Remaining_arr = [...state.student['CES_Remaining']];
 
-            var today = Timestamp.fromDate(new Date());
+            //  var today = Timestamp.fromDate(new Date());
+            const today = new Date().setHours(0, 0, 0);
             console.log(student['Courses_Registered'])
             //where("SubjectID", "in", student['Courses_Registered'])
-            const query_x = query(subjectsRef, where("CourseExitSurveyAvailable", "==", true), where("SubjectID", "in", state.student['CES_Remaining']),
+            const query_x = query(subjectsRef, where("CourseExitSurveyAvailable", "==", true), where("SubjectID", "in", ['DS', 'CS101']),
                 where("last_date", ">=", today),);
             //ces av. subjects
-            const querySnapshot = await getDocs(query_x);
-
+            //   const querySnapshot = await getDocs(query_x);
+            const querySnapshot = await getDocs(subjectsRef);
             const fetched_sub_w_CES = []
             console.log("Responses")
             querySnapshot.forEach((doc) => {
-                console.log(doc.data());
+                const data_here = doc.data();
 
-                fetched_sub_w_CES.push(doc.data()['Name']);
+                if (CES_Remaining_arr.includes(data_here['SubjectID'])) {
+                    const date_here = new Date(0);
+                    if (data_here['CourseExitSurveyAvailable'] && data_here['last_date']) {
+
+                        const secs = data_here['last_date']['seconds']
+                        date_here.setUTCSeconds(secs);
+                        date_here.setHours(0, 0, 0);
+
+                        // console.log(data_here);
+                        if (today <= date_here) {
+                            console.log("seconds " + date_here);
+                            console.log(data_here['SubjectID']);
+                            fetched_sub_w_CES.push(data_here);
+                        }
+                    }
+                    //date_here.setUTCSeconds(data_here[last_date])
+                    // const ts_obj = new Timestamp(data_here['last_date']);
+                    //const data_date = ts_obj.toDate();
+                    //console.log("Date " + data_date);
+
+                };
             });
-            //          setSubjectArr(fetched_sub_wo_CES);
-            //        console.log(fetched_sub_wo_CES);
-            //console.log("subID to set in dropdown " + fetched_sub_wo_CES[0].SubjectID);
-            //            setSubject(fetched_sub_wo_CES[0].SubjectID);
 
 
 
@@ -46,6 +64,11 @@ function StudentDashboard() {
             alert("Data Fetch Issue⚠" + error.message);
             console.log(error.message);
         }
+    }
+    function CESResponsePageNavigation() {
+        console.log("CES Button tapped Calling navigation ")
+        navigate('/studentcesresponse', { state: { student: state.student } });
+
     }
     useEffect(() => {
 
@@ -72,31 +95,33 @@ function StudentDashboard() {
 
         }; //fetchDetails();
         setStudent(state.student);
-        subjectCESAv();
-        console.log("Student obj");
+        //subjectCESAv();
+        // console.log("Student obj");
 
     }
         , []);
     console.log(student);
     return (
-
-        <div className='div-margin'>Student Dashboard
-            <br></br>
-            Name :{student['Name']}
-            <br></br>
-            Email :{student['EmailID']}
-            <br></br>
-            Department :{student['Department']}
-            <br></br>
-            {/* if(if (Array.isArray(array) && array.length) {
+        <body>
+            <div className='div-margin'>Student Dashboard
+                <br></br>
+                Name :{student['Name']}
+                <br></br>
+                Email :{student['EmailID']}
+                <br></br>
+                Department :{student['Department']}
+                <br></br>
+                {/* if(if (Array.isArray(array) && array.length) {
     // array exists and is not empty
 }) */}
-            Courses_Registered status:{(Array.isArray(student['Courses_Registered']) && student['Courses_Registered'].length) ? "✅" : "❌"}
-            <br></br>
+                Courses_Registered status:{(Array.isArray(student['Courses_Registered']) && student['Courses_Registered'].length) ? "✅" : "❌"}
+                <br></br>
 
 
 
-        </div>
+            </div>
+            <button className='styledbutton' onClick={() => CESResponsePageNavigation()}>CES Available</button>
+        </body>
     )
 }
 

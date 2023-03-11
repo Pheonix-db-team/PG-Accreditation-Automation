@@ -131,9 +131,10 @@ function AddCESPage() {
                 Question_List: quesArr, facultyEmail: faculty_mail_from_prop,
                 Survey_ID: survey_id, Sem_ID: sem_id, SubjectID: subject
             });
+
             const docRef1 = await setDoc(doc(db, "subject", subject), {
                 "Question_List": quesArr, "CourseExitSurveyAvailable": true,
-                "last_date": lastDate, Survey_ID: survey_id,
+                "last_date": lastDate.setHours(23, 59, 59), Survey_ID: survey_id,
             }, { merge: true }); console.log(docRef);
             console.log("Added " + survey_id);
         } catch (error) {
@@ -148,6 +149,7 @@ function AddCESPage() {
     }
     return (
         <body>
+            Add CES
             <br></br>
             <button className='styledbutton' onClick={goBack}>Back</button>
             <form onSubmit={handleAddQuestion

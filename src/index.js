@@ -23,6 +23,7 @@ import AddSubjectPage from './pages/AddSubjectPage';
 import AddCESPage from './pages/AddCESPage';
 import RadioButtonPage from './pages/RadioButtonPage';
 import CESResponsePage from './pages/CESResponsePage';
+import StudentCESResponsePage from './pages/StudentCESResponsePage';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -138,6 +139,14 @@ const router = createBrowserRouter([
     element: <CESResponsePage />,
 
   },
+  {
+
+    path: "studentcesresponse",
+
+    element: <StudentCESResponsePage />,
+
+  },
+
 
 ]);
 const root = ReactDOM.createRoot(document.getElementById('root'));
