@@ -10,6 +10,8 @@ import "react-datepicker/dist/react-datepicker.css";
 function StudentCESResponsePage() {
     const navigate = useNavigate();
     let { state } = useLocation();
+    const stu_email = state.student['EmailID'];
+
     const [subject, setSubject] = useState("No Subject Available");
     const [subjectMap, setSubjectMap] = useState({})
     const [quesArr, setQuesArr] = useState([])
@@ -26,66 +28,80 @@ function StudentCESResponsePage() {
         setOptionsDict(dict_temp);
         console.log(tag + " tag changed to " + optionsDict[tag]);
     }
-    useEffect(() => {
-        const fetch_and_update_subject = async () => {
-            try {
-                const subjectsRef = collection(db, "subject");
 
-                const CES_Remaining_arr = [...state.student['CES_Remaining']];
-                const fetched_sub_w_CES = []
-                //  var today = Timestamp.fromDate(new Date());
-                const today = new Date().setHours(0, 0, 0);
-                console.log(state.student['Courses_Registered'])
-                //where("SubjectID", "in", student['Courses_Registered'])
-                const query_x = query(subjectsRef, where("CourseExitSurveyAvailable", "==", true), where("SubjectID", "in", ['DS', 'CS101']),
-                    where("last_date", ">=", today),);
-                //ces av. subjects
-                //   const querySnapshot = await getDocs(query_x);
-                const querySnapshot = await getDocs(subjectsRef);
+    const fetch_and_update_subject = async () => {
+        try {
 
-                console.log("Responses")
-                querySnapshot.forEach((doc) => {
-                    const data_here = doc.data();
+            const subjectsRef = collection(db, "subject");
 
-                    if (CES_Remaining_arr.includes(data_here['SubjectID'])) {
-                        const date_here = new Date(0);
-                        if (data_here['CourseExitSurveyAvailable'] && data_here['last_date']) {
+            const CES_Remaining_arr = [...state.student['CES_Remaining']];
+            const fetched_sub_w_CES = []
 
-                            const secs = data_here['last_date']['seconds']
-                            date_here.setUTCSeconds(secs);
-                            date_here.setHours(0, 0, 0);
+            const today = new Date().setHours(0, 0, 0);
+            console.log(state.student['Courses_Registered'])
 
-                            // console.log(data_here);
-                            if (today <= date_here) {
-                                console.log("seconds " + date_here);
-                                console.log(data_here['SubjectID']);
-                                fetched_sub_w_CES.push(data_here);
-                            }
+            const query_x = query(subjectsRef, where("CourseExitSurveyAvailable", "==", true), where("SubjectID", "in", ['DS', 'CS101']),
+                where("last_date", ">=", today),);
+
+
+            const querySnapshot = await getDocs(subjectsRef);
+
+            console.log("Responses")
+            querySnapshot.forEach((doc) => {
+                const data_here = doc.data();
+
+                if (CES_Remaining_arr.includes(data_here['SubjectID'])) {
+                    const date_here = new Date(0);
+                    if (data_here['CourseExitSurveyAvailable'] && data_here['last_date']) {
+
+                        const secs = data_here['last_date']['seconds']
+                        date_here.setUTCSeconds(secs);
+                        date_here.setHours(0, 0, 0);
+
+
+                        if (today <= date_here) {
+                            console.log(data_here['SubjectID'] + " with seconds " + date_here);
+                            fetched_sub_w_CES.push(data_here);
                         }
-                        //date_here.setUTCSeconds(data_here[last_date])
-                        // const ts_obj = new Timestamp(data_here['last_date']);
-                        //const data_date = ts_obj.toDate();
-                        //console.log("Date " + data_date);
-
-                    };
-                });
+                    }
 
 
 
-                setSubjectArr(fetched_sub_w_CES);
-                console.log(fetched_sub_w_CES);
-                console.log("subID to set in dropdown " + fetched_sub_w_CES[0].SubjectID);
-                setSubject(fetched_sub_w_CES[0].SubjectID);
-                setQuesArr(fetched_sub_w_CES[0]['Question_List'])
 
+
+                };
+            });
+
+
+
+            setSubjectArr(fetched_sub_w_CES);
+            console.log("fetched sub");
+            console.log(fetched_sub_w_CES);
+            console.log("subID to set in dropdown " + fetched_sub_w_CES[0]['SubjectID']);
+            if (fetched_sub_w_CES && fetched_sub_w_CES.length) {
+                setSubjectMap(fetched_sub_w_CES[0]);
+                setSubject(fetched_sub_w_CES[0]['SubjectID']);
+
+                setQuesArr(fetched_sub_w_CES[0]['Question_List']);
+                console.log("Ques arr " + quesArr);
+                fetched_sub_w_CES[0]['Question_List'].map((ques, key) => {
+                    option_selected_dict[ques['tag']] = 'A';
+                })
             }
-            catch (error) {
-                console.error(error);
-
-                console.log(error.code)
-                alert("Data Fetch Issue⚠" + error.message);
+            else {
+                setSubject(null);
+                setQuesArr([]);
             }
-        };
+        }
+        catch (error) {
+            console.error(error);
+
+            console.log(error.code)
+            alert("Data Fetch Issue⚠" + error.message);
+        }
+    };
+    useEffect(() => {
+
         console.log("Welcome to CES Response Page " + state.student['EmailID'])
         fetch_and_update_subject();
     }
@@ -94,31 +110,38 @@ function StudentCESResponsePage() {
         navigate(-1);
     }
     const handleSubjectChange = (e) => {
-        setSubject(e.target.value);
-        const sub_index_from_arr = getValueByKey(subjectArr, 'SubjectID', subject);
+        const sub_id = e.target.value;
+        setSubject(sub_id);
+        const sub_index_from_arr = getValueByKey(subjectArr, 'SubjectID', sub_id);
         setSubjectMap(subjectArr[sub_index_from_arr]);
-        setQuesArr(subjectMap['Question_List']);
+        setQuesArr(subjectArr[sub_index_from_arr]['Question_List']);
     }
 
     const handleSubmit = async (event) => {
         try {
-            const stu_email = state.student['EmailID'];
-            const survey_id = state.subject['Survey_ID'];
-            const survey_unique_id = survey_id + stu_email;
-            const subject_id = state.subject['SubjectID']
-            const docRef = await setDoc(doc(db, "CESResponses", survey_unique_id), {
-                Responses: quesArr,
+            const survey_id = subjectMap['Survey_ID'];
+            const subject_id = subject;
+            const survey_response_unique_id = survey_id + stu_email;
+            console.log("suv unique id " + survey_response_unique_id);
+            const docRef = await setDoc(doc(db, "CESResponses", survey_response_unique_id), {
+                Responses: optionsDict,
                 Survey_ID: survey_id, StudentEmail: stu_email, SubjectID: subject_id,
-                Enrollment_No: state.student['Enrollment_No'],
+                Enrolment_No: state.student['Enrolment_No'],
             });
             const docRef1 = await setDoc(doc(db, "Student", stu_email), {
                 CES_Remaining: arrayRemove(subject_id)
             }, { merge: true }); console.log(docRef);
-            console.log("Added " + survey_id);
+            console.log("Added " + survey_id + " with " + survey_response_unique_id);
         } catch (error) {
             console.log(error.code)
             alert("Issue⚠" + error.message);
         }
+    }
+    function ButtonShow(component) {
+        if (quesArr && quesArr.length) {
+            return component;
+        }
+        return <br></br>;
     }
     if (subjectArr && subjectArr.length <= 0) {
         return (<body><button className="styledButton" onClick={goBack}>Back</button>	No course available for ces</body>)
@@ -126,6 +149,7 @@ function StudentCESResponsePage() {
     return (
         <body>
             <br></br>
+
             {"⬇️ Select Subject ⬇️"}
             <br></br>
             <div>
@@ -147,7 +171,6 @@ function StudentCESResponsePage() {
                 </div>
             )
             }
-            <button className='styledbutton' onClick={() => handleSubmit()}>Submit CES Response</button>
-        </body>
+            <ButtonShow( <button className='styledbutton' onClick={() => handleSubmit()}>Submit CES Response</button>)   />     </body>
     )
 } export default StudentCESResponsePage

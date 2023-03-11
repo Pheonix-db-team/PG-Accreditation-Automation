@@ -125,7 +125,7 @@ function AddCESPage() {
         try {
             const sem_id = getSemID();
             console.log("sem ID " + sem_id);
-            const survey_id = subject + sem_id;
+            const survey_id = subject + "_" + sem_id;
             console.log("survey ID " + survey_id);
             const docRef = await setDoc(doc(db, "survey", survey_id), {
                 Question_List: quesArr, facultyEmail: faculty_mail_from_prop,
@@ -139,7 +139,7 @@ function AddCESPage() {
             console.log("Added " + survey_id);
         } catch (error) {
             console.log(error.code)
-            alert("Signin Issue⚠" + error.message);
+            alert("CES Submission Issue" + error.message);
             //   const errorCode = error.code;
             //   const errorMessage = error.message;
         }
