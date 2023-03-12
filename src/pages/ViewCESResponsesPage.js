@@ -2,8 +2,12 @@ import React from 'react'
 import { getDocs, collection } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { useState, useEffect } from 'react';
-function ViewCESResponsesPage() {
+import { Line, Bar } from 'react-chartjs-2';
+import { Chart, registerables } from 'chart.js';
 
+function ViewCESResponsesPage() {
+    //const [data, setData] = useState({});
+    var data = {};
     const CESResponsesArr = [
         {
             "Enrolment_No": "M220256CS",
@@ -62,14 +66,38 @@ function ViewCESResponsesPage() {
             const resp_ele = ele["Responses"];
             //console.log("outer loop " + resp_ele['id']);
             for (const [key, value] of Object.entries(resp_ele)) {
-                console.log("looping " + key, value);
+                //  console.log("looping " + key, value);
                 //const option = 
                 dict_consolidate[key][value]++;
             }
         });
         console.log(dict_consolidate);
+        const temp_label = [];
+        const temp_response_count = [];
+        // for one dict
 
+        for (const [key, value] of Object.entries(dict_consolidate[0])) {
+            //  console.log("looping " + key, value);
+            //const option = 
+            //   dict_consolidate[key][value]++;
+            temp_label.push(key);
+            temp_response_count.push(value);
+            console.log("Loop " + key + " " + value)
+        }
+        const dict_temp_set = {
+            "labels": temp_label,
+            "datasets": [
+                {
+                    "label": "CES responses",
+                    data: temp_response_count,
+                    //fill: true,
+                    // backgroundColor: "rgba(6, 156,51, .3)",
+                    // borderColor: "#02b844",
+                }
+            ]
+        };
 
+        data = dict_temp_set
     }
     useEffect(() => {
         const fetchResponses = async () => {
@@ -87,12 +115,31 @@ function ViewCESResponsesPage() {
             }
 
         }; //fetchResponses();
+
     }
         , []);
+
+    // const data = {
+    //     labels: ["Sunday", "Monday", "Tuesday",
+    //         "Wednesday", "Thursday", "Friday", "Saturday"],
+    //     datasets: [
+    //         {
+    //             label: "Hours Studied in Geeksforgeeks",
+    //             data: [2, 5, 7, 9, 7, 6, 4],
+    //             //fill: true,
+    //             // backgroundColor: "rgba(6, 156,51, .3)",
+    //             // borderColor: "#02b844",
+    //         }
+    //     ]
+    // };
+    //Line.register(CategoryScale);
     CESconsolidate(CESResponsesArr)
-    return (
-        <div>viewCESResponses</div>
-    )
+    Chart.register(...registerables)
+
+    return (<div>
+
+        <Bar data={data} />
+    </div>);
 }
 
 export default ViewCESResponsesPage
