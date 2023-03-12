@@ -87,8 +87,8 @@ function StudentCESResponsePage() {
             setSubjectArr(fetched_sub_w_CES);
             console.log("fetched sub");
             console.log(fetched_sub_w_CES);
-            console.log("subID to set in dropdown " + fetched_sub_w_CES[0]['SubjectID']);
             if (fetched_sub_w_CES && fetched_sub_w_CES.length) {
+
                 setSubjectMap(fetched_sub_w_CES[0]);
                 setSubject(fetched_sub_w_CES[0]['SubjectID']);
 
@@ -156,7 +156,7 @@ function StudentCESResponsePage() {
         return <br></br>;
     }
     if (subjectArr && subjectArr.length <= 0) {
-        return (<body><button className="styledButton" onClick={goBack}>Back</button>	No CES survey available for you</body>)
+        return (<body><button className="styledbutton" onClick={goBack}>Back</button>	<br></br>No CES survey available for you</body>)
     }
     return (
         <body>

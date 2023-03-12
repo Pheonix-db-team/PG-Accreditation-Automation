@@ -25,6 +25,7 @@ import RadioButtonPage from './pages/RadioButtonPage';
 import CESResponsePage from './pages/CESResponsePage';
 import StudentCESResponsePage from './pages/StudentCESResponsePage';
 import ViewCESResponsesPage from './pages/ViewCESResponsesPage';
+import SubjectListPage from './pages/SubjectListPage';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -151,6 +152,12 @@ const router = createBrowserRouter([
     path: "viewcesresponses",
     element: <ViewCESResponsesPage />
   },
+  {
+    path: "subjectlist",
+    element: <SubjectListPage />,
+
+  }
+  ,
 
 
 ]);

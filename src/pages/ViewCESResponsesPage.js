@@ -10,15 +10,23 @@ function ViewCESResponsesPage() {
     //const [data, setData] = useState({});
     const data = [];
     const options_chart = {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true,
-                    stepSize: 1,
-                }
-            }]
-        }
+
     }
+    // const options_chart = {
+    //     scales: {
+    //         yAxes: [
+    //             {
+    //                 ticks: {
+    //                     callback: function (val) {
+    //                         // console.log("val " + val + " is whole no " + Number.isInteger(val))
+    //                         return Number.isInteger(val) ? val : null;
+    //                     }
+    //                 }
+    //             }
+    //         ]
+    //     }
+    // };
+
     const survey =
 
     {
@@ -158,8 +166,8 @@ function ViewCESResponsesPage() {
                     }
                 ]
             };
-            console.log("Dict ");
-            console.log(dict_temp_set);
+            //   console.log("Dict ");
+            // console.log(dict_temp_set);
             data.push(dict_temp_set);
         }
 

@@ -65,9 +65,94 @@ function StudentDashboard() {
             console.log(error.message);
         }
     }
+    const fetchDetails = async () => {
+
+        //Read data
+        try {
+            //const curr = auth.currentUser;
+            //const email = curr?.email;
+            // console.log("Welcome " + email);
+
+            const data = await getDoc(doc(db, "Student", state.student['EmailID']));
+            const filtered_data = data.data();
+            console.log("Fetched data");
+            console.log(filtered_data);
+            setStudent(filtered_data);
+            // return filtered_data;
+
+        }
+        catch (err) {
+            console.error(err);
+            //return "";
+        }
+
+    };
+    useEffect((event) => {
+        // $(window).bind("pageshow", function (event) {
+        //     if (event.originalEvent.persisted) {
+        //         window.location.reload();
+        //     }
+        // });
+        // event.preventDefault();
+        //fetchDetails();
+        setStudent(state.student);
+        //subjectCESAv();
+        // console.log("Student obj");
+
+    }
+        , []);
     function CESResponsePageNavigation() {
         console.log("CES Button tapped Calling navigation ")
         navigate('/studentcesresponse', { state: { student: state.student } });
+
+    }
+    const SubjectListPageNavigation = async () => {
+
+        //Read data
+        var filtered_data = [];
+        try {
+            const data = await getDocs(collection(db, "subject"));
+
+            filtered_data = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+            //console.log(data);
+            console.log(filtered_data);
+
+        }
+        catch (err) {
+            console.error(err);
+        }
+
+
+
+        console.log("course Reg Page tapped Calling navigation ")
+        navigate('/subjectlist', { state: { student: state.student, subject_arr: filtered_data } });
+
+    }
+    function CESResponsePageNavigation() {
+        console.log("CES Button tapped Calling navigation ")
+        navigate('/studentcesresponse', { state: { student: state.student } });
+
+    }
+    const CourseRegPageNavigation = async () => {
+
+        //Read data
+        var filtered_data = [];
+        try {
+            const data = await getDocs(collection(db, "subject"));
+
+            filtered_data = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+            //console.log(data);
+            console.log(filtered_data);
+
+        }
+        catch (err) {
+            console.error(err);
+        }
+
+
+
+        console.log("course Reg Page tapped Calling navigation ")
+        navigate('/studentcoursereg', { state: { student: state.student, subject_arr: filtered_data } });
 
     }
     useEffect(() => {
@@ -94,7 +179,9 @@ function StudentDashboard() {
             }
 
         }; //fetchDetails();
+        console.log("use Effect called");
         setStudent(state.student);
+        fetchDetails();
         //subjectCESAv();
         // console.log("Student obj");
 
@@ -111,17 +198,21 @@ function StudentDashboard() {
                 <br></br>
                 Department :{student['Department']}
                 <br></br>
+                <br></br>
                 {/* if(if (Array.isArray(array) && array.length) {
     // array exists and is not empty
 }) */}
                 Courses_Registered status:{(Array.isArray(student['Courses_Registered']) && student['Courses_Registered'].length) ? "✅" : "❌"}
+                {(Array.isArray(student['Courses_Registered']) && student['Courses_Registered'].length) ? <br></br> : <button className='styledbutton' onClick={() => CourseRegPageNavigation()}>Register for Courses</button>}
                 <br></br>
 
 
 
             </div>
             <button className='styledbutton' onClick={() => CESResponsePageNavigation()}>CES Available</button>
-        </body>
+            <button className='styledbutton' onClick={() => SubjectListPageNavigation()}>CES Subjectwise</button>
+
+        </body >
     )
 }
 

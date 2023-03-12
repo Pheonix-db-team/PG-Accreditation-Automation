@@ -53,7 +53,7 @@ function App() {
 }
 export function getValueByKey(data, key, value_to_look,) {
   var i, len = data.length;
-  console.log("looking for value  " + value_to_look + " in key " + key)
+  //console.log("looking for value  " + value_to_look + " in key " + key)
   for (i = 0; i < len; i++) {
     if (data[i] && data[i][key] == value_to_look) {
       return i;
