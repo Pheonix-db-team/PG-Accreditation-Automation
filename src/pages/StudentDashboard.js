@@ -2,11 +2,9 @@ import React from 'react';
 //import { auth } from '../config/firebase';
 import { useState, useEffect } from 'react';
 import { getDocs, collection, setDoc, getDoc, doc, query, where, Timestamp } from 'firebase/firestore';
-
 import { db } from '../config/firebase';
 import { useNavigate, useLocation } from "react-router-dom";
 import { student_test_email } from "../App.js";
-//import { doc, getDoc } from 'firebase/firestore';
 function StudentDashboard() {
     const { state } = useLocation();
     const navigate = useNavigate();
@@ -124,7 +122,7 @@ function StudentDashboard() {
 
 
 
-        console.log("course Reg Page tapped Calling navigation ")
+        console.log("Subject List Page tapped Calling navigation ")
         navigate('/subjectlist', { state: { student: state.student, subject_arr: filtered_data } });
 
     }

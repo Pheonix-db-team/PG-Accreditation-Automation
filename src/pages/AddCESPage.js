@@ -129,7 +129,8 @@ function AddCESPage() {
             console.log("survey ID " + survey_id);
             const docRef = await setDoc(doc(db, "survey", survey_id), {
                 Question_List: quesArr, facultyEmail: faculty_mail_from_prop,
-                Survey_ID: survey_id, Sem_ID: sem_id, SubjectID: subject
+                Survey_ID: survey_id, Sem_ID: sem_id, SubjectID: subject,
+                faculty_name: fac_details['Name']
             });
 
             const docRef1 = await setDoc(doc(db, "subject", subject), {

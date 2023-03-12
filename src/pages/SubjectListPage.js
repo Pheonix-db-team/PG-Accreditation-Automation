@@ -1,10 +1,9 @@
 import React from 'react'
-import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react'
 import { deleteDoc, getDocs, collection, where, query } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { auth } from '../config/firebase';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 // async function refreshList() {
 //     try {
 //         const studentsCollectionRef = collection(db, "test_pilot");
@@ -23,6 +22,7 @@ import { useNavigate } from "react-router-dom";
 
 
 function SubjectListPage() {
+    const navigate = useNavigate();
     //const navigate = useNavigate();
     let { state } = useLocation();
     // console.log(state?.user_email);
@@ -44,6 +44,7 @@ function SubjectListPage() {
             });
             console.log(surveyList);
             //etStudentList(updated_list);
+            navigate('/surveylist', { state: { subject: subject_tapped, survey_arr: surveyList } });
             //alert(subject_tapped+ " Deleted!");
         } catch (error) {
             console.error("Error adding document: ", error);
@@ -57,7 +58,7 @@ function SubjectListPage() {
             <div>
                 {
                     subjectlistArr.map((subject) => <div key={subject.id}>
-                        <h6>{subject.SubjectID} | {subject.Faculty_Assigned} <button className='styledbutton' onClick={() => handleTap(subject.SubjectID)}>View Surveys</button></h6>
+                        <h6>{subject.SubjectID} | {subject.Name} | {subject.Faculty_Assigned} <button className='styledbutton' onClick={() => handleTap(subject.SubjectID)}>View Surveys</button></h6>
                     </div>)
                 }
             </div>
