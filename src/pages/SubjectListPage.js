@@ -33,7 +33,7 @@ function SubjectListPage() {
         try {
             //await deleteDoc(doc(db, "test_pilot", deleting_student.id));
             const subjectsRef = collection(db, "survey");
-            const query_x = query(subjectsRef, where("SubjectID", "==", subject_tapped));
+            const query_x = query(subjectsRef, where("SubjectID", "==", subject_tapped.SubjectID));
             const querySnapshot = await getDocs(query_x);
 
             const surveyList = []
@@ -55,10 +55,13 @@ function SubjectListPage() {
     return (
         <div>SubjectList Page
             <br></br>
+            <button className="styledbutton" onClick={() => navigate(-1)}>Back</button>
+            <br></br>
+            <br></br>
             <div>
                 {
                     subjectlistArr.map((subject) => <div key={subject.id}>
-                        <h6>{subject.SubjectID} | {subject.Name} | {subject.Faculty_Assigned} <button className='styledbutton' onClick={() => handleTap(subject.SubjectID)}>View Surveys</button></h6>
+                        <h6>{subject.SubjectID} | {subject.Name} | {subject.Faculty_Assigned} <button className='styledbutton' onClick={() => handleTap(subject)}>View Surveys</button></h6>
                     </div>)
                 }
             </div>

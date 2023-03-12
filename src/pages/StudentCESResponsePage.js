@@ -116,6 +116,7 @@ function StudentCESResponsePage() {
         fetch_and_update_subject();
     }
         , []);
+
     const goBack = () => {
         navigate(-1);
     }

@@ -3,7 +3,7 @@ FK and Keys are email because of sync w firebase auth
 Subject Table: Add subject name entry, drop branch, Add entry SurveyID
 Drop compulsory subject table
 Student Table : add CES remaining table // array of subject left to fill CES for query ;on CES fill will remove that
-Survey Table : Faculty ID replace w Fac Email
+Survey Table : Faculty ID replace w Fac Email and add faculty_name
 CES Survey Page
 Load sub from fac course assigned list
 show CESAv= False @ dropdown

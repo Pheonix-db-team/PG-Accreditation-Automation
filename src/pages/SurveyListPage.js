@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react'
 import { deleteDoc, getDocs, collection, where, query } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { auth } from '../config/firebase';
-//import { useNavigate } from "react-router-dom";
 import { useNavigate, useLocation } from "react-router-dom";
 function SurveyListPage() {
     const navigate = useNavigate();
@@ -12,9 +11,9 @@ function SurveyListPage() {
     // const [studentList, setStudentList] = useState([])
 
 
-    const surveyListArr = state.survey_arr ? [...state.survey_arr] : [];
+    const surveyListArr = state.survey_arr ? state.survey_arr : [];
     console.log("Arr load ")
-    console.log(surveyListArr)
+    console.log(surveyListArr.length)
     const handleTap = async (survey_tapped) => {
 
         try {
@@ -41,23 +40,27 @@ function SurveyListPage() {
 
 
 
-    return (
 
-        (surveyListArr && surveyListArr.length == 0) ? < div > No CES available for  {state.subject}</div > : <div>SurveyListArr
+
+    if (!surveyListArr.length) { return (< div >  <button className="styledbutton" onClick={() => navigate(-1)}>Back</button> No CES available for  {state.subject.Name}</div >); }
+    else {
+        return (<div>SurveyListArr
             <br></br>
 
             <div>
+                <button className="styledbutton" onClick={() => navigate(-1)}>Back</button>
                 <br></br>
-                {state.subject} Surveys
+                {state.subject['Name']} Surveys
                 <br></br>
                 {
                     surveyListArr.map((survey) => <div key={survey.Sem_ID}>
-                        <h6>Semester:  {survey.Sem_ID} | {survey.Faculty_Email} <button className='styledbutton' onClick={() => handleTap(survey)}>View Surveys</button></h6>
+                        <h6>Semester:  {survey.Sem_ID} | {survey.faculty_name} <button className='styledbutton' onClick={() => handleTap(survey)}>View Surveys</button></h6>
                     </div>)
                 }
             </div>
-        </div>
-    );
+        </div>);
+    }
+
 }
 
 export default SurveyListPage

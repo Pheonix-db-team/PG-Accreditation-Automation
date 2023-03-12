@@ -6,6 +6,7 @@ import { Line, Bar } from 'react-chartjs-2';
 import { Chart, registerables } from 'chart.js';
 import { getValueByKey } from '../App';
 import { useNavigate, useLocation } from "react-router-dom";
+
 function ViewCESResponsesPage() {
     let { state } = useLocation();
     const data = [];
@@ -13,6 +14,7 @@ function ViewCESResponsesPage() {
 
     }
     const survey = state.survey;
+    const navigate = useNavigate();
     const CESResponsesArr = state.responsesArr;
     // const survey =
 
@@ -93,6 +95,7 @@ function ViewCESResponsesPage() {
     //     },
     // ];
     function CESconsolidate(respArr) {
+
         const dict_consolidate = {};
         const resp_temp_prep = respArr[0]['Responses'];
         for (const [key, value] of Object.entries(resp_temp_prep)) {
@@ -178,6 +181,7 @@ function ViewCESResponsesPage() {
     Chart.register(...registerables)
 
     return (<div>
+        <button className="styledbutton" onClick={() => navigate(-1)}>Back</button>
         {data.map((data_set, index) =>
             <div key={survey.Sem_ID} style={{ "height": 200 }}>
                 <Bar data={data_set} options={options_chart} />
