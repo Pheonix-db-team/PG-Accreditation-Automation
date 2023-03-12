@@ -4,10 +4,58 @@ import { db } from '../config/firebase';
 import { useState, useEffect } from 'react';
 import { Line, Bar } from 'react-chartjs-2';
 import { Chart, registerables } from 'chart.js';
+import { getValueByKey } from '../App';
 
 function ViewCESResponsesPage() {
     //const [data, setData] = useState({});
-    var data = {};
+    const data = [];
+    const options_chart = {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true,
+                    stepSize: 1,
+                }
+            }]
+        }
+    }
+    const survey =
+
+    {
+        "Question_List": [
+            {
+                "option_A": "Very Good",
+                "option_D": "Bad",
+                "option_B": "Good",
+                "question_prompt": "How was course experience",
+                "tag": 0,
+                "option_C": "Average"
+            },
+            {
+                "option_A": "Very Good",
+                "option_D": "Bad",
+                "option_B": "Good",
+                "question_prompt": "How confident are you of course outcomes",
+                "tag": 1,
+                "option_C": "Average"
+            },
+            {
+                "option_A": "Very Good",
+                "option_D": "Bad",
+                "option_B": "Good",
+                "question_prompt": "How was theory and practical integration",
+                "tag": 2,
+                "option_C": "Average"
+            }
+        ],
+        "Survey_ID": "DSMonsoon2023",
+        "SubjectID": "DS",
+        "Sem_ID": "Monsoon2023",
+        "facultyEmail": "testmsd@gmail.com",
+        "id": "DSMonsoon2023"
+    }
+
+
     const CESResponsesArr = [
         {
             "Enrolment_No": "M220256CS",
@@ -51,6 +99,7 @@ function ViewCESResponsesPage() {
     ];
     function CESconsolidate(respArr) {
         const dict_consolidate = {};
+        //dict prep initialize
         const resp_temp_prep = respArr[0]['Responses'];
         //console.log("Dict Prep")
         for (const [key, value] of Object.entries(resp_temp_prep)) {
@@ -62,6 +111,7 @@ function ViewCESResponsesPage() {
                 'D': 0,
             }
         }
+        //response consolidate
         respArr.map((ele) => {
             const resp_ele = ele["Responses"];
             //console.log("outer loop " + resp_ele['id']);
@@ -71,33 +121,48 @@ function ViewCESResponsesPage() {
                 dict_consolidate[key][value]++;
             }
         });
-        console.log(dict_consolidate);
-        const temp_label = [];
-        const temp_response_count = [];
+        //  console.log("consolidated dict")
+        //  console.log(dict_consolidate);
+        var temp_label = [];
+        var temp_response_count = [];
+        var temp_title = "";
+        var dict_temp_set = {};
         // for one dict
+        //  var key_outer = 0;
+        for (const [key_outer, value_outer] of Object.entries(dict_consolidate)) {
+            temp_label = [];
+            temp_response_count = [];
 
-        for (const [key, value] of Object.entries(dict_consolidate[0])) {
-            //  console.log("looping " + key, value);
-            //const option = 
-            //   dict_consolidate[key][value]++;
-            temp_label.push(key);
-            temp_response_count.push(value);
-            console.log("Loop " + key + " " + value)
+            for (const [key, value] of Object.entries(value_outer)) {
+                //  console.log("looping " + key, value);
+                //const option = 
+                //   dict_consolidate[key][value]++;
+                //  console.log("Key ! " + key)
+                const index = getValueByKey(survey['Question_List'], "tag", key_outer);
+                //  console.log("Index ! " + index)
+                //  console.log(survey['Question_List'][index]);
+                temp_label.push(survey['Question_List'][index]['option_' + key]);
+                temp_title = survey['Question_List'][index]['question_prompt'];
+                temp_response_count.push(value);
+                //console.log("Loop " + key + " " + value)
+            }
+            dict_temp_set = {
+                "labels": temp_label,
+                "datasets": [
+                    {
+                        "label": temp_title,
+                        data: temp_response_count,
+                        //fill: true,
+                        // backgroundColor: "rgba(6, 156,51, .3)",
+                        // borderColor: "#02b844",
+                    }
+                ]
+            };
+            console.log("Dict ");
+            console.log(dict_temp_set);
+            data.push(dict_temp_set);
         }
-        const dict_temp_set = {
-            "labels": temp_label,
-            "datasets": [
-                {
-                    "label": "CES responses",
-                    data: temp_response_count,
-                    //fill: true,
-                    // backgroundColor: "rgba(6, 156,51, .3)",
-                    // borderColor: "#02b844",
-                }
-            ]
-        };
 
-        data = dict_temp_set
     }
     useEffect(() => {
         const fetchResponses = async () => {
@@ -114,7 +179,24 @@ function ViewCESResponsesPage() {
                 console.error(err);
             }
 
-        }; //fetchResponses();
+        };
+        const fetchSurveys = async () => {
+
+            //Read data
+            try {
+                const data_1 = await getDocs(collection(db, "survey"));
+
+                const filtered_data_1 = data_1.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+                console.log("Survey")
+                console.log(filtered_data_1);
+
+            }
+            catch (err) {
+                console.error(err);
+            }
+
+        };
+        fetchSurveys();
 
     }
         , []);
@@ -137,9 +219,14 @@ function ViewCESResponsesPage() {
     Chart.register(...registerables)
 
     return (<div>
+        {data.map((data_set, index) =>
+            <div style={{ "height": 200 }}>
+                <Bar data={data_set} options={options_chart} />
+            </div>
+        )
+        }
 
-        <Bar data={data} />
-    </div>);
+    </div >);
 }
 
 export default ViewCESResponsesPage
