@@ -5,6 +5,7 @@ import { auth } from '../config/firebase'
 import { getDocs, collection, doc, setDoc } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { password_from_prop, email_from_prop, departments } from "../App.js";
+import AuthIssueComponent from '../components/AuthIssueComponent';
 //import {password_from_prop} from 
 function StudentSignupPage() {
     // const password_from_prop = "test123";

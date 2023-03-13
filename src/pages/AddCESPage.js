@@ -3,16 +3,20 @@ import { useState, useEffect } from 'react';
 import { doc, setDoc, getDocs, collection, arrayUnion, query, where } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { useLocation } from 'react-router-dom';
-//import { faculty_test_email, departments, getValueByKey, faculties_arr_test } from "../App.js";
 import DatePicker from "react-datepicker";
 import { useNavigate } from 'react-router-dom';
 import "react-datepicker/dist/react-datepicker.css";
-
+import AuthIssueComponent from '../components/AuthIssueComponent';
 function AddCESPage() {
     const navigate = useNavigate();
     let { state } = useLocation();
-    const fac_details = state.fac;
-    const faculty_mail_from_prop = fac_details.EmailID;
+    var fac_details = {};
+    var faculty_mail_from_prop = "";
+
+    if (state) {
+        fac_details = state.fac;
+        faculty_mail_from_prop = fac_details.EmailID;
+    }
     //const navigate = useNavigate();
     const [questionPrompt, setQuestionPrompt] = useState("");
     const [lastDate, setLastDate] = useState(new Date());
@@ -29,25 +33,17 @@ function AddCESPage() {
                 const subjectsRef = collection(db, "subject");
                 //const query_x = query(subjectsRef, where("Faculty_Assigned", "==", faculty_mail_from_prop), where("CourseExitSurveyAvailable", "==", false));
                 const querySnapshot = await getDocs(collection(db, "subject"));
-
                 const fetched_sub_wo_CES = []
                 querySnapshot.forEach((doc) => {
-
-
                     fetched_sub_wo_CES.push(doc.data());
                 });
                 setSubjectArr(fetched_sub_wo_CES);
                 console.log(fetched_sub_wo_CES);
                 console.log("subID to set in dropdown " + fetched_sub_wo_CES[0].SubjectID);
                 setSubject(fetched_sub_wo_CES[0].SubjectID);
-
-
-
-
             }
             catch (error) {
                 console.error(error);
-
                 console.log(error.code)
                 alert("Data Fetch Issue⚠" + error.message);
             }
@@ -58,7 +54,6 @@ function AddCESPage() {
         navigate(-1);
     }
     function getSemID() {
-
         const date_today = new Date();
         const year_now = date_today.getFullYear();
         const month_now = date_today.getMonth();
@@ -71,9 +66,7 @@ function AddCESPage() {
     const handleDelete = (deleting_ques) => {
         console.log("Delete function called on " + deleting_ques.question_prompt)
         const ques_arr_temp_del = quesArr.filter((ques) => ques.tag !== deleting_ques.tag);
-
         setQuesArr(ques_arr_temp_del)
-
     }
     const handleAddQuestion = async (event) => {
         event.preventDefault();
@@ -84,10 +77,6 @@ function AddCESPage() {
         if (quesArr.length) {
             temp_ques_arr = [...quesArr];
         }
-
-
-
-
         const dict_temp = {
             tag: temp_index,
             question_prompt: questionPrompt,
@@ -96,32 +85,14 @@ function AddCESPage() {
             option_C: optionC,
             option_D: optionD,
         }
-
-
-
-
-
         temp_ques_arr.push(
             dict_temp
         );
-
-
-
-
-
         console.log("curr " + dict_temp[temp_index])
         setQuesArr(temp_ques_arr);
-        //setQuestionPrompt('');
-        // setOptionA('');
-        // setOptionB('');
-        // setOptionC('');
-        // setOptionD('');
         console.log(quesArr);
     }
     const handleSubmit = async (event) => {
-
-
-
         try {
             const sem_id = getSemID();
             console.log("sem ID " + sem_id);
@@ -132,7 +103,6 @@ function AddCESPage() {
                 Survey_ID: survey_id, Sem_ID: sem_id, SubjectID: subject,
                 faculty_name: fac_details['Name']
             });
-
             const docRef1 = await setDoc(doc(db, "subject", subject), {
                 "Question_List": quesArr, "CourseExitSurveyAvailable": true,
                 "last_date": lastDate.setHours(23, 59, 59), Survey_ID: survey_id,
@@ -141,9 +111,10 @@ function AddCESPage() {
         } catch (error) {
             console.log(error.code)
             alert("CES Submission Issue" + error.message);
-            //   const errorCode = error.code;
-            //   const errorMessage = error.message;
         }
+    }
+    if (!state) {
+        return AuthIssueComponent();
     }
     if (subjectArr && subjectArr.length <= 0) {
         return (<body><button className="styledbutton" onClick={goBack}>Back</button>	No course available for ces</body>)

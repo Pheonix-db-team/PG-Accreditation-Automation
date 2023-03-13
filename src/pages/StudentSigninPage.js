@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-import { signInWithEmailAndPassword } from "firebase/auth"
+import { signInWithEmailAndPassword, signOut } from "firebase/auth"
 import { auth } from '../config/firebase'
 import { useNavigate } from "react-router-dom";
 import { getDoc, doc } from 'firebase/firestore';
@@ -11,7 +11,11 @@ function StudentSigninPage() {
     const [password, setPassword] = useState("");
 
     useEffect(() => {
-        //No Need
+        signOut(auth).then(() => {
+            // Sign-out successful.
+        }).catch((error) => {
+            // An error happened.
+        });
     }
         , []);
     const handleSubmit = async (event) => {

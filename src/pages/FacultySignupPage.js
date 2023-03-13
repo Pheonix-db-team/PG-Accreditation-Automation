@@ -5,6 +5,7 @@ import { auth } from '../config/firebase'
 import { getDocs, collection, doc, setDoc } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { password_from_prop, email_from_prop, departments } from "../App.js";
+import AuthIssueComponent from '../components/AuthIssueComponent';
 function FacultySignupPage() {
     // const password_from_prop = "test123";
     // const email_from_prop = "test1@gmail.com";
@@ -99,7 +100,7 @@ function FacultySignupPage() {
                 <br></br>
                 Faculty ID
                 <br></br>
-                <input type="email" value={facultyID} onChange={(e) => setFacultyID(e.target.value)}></input>
+                <input type="text" value={facultyID} onChange={(e) => setFacultyID(e.target.value)}></input>
                 <br></br>
                 Faculty Name
                 <br></br>

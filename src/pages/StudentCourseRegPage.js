@@ -1,5 +1,5 @@
 import React from 'react';
-//import { subject_test_array } from "../App.js";
+import AuthIssueComponent from '../components/AuthIssueComponent';
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from "react-router-dom";
 import { getDocs, collection, doc, setDoc } from 'firebase/firestore';
@@ -8,8 +8,12 @@ import { db } from '../config/firebase';
 function StudentCourseRegPage(navigation) {
     const { state } = useLocation();
     const navigate = useNavigate();
-    const student_data = state.student;
-    const subject_array = [...state.subject_arr];
+    var student_data = {};
+    var subject_array = [];
+    if (state) {
+        student_data = state.student;
+        subject_array = [...state.subject_arr];
+    }
     const [checkedState, setCheckedState] = useState(
         new Array(subject_array.length).fill(false)
         // fill array size w false
@@ -57,39 +61,44 @@ function StudentCourseRegPage(navigation) {
         console.log(ssubjectsSubjectID_arr);
         setSsubjects(ssubjectsSubjectID_arr);
     };
+    if (!(state)) {
+        return (AuthIssueComponent());
+    }
     if (student_data.Courses_Registered.length == 0)
         return (
-            <div>Student Course RegPage
-                <br></br>
-                <ul >
-                    {subject_array.map(({ SubjectName, SubjectID }, index) => {
-                        return (
-                            <li key={index}>
-                                <div>
+            <body>
+                <div>Student Course RegPage
+                    <br></br>
+                    <ul >
+                        {subject_array.map(({ SubjectName, SubjectID }, index) => {
+                            return (
+                                <li key={index}>
+                                    <div key={SubjectName}>
 
-                                    <input
-                                        type="checkbox"
-                                        id={`custom-checkbox-${index}`}
-                                        name={SubjectName}
-                                        value={SubjectName}
-                                        checked={checkedState[index]}
-                                        onChange={() => handleOnChange(index)}
-                                    /><label htmlFor={`custom-checkbox-${index}`}>{SubjectName}</label>
-                                    {SubjectID}
-                                </div>
-                            </li>
+                                        <input
+                                            type="checkbox"
+                                            id={`custom-checkbox-${index}`}
+                                            name={SubjectName}
+                                            value={SubjectName}
+                                            checked={checkedState[index]}
+                                            onChange={() => handleOnChange(index)}
+                                        /><label htmlFor={`custom-checkbox-${index}`}>{SubjectName}</label>
+                                        {SubjectID}
+                                    </div>
+                                </li>
 
-                        );
-                    })}
-                    <button className='styledbutton' onClick={handleRegisterSubmit} >Register</button>
-                    <div >Subjects selected :</div>
-                    <div>{ssubjects.map((subject) => <li> <div key={subject}>
-                        <h6> {subject}</h6>
-                    </div></li>)}
-                    </div>
+                            );
+                        })}
+                        <button className='styledbutton' onClick={handleRegisterSubmit} >Register</button>
+                        <div >Subjects selected :</div>
+                        <div>{ssubjects.map((subject) => <li> <div key={subject}>
+                            <h6> {subject}</h6>
+                        </div></li>)}
+                        </div>
 
-                </ul>
-            </div>
+                    </ul>
+                </div>
+            </body>
         );
     else {
         return (<div>Registered </div>)
