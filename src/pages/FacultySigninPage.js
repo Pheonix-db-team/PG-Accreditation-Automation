@@ -22,18 +22,32 @@ function FacultySigninPage() {
 
 
             console.log("You are " + auth.currentUser.email);
+            //  const data = await getDoc(doc(db, "faculty", "callmebyyourname"));
 
             const data = await getDoc(doc(db, "faculty", email));
-            //const data = await getDoc(collection(db, "faculty", "testmsd@gmail.com"));
+            if (data.exists()) {
+                const filtered_data = data.data();
+                console.log("Fetched data @ signin page");
+                console.log(filtered_data);
+                setEmail('');
+                setPassword('');
+                navigate('/facultydashboard', { state: { fac: filtered_data, fac_email: email } });
 
-            const filtered_data = data.data();
-            console.log("Fetched data");
-            console.log(filtered_data);
-            setFac(JSON.parse(JSON.stringify(filtered_data)));
+            } else {
+
+                // doc.data() will be undefined in this case
+                console.log("No such document!");
+                const error_db = new Error("Not found in faculty record")
+                error_db.code = "Faculty RECORD 404"
+                throw error_db;
+            }
+            // const filtered_data = data.data();
+            // console.log("Fetched data");
+            // console.log(filtered_data);
+            // setFac(JSON.parse(JSON.stringify(filtered_data)));
             // console.log("Fac set");
             // console.log(fac);
 
-            navigate('/facultydashboard', { state: { fac: filtered_data, fac_email: email } });
         }
         catch (error) {
             console.log(error.code)

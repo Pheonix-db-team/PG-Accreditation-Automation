@@ -32,6 +32,7 @@ function AddSubjectPage() {
             }
             catch (err) {
                 console.error(err);
+                alert("⚠" + err.message);
             }
 
         }; fetchListTest();

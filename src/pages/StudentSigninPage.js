@@ -14,6 +14,7 @@ function StudentSigninPage() {
         signOut(auth).then(() => {
             // Sign-out successful.
         }).catch((error) => {
+            alert("⚠" + error.message);
             // An error happened.
         });
     }
@@ -26,13 +27,23 @@ function StudentSigninPage() {
 
             console.log("You are " + auth.currentUser.email);
             const data = await getDoc(doc(db, "Student", email));
-            const filtered_data = data.data();
-            console.log("Fetched data");
-            console.log(filtered_data);
 
-            setEmail('');
-            setPassword('');
-            navigate('/studentdashboard', { state: { student: filtered_data, } });
+            if (data.exists()) {
+                const filtered_data = data.data();
+                console.log("Fetched data @ signin page");
+                console.log(filtered_data);
+                setEmail('');
+                setPassword('');
+                navigate('/studentdashboard', { state: { student: filtered_data, } });
+            } else {
+
+                // doc.data() will be undefined in this case
+                console.log("No such document!");
+                const error_db = new Error("Not found student record")
+                error_db.code = "STUDENT RECORD 404"
+                throw error_db;
+            }
+
         }
         catch (error) {
             console.log(error.code)

@@ -45,7 +45,7 @@ function AddCESPage() {
             catch (error) {
                 console.error(error);
                 console.log(error.code)
-                alert("Data Fetch Issue⚠" + error.message);
+                alert("⚠" + error.message);
             }
         }; fetch_and_update_subject();
     }

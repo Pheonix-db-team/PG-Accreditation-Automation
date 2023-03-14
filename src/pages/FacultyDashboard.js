@@ -28,7 +28,7 @@ function FacultyDashboard() {
             catch (error) {
                 console.error(error);
                 console.log(error.code)
-                alert("Signin Issue⚠" + error.message);
+                alert("⚠" + error.message);
             }
         };
     }

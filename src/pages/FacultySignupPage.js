@@ -37,6 +37,7 @@ function FacultySignupPage() {
 
             }
             catch (err) {
+                alert("⚠" + err.message);
                 console.error(err);
             }
 
@@ -78,6 +79,7 @@ function FacultySignupPage() {
                 // ...
             })
             .catch((error) => {
+                alert("⚠" + error.message);
                 //const errorCode = error.code;
                 //const errorMessage = error.message;
             });

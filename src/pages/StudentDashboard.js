@@ -52,6 +52,7 @@ function StudentDashboard() {
         }
         catch (err) {
             console.error(err);
+            alert("⚠" + err.message);
         }
     };
     useEffect((event) => {
@@ -73,6 +74,7 @@ function StudentDashboard() {
         }
         catch (err) {
             console.error(err);
+            alert("⚠" + err.message);
         }
         console.log("Subject List Page tapped Calling navigation ")
         navigate('/subjectlist', { state: { student: state.student, subject_arr: filtered_data } });
@@ -90,6 +92,7 @@ function StudentDashboard() {
         }
         catch (err) {
             console.error(err);
+            alert("⚠" + err.message);
         }
         console.log("course Reg Page tapped Calling navigation ")
         navigate('/studentcoursereg', { state: { student: state.student, subject_arr: filtered_data } });
@@ -105,7 +108,7 @@ function StudentDashboard() {
             }
             catch (err) {
                 console.error(err);
-
+                alert("⚠" + err.message);
             }
 
         };

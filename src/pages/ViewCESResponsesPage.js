@@ -155,6 +155,7 @@ function ViewCESResponsesPage() {
             }
             catch (err) {
                 console.error(err);
+                alert("⚠" + err.message);
             }
 
         };
@@ -168,6 +169,7 @@ function ViewCESResponsesPage() {
                 console.log(filtered_data_1);
             }
             catch (err) {
+                alert("⚠" + err.message);
                 console.error(err);
             }
 

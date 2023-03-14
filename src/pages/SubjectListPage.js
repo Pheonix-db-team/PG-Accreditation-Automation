@@ -4,6 +4,7 @@ import { deleteDoc, getDocs, collection, where, query } from 'firebase/firestore
 import { db } from '../config/firebase';
 import { auth } from '../config/firebase';
 import { useNavigate, useLocation } from "react-router-dom";
+import AuthIssueComponent from '../components/AuthIssueComponent';
 // async function refreshList() {
 //     try {
 //         const studentsCollectionRef = collection(db, "test_pilot");
@@ -48,6 +49,7 @@ function SubjectListPage() {
             //alert(subject_tapped+ " Deleted!");
         } catch (error) {
             console.error("Error adding document: ", error);
+            alert("⚠" + error.message);
         }
     }
 

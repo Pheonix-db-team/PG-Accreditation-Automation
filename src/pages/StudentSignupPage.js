@@ -39,6 +39,7 @@ function StudentSignupPage() {
             }
             catch (err) {
                 console.error(err);
+                alert("⚠" + err.message);
             }
 
         }; fetchListTest();
@@ -91,6 +92,7 @@ function StudentSignupPage() {
                 // ...
             })
             .catch((error) => {
+                alert("⚠" + error.message);
                 //const errorCode = error.code;
                 //const errorMessage = error.message;
             });

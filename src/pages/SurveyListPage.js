@@ -4,6 +4,7 @@ import { deleteDoc, getDocs, collection, where, query } from 'firebase/firestore
 import { db } from '../config/firebase';
 import { auth } from '../config/firebase';
 import { useNavigate, useLocation } from "react-router-dom";
+import AuthIssueComponent from '../components/AuthIssueComponent';
 function SurveyListPage() {
     const navigate = useNavigate();
     let { state } = useLocation();
@@ -34,6 +35,7 @@ function SurveyListPage() {
             //etStudentList(updated_list);
             //alert(subject_tapped+ " Deleted!");
         } catch (error) {
+            alert("⚠" + error.message);
             console.error("Error adding document: ", error);
         }
     }

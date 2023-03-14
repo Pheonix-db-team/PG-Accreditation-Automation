@@ -16,6 +16,7 @@ async function refreshList() {
         //setStudentList(filtered_data);
     }
     catch (err) {
+        alert("⚠" + err.message);
         console.error(err);
     }
 
@@ -40,6 +41,7 @@ function DashboardPage() {
             //setStudents(newStudents)
             alert(deleting_student.name + " Deleted!");
         } catch (error) {
+            alert("⚠" + error.message);
             console.error("Error adding document: ", error);
         }
     }
@@ -70,6 +72,7 @@ function DashboardPage() {
             setStudentList(updated_list);
             console.log("DocRef ", docRef);
         } catch (e) {
+            alert("⚠" + e.message);
             console.error("Error adding document: ", e);
         }
 
@@ -88,6 +91,7 @@ function DashboardPage() {
 
             }
             catch (err) {
+                alert("⚠" + err.message);
                 console.error(err);
             }
 
@@ -106,6 +110,7 @@ function DashboardPage() {
                 setStudentList(filtered_data);
             }
             catch (err) {
+                alert("⚠" + err.message);
                 console.error(err);
             }
 
