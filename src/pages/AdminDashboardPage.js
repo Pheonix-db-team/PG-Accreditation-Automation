@@ -16,11 +16,6 @@ function AdminDashboardPage() {
         navigate('/facultysignup', { state: { admin: state.admin } });
 
     }
-    // function addSubjectNavigation() {
-    //     console.log("add subject tapped Calling navigation ")
-    //     navigate('/addsubject', { state: { admin: state.admin } });
-
-    // }
     const addSubjectNavigation = async () => {
         var filtered_data = [];
         try {
@@ -36,6 +31,21 @@ function AdminDashboardPage() {
         navigate('/addsubject', { state: { admin: state.admin, faculty_arr: filtered_data } });
         // navigate('/subjectlist', { state: { student: state.student, subject_arr: filtered_data } });
     }
+    const viewFacultyNavigation = async () => {
+        var filtered_data = [];
+        try {
+            const data = await getDocs(collection(db, "faculty"));
+            filtered_data = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+            console.log(filtered_data);
+        }
+        catch (err) {
+            console.error(err);
+            alert("⚠" + err.message);
+        }
+        console.log("Subject List Page tapped Calling navigation ")
+        navigate('/viewfacultylist', { state: { admin: state.admin, faculty_arr: filtered_data } });
+        // navigate('/subjectlist', { state: { student: state.student, subject_arr: filtered_data } });
+    }
     if (!(state && state.admin)) {
         return AuthIssueComponent();
     }
@@ -48,6 +58,8 @@ function AdminDashboardPage() {
             <button className='styledbutton' onClick={() => addFacultyNavigation()}>Add Faculty</button>
             <br></br>
             <button className='styledbutton' onClick={() => addSubjectNavigation()}>Add Subject</button>
+            <br></br>
+            <button className='styledbutton' onClick={() => viewFacultyNavigation()}>View Faculties</button>
 
         </body>
     );

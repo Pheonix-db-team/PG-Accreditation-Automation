@@ -1,17 +1,23 @@
 import React from 'react'
-import { useState } from 'react'
 import { getDocs, collection, where, query } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { useNavigate, useLocation } from "react-router-dom";
 import AuthIssueComponent from '../components/AuthIssueComponent';
-import { subject_test_array } from '../App';
-function SubjectListPage() {
+import { faculties_arr_test } from '../App';
+function FacultyListPage() {
     const navigate = useNavigate();
     let { state } = useLocation();
-    const subjectlistArr = state.subject_arr;
-    //const subjectlistArr = [...subject_test_array];
+    // const subjectlistArr = state.subject_arr;
+    //   const facultylistArr = [...faculties_arr_test];
+    var facultylistArr = []
+    if (state && state.faculty_arr) {
+        facultylistArr = [...state.faculty_arr];
+    }
+    else {
+        facultylistArr = [...faculties_arr_test];
+    }
     const handleTap = async (subject_tapped) => {
-
+        //Modify acc to delete, delete not required as of now
         try {
             const subjectsRef = collection(db, "survey");
             const query_x = query(subjectsRef, where("SubjectID", "==", subject_tapped.SubjectID));
@@ -28,22 +34,25 @@ function SubjectListPage() {
             alert("⚠" + error.message);
         }
     }
+    if (!(state && state.admin)) {
+        return AuthIssueComponent();
+    }
     return (
-        <div>SubjectList Page
+        <div>Faculty List
             <br></br>
             <button className="styledbutton" onClick={() => navigate(-1)}>Back</button>
             <br></br>
             <br></br>
             <table>
-                <tr> <th>SubjectID </th> <th>Subject Name</th> <th>Faculty_Assigned</th><th>view surveys</th> </tr>
+
+                <tr> <th>Name </th> <th>EmailID</th> <th>FacultyID</th><th>Department</th> </tr>
                 {
-                    subjectlistArr.map((subject) => <tr key={subject.id}>
-                        <td>{subject.SubjectID}</td><td>{subject.Name}</td><td>{subject.Faculty_Assigned}</td> <td> <button className='styledbutton' onClick={() => handleTap(subject)}>View Surveys</button></td>
-                    </tr>)
+                    facultylistArr.map((faculty) => <tr key={faculty.Name}>
+                        <td>{faculty.Name}</td> <td>{faculty.EmailID}</td><td>{faculty.FacultyID}</td><td>{faculty.Department}</td></tr>)
                 }
             </table>
         </div>
     )
 }
 
-export default SubjectListPage
+export default FacultyListPage

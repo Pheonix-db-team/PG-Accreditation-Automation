@@ -29,6 +29,7 @@ import SubjectListPage from './pages/SubjectListPage';
 import SurveyListPage from './pages/SurveyListPage';
 import AdminSigninPage from './pages/AdminSignin';
 import AdminDashboardPage from './pages/AdminDashboardPage';
+import FacultyListPage from './pages/ViewFacultyPage';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -173,6 +174,11 @@ const router = createBrowserRouter([
   {
     path: "admindashboard",
     element: <AdminDashboardPage />,
+
+  },
+  {
+    path: "viewfacultylist",
+    element: <FacultyListPage />,
 
   },
 
