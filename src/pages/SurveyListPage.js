@@ -44,9 +44,9 @@ function SurveyListPage() {
 
 
 
-    if (!surveyListArr.length) { return (< div >  <button className="styledbutton" onClick={() => navigate(-1)}>Back</button> No CES available for  {state.subject.Name}</div >); }
+    if (!surveyListArr.length) { return (< div >  <button className="styledbutton" onClick={() => navigate(-1)}>Back</button> No Surveys Available for  {state.subject.Name}</div >); }
     else {
-        return (<div>SurveyListArr
+        return (<div>
             <br></br>
 
             <div>
@@ -54,11 +54,15 @@ function SurveyListPage() {
                 <br></br>
                 {state.subject['Name']} Surveys
                 <br></br>
-                {
-                    surveyListArr.map((survey) => <div key={survey.Sem_ID}>
-                        <h6>Semester:  {survey.Sem_ID} | {survey.faculty_name} <button className='styledbutton' onClick={() => handleTap(survey)}>View Surveys</button></h6>
-                    </div>)
-                }
+                <table>
+                    <tr> <th>SemesterID </th> <th>Faculty Name</th><th>view responses</th> </tr>
+                    {
+                        surveyListArr.map((survey) => <tr key={survey.Sem_ID}>
+                            <td>{survey.Sem_ID}</td><td>{survey.faculty_name}</td><td> <button className='styledbutton' onClick={() => handleTap(survey)}>View Responses</button></td>
+                        </tr>)
+                    }
+                </table>
+
             </div>
         </div>);
     }

@@ -99,7 +99,7 @@ export const faculties_arr_test = [{
 }];
 export const subject_test_array = [{
   "SubjectID": "CS101", "Students_Enrolled": [],
-  "Name": "Artifiicial Intelligence", "Faculty_Assigned": "testppn@gmail.com",
+  "Name": "Artificial Intelligence", "Faculty_Assigned": "testppn@gmail.com",
   "Question_List": [], "CourseExitSurveyAvailable": false, "Department": "",
   "last_date": null, "id": "CS101",
 },

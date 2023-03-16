@@ -5,6 +5,7 @@ import { db } from '../config/firebase';
 import { auth } from '../config/firebase';
 import { useNavigate, useLocation } from "react-router-dom";
 import AuthIssueComponent from '../components/AuthIssueComponent';
+import { subject_test_array } from '../App';
 // async function refreshList() {
 //     try {
 //         const studentsCollectionRef = collection(db, "test_pilot");
@@ -29,6 +30,7 @@ function SubjectListPage() {
     // console.log(state?.user_email);
     const [studentList, setStudentList] = useState([])
     const subjectlistArr = state.subject_arr;
+    //const subjectlistArr = [...subject_test_array];
     const handleTap = async (subject_tapped) => {
 
         try {
@@ -60,13 +62,15 @@ function SubjectListPage() {
             <button className="styledbutton" onClick={() => navigate(-1)}>Back</button>
             <br></br>
             <br></br>
-            <div>
+
+            <table>
+                <tr> <th>SubjectID </th> <th>Subject Name</th> <th>Faculty_Assigned</th><th>view surveys</th> </tr>
                 {
-                    subjectlistArr.map((subject) => <div key={subject.id}>
-                        <h6>{subject.SubjectID} | {subject.Name} | {subject.Faculty_Assigned} <button className='styledbutton' onClick={() => handleTap(subject)}>View Surveys</button></h6>
-                    </div>)
+                    subjectlistArr.map((subject) => <tr key={subject.id}>
+                        <td>{subject.SubjectID}</td><td>{subject.Name}</td><td>{subject.Faculty_Assigned}</td> <td> <button className='styledbutton' onClick={() => handleTap(subject)}>View Surveys</button></td>
+                    </tr>)
                 }
-            </div>
+            </table>
         </div>
     )
 }

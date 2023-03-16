@@ -2,10 +2,13 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import { doc, setDoc, getDocs, collection, arrayUnion } from 'firebase/firestore';
 import { db } from '../config/firebase';
-import { faculties_arr_test, departments, getValueByKey } from "../App.js";
+import { useLocation } from 'react-router-dom';
+import { departments, getValueByKey } from "../App.js";
+import { useNavigate } from 'react-router-dom';
 function AddSubjectPage() {
-
-    const faculties_from_prop = faculties_arr_test;
+    const { state } = useLocation();
+    const navigate = useNavigate();
+    const faculties_from_prop = state.faculty_arr;
     const [subjectID, setsubjectID] = useState("");
     const [name, setName] = useState("");
     const [department, setDepartment] = useState(departments[0].value)
@@ -84,6 +87,7 @@ function AddSubjectPage() {
     return (
         <div>
             <br></br>
+            <button className="styledbutton" onClick={() => navigate(-1)}>Back</button>
             <form onSubmit={handleSubmit
             }>
                 <div > Add subject</div>
