@@ -42,7 +42,6 @@ function FacultySignupPage() {
             FacultyID: facultyID, Name: name
         });
         console.log(docRef);
-        console.log("Added " + facultyID + " with name " + name);
         await createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 // console.log("You are " + userCredential.user.email);
@@ -60,6 +59,9 @@ function FacultySignupPage() {
 
             });
         console.log("Finally You are " + auth.currentUser.email);
+        alert("Added " + facultyID + " with name " + name);
+
+        //  alert("Added " + enrolmentNo + " with name " + name)
         setEmail('');
         setPassword('');
         setFacultyID('');

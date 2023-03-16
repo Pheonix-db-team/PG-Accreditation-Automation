@@ -135,10 +135,10 @@ function StudentDashboard() {
                 <br></br>
                 <br></br>
                 Courses_Registered status:{(Array.isArray(student['Courses_Registered']) && student['Courses_Registered'].length) ? "✅" : "❌"}
-                {(Array.isArray(student['Courses_Registered']) && student['Courses_Registered'].length) ? <br></br> : <button className='styledbutton' onClick={() => CourseRegPageNavigation()}>Register for Courses</button>}
+                {(Array.isArray(student['Courses_Registered']) && student['Courses_Registered'].length) ? <button className='styledbutton' onClick={() => CESResponsePageNavigation()}>CES Available</button>
+                    : <button className='styledbutton' onClick={() => CourseRegPageNavigation()}>Register for Courses</button>}
                 <br></br>
             </div>
-            <button className='styledbutton' onClick={() => CESResponsePageNavigation()}>CES Available</button>
             <button className='styledbutton' onClick={() => SubjectListPageNavigation()}>CES Subjectwise</button>
             <button className='styledbutton' onClick={() => navigate(-1)}>Logout</button>
         </body >

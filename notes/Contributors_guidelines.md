@@ -1,5 +1,5 @@
 # Contributors guidelines
-**Read Whole brefore contributing**
+**Read Whole before contributing**
 
 Priority :
 - Finding🔍 and reporting📮 bugs🐛
@@ -33,4 +33,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 -	Firebase console access give to your mails in Gmail spaces CES
 -   Check current mail if any issue with firebase console
 
+## Password for making new accounts or using existing accounts in Testing
 
+test123 

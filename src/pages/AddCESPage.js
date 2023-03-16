@@ -38,10 +38,13 @@ function AddCESPage() {
                 querySnapshot.forEach((doc) => {
                     fetched_sub_wo_CES.push(doc.data());
                 });
-                setSubjectArr(fetched_sub_wo_CES);
+                if (fetched_sub_wo_CES)
+                    setSubjectArr(fetched_sub_wo_CES);
                 console.log(fetched_sub_wo_CES);
-                console.log("subID to set in dropdown " + fetched_sub_wo_CES[0].SubjectID);
-                setSubject(fetched_sub_wo_CES[0].SubjectID);
+                if (fetched_sub_wo_CES.length > 0) {
+                    console.log("subID to set in dropdown " + fetched_sub_wo_CES[0].SubjectID);
+                    setSubject(fetched_sub_wo_CES[0].SubjectID);
+                }
             }
             catch (error) {
                 console.error(error);

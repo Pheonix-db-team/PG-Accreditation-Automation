@@ -70,7 +70,7 @@ function StudentSignupPage() {
         //     "Enrolment_No": "M220256CS",
         //     "id": "M220256CS"
         // }
-
+        alert("Added " + enrolmentNo + " with name " + name);
         console.log(docRef);
         console.log("Added " + enrolmentNo + " with name " + name);
 

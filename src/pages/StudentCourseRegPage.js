@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from "react-router-dom";
 import { getDocs, collection, doc, setDoc } from 'firebase/firestore';
 import { db } from '../config/firebase';
+import { getValueByKey } from '../App';
 //import { student_test } from "../App.js";
 function StudentCourseRegPage(navigation) {
     const { state } = useLocation();
@@ -13,6 +14,12 @@ function StudentCourseRegPage(navigation) {
     if (state) {
         student_data = state.student;
         subject_array = [...state.subject_arr];
+    }
+    function subject_from_id(subject_dict, subject_id) {
+        console.log(subject_dict);
+        var index = getValueByKey(subject_dict, "SubjectID", subject_id,);
+        console.log("Index " + index + " " + subject_dict[index])
+        return subject_dict[index]['Name'];
     }
     const [checkedState, setCheckedState] = useState(
         new Array(subject_array.length).fill(false)
@@ -62,15 +69,21 @@ function StudentCourseRegPage(navigation) {
         setSsubjects(ssubjectsSubjectID_arr);
     };
     if (!(state)) {
+
         return (AuthIssueComponent());
     }
     if (student_data.Courses_Registered.length == 0)
         return (
+
             <body>
+                <button className='styledbutton' onClick={() => navigate(-1)}>Back</button>
+                <br></br>
+
                 <div>Student Course RegPage
                     <br></br>
                     <ul >
                         {subject_array.map(({ SubjectName, SubjectID }, index) => {
+                            console.log(SubjectID);
                             return (
                                 <li key={index}>
                                     <div key={SubjectName}>
@@ -78,12 +91,12 @@ function StudentCourseRegPage(navigation) {
                                         <input
                                             type="checkbox"
                                             id={`custom-checkbox-${index}`}
-                                            name={SubjectName}
+                                            name={SubjectID}
                                             value={SubjectName}
                                             checked={checkedState[index]}
                                             onChange={() => handleOnChange(index)}
-                                        /><label htmlFor={`custom-checkbox-${index}`}>{SubjectName}</label>
-                                        {SubjectID}
+                                        /><label >{subject_from_id(subject_array, SubjectID)}</label>
+
                                     </div>
                                 </li>
 
@@ -92,7 +105,7 @@ function StudentCourseRegPage(navigation) {
                         <button className='styledbutton' onClick={handleRegisterSubmit} >Register</button>
                         <div >Subjects selected :</div>
                         <div>{ssubjects.map((subject) => <li> <div key={subject}>
-                            <h6> {subject}</h6>
+                            <h6> {subject_from_id(subject_array, subject)}</h6>
                         </div></li>)}
                         </div>
 
@@ -104,5 +117,6 @@ function StudentCourseRegPage(navigation) {
         return (<div>Registered </div>)
     }
 }
+//import { getValueByKey } from '../App';
 
 export default StudentCourseRegPage
