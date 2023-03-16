@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { getDocs, collection, setDoc, getDoc, doc, query, where, Timestamp } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { useNavigate, useLocation } from "react-router-dom";
-import { student_test_email } from "../App.js";
+//import { student_test_email } from "../App.js";
 import AuthIssueComponent from '../components/AuthIssueComponent';
 function StudentDashboard() {
     const { state } = useLocation();
@@ -100,7 +100,7 @@ function StudentDashboard() {
     useEffect(() => {
         const fetchDetails = async () => {
             try {
-                const data = await getDoc(doc(db, "Student", student_test_email));
+                const data = await getDoc(doc(db, "Student", state.student.EmailID));
                 const filtered_data = data.data();
                 console.log("Fetched data");
                 console.log(filtered_data);
@@ -140,7 +140,7 @@ function StudentDashboard() {
             </div>
             <button className='styledbutton' onClick={() => CESResponsePageNavigation()}>CES Available</button>
             <button className='styledbutton' onClick={() => SubjectListPageNavigation()}>CES Subjectwise</button>
-
+            <button className='styledbutton' onClick={() => navigate(-1)}>Logout</button>
         </body >
     )
 }

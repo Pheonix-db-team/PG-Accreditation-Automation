@@ -1,9 +1,5 @@
 # Pilot App to learn and build basics
 
-![class diagram](notes/class_diagram.jpg)
-
-![er diagram](notes/er_diagram.png)
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 
 ## Get scripts after clone
@@ -19,6 +15,17 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
+
+[![Github](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/yug-am/) 
+
+
+![class diagram](notes/class_diagram.jpg)
+
+![er diagram](notes/er_diagram.png)
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+---
+
 
 ### `npm test`
 
@@ -74,3 +81,5 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+Made with [![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)

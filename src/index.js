@@ -27,6 +27,8 @@ import StudentCESResponsePage from './pages/StudentCESResponsePage';
 import ViewCESResponsesPage from './pages/ViewCESResponsesPage';
 import SubjectListPage from './pages/SubjectListPage';
 import SurveyListPage from './pages/SurveyListPage';
+import AdminSigninPage from './pages/AdminSignin';
+import AdminDashboardPage from './pages/AdminDashboardPage';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -162,9 +164,17 @@ const router = createBrowserRouter([
     path: "surveylist",
     element: <SurveyListPage />,
 
-  }
+  },
+  {
+    path: "adminsignin",
+    element: <AdminSigninPage />,
 
-  ,
+  },
+  {
+    path: "admindashboard",
+    element: <AdminDashboardPage />,
+
+  },
 
 
 ]);

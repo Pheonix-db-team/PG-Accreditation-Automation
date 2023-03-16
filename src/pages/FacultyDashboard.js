@@ -52,7 +52,7 @@ function FacultyDashboard() {
                 <br></br>
                 <div>
                     {
-                        (state.fac['Courses_assigned']) ?
+                        (state.fac['Courses_assigned'].length > 0) ?
                             fac['Courses_assigned'].map((course) => <div key={course}>
                                 {course}
                             </div>) : <div>"No subject assigned"</div>

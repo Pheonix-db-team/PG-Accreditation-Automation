@@ -6,6 +6,7 @@ import { getDocs, collection, doc, setDoc } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { password_from_prop, email_from_prop, departments } from "../App.js";
 import AuthIssueComponent from '../components/AuthIssueComponent';
+import { useNavigate, useLocation } from "react-router-dom";
 //import {password_from_prop} from 
 function StudentSignupPage() {
     // const password_from_prop = "test123";
@@ -16,6 +17,8 @@ function StudentSignupPage() {
     //     { label: "MECHANICAL ENGINEERING", value: "MECHANICAL ENGINEERING" }
 
     // ]
+    const navigate = useNavigate();
+    const { state } = useLocation();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [enrolmentNo, setEnrolmentNo] = useState("");
@@ -105,13 +108,17 @@ function StudentSignupPage() {
         setName('');
 
     }
-
+    if (!(state && state.admin)) {
+        return AuthIssueComponent();
+    }
     return (
         <div>
             <br></br>
+            <button className='styledbutton' onClick={() => navigate(-1)}>Back</button>
+            <br></br>
             <form onSubmit={handleSubmit
             }>
-                <div > Signup Student</div>
+                <div > Add Student</div>
                 <br></br>
                 Student ID
                 <br></br>

@@ -4,37 +4,24 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "fire
 import { auth } from '../config/firebase'
 import { getDocs, collection, doc, setDoc } from 'firebase/firestore';
 import { db } from '../config/firebase';
+import { useNavigate, useLocation } from "react-router-dom";
 import { password_from_prop, email_from_prop, departments } from "../App.js";
 import AuthIssueComponent from '../components/AuthIssueComponent';
 function FacultySignupPage() {
-    // const password_from_prop = "test123";
-    // const email_from_prop = "test1@gmail.com";
-    // const departments = [
-    //     { label: "COMPUTER SCIENCE AND ENGINEERING", value: "COMPUTER SCIENCE AND ENGINEERING" },
-    //     { label: "ELECTRICAL ENGINEERING", value: "ELECTRICAL ENGINEERING" },
-    //     { label: "MECHANICAL ENGINEERING", value: "MECHANICAL ENGINEERING" }
-
-    // ]
+    const navigate = useNavigate();
     const [email, setEmail] = useState("");
+    const { state } = useLocation();
     const [password, setPassword] = useState("");
     const [facultyID, setFacultyID] = useState("");
     const [name, setName] = useState("");
     const [department, setDepartment] = useState(departments[0].value)
-
-
-
-
-
     useEffect(() => {
         const fetchListTest = async () => {
-
             //Read data
             try {
                 const data = await getDocs(collection(db, "faculty"));
-
                 const filtered_data = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
                 console.log(filtered_data);
-
             }
             catch (err) {
                 alert("⚠" + err.message);
@@ -49,7 +36,6 @@ function FacultySignupPage() {
         setDepartment(e.target.value)
     }
     const handleSubmit = async (event) => {
-
         event.preventDefault();
         const docRef = await setDoc(doc(db, "faculty", email), {
             Courses_assigned: [], Department: department, EmailID: email,
@@ -57,48 +43,41 @@ function FacultySignupPage() {
         });
         console.log(docRef);
         console.log("Added " + facultyID + " with name " + name);
-
         await createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 // console.log("You are " + userCredential.user.email);
-
             })
             .catch((error) => {
-
                 const errorMessage = error.message;
                 alert("Error " + errorMessage);
-
-
             });
         console.log("Now you are " + auth.currentUser.email);
         await signInWithEmailAndPassword(auth, email_from_prop, password_from_prop)
             .then((userCredential) => {
-                // Signed in 
-                // const user = userCredential.user;
-
-                // ...
             })
             .catch((error) => {
                 alert("⚠" + error.message);
-                //const errorCode = error.code;
-                //const errorMessage = error.message;
+
             });
         console.log("Finally You are " + auth.currentUser.email);
-
         setEmail('');
         setPassword('');
         setFacultyID('');
         setDepartment('');
         setName('');
-
+    }
+    if (!(state && state.admin)) {
+        return AuthIssueComponent();
     }
 
     return (
         <div>
             <br></br>
+            <button className='styledbutton' onClick={() => navigate(-1)}>Back</button>
+            <br></br>
             <form onSubmit={handleSubmit
             }>
-                <div > Signup Faculty</div>
+                <div > Add Faculty</div>
                 <br></br>
                 Faculty ID
                 <br></br>

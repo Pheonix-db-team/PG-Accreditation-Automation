@@ -13,87 +13,87 @@ function ViewCESResponsesPage() {
     const options_chart = {
 
     }
-    const survey = state.survey;
+    // const survey = state.survey;
     const navigate = useNavigate();
-    const CESResponsesArr = state.responsesArr;
-    // const survey =
+    //const CESResponsesArr = state.responsesArr;
+    const survey =
 
-    // {
-    //     "Question_List": [
-    //         {
-    //             "option_A": "Very Good",
-    //             "option_D": "Bad",
-    //             "option_B": "Good",
-    //             "question_prompt": "How was course experience",
-    //             "tag": 0,
-    //             "option_C": "Average"
-    //         },
-    //         {
-    //             "option_A": "Very Good",
-    //             "option_D": "Bad",
-    //             "option_B": "Good",
-    //             "question_prompt": "How confident are you of course outcomes",
-    //             "tag": 1,
-    //             "option_C": "Average"
-    //         },
-    //         {
-    //             "option_A": "Very Good",
-    //             "option_D": "Bad",
-    //             "option_B": "Good",
-    //             "question_prompt": "How was theory and practical integration",
-    //             "tag": 2,
-    //             "option_C": "Average"
-    //         }
-    //     ],
-    //     "Survey_ID": "DSMonsoon2023",
-    //     "SubjectID": "DS",
-    //     "Sem_ID": "Monsoon2023",
-    //     "facultyEmail": "testmsd@gmail.com",
-    //     "id": "DSMonsoon2023"
-    // }
+    {
+        "Question_List": [
+            {
+                "option_A": "Very Good",
+                "option_D": "Bad",
+                "option_B": "Good",
+                "question_prompt": "How was course experience",
+                "tag": 0,
+                "option_C": "Average"
+            },
+            {
+                "option_A": "Very Good",
+                "option_D": "Bad",
+                "option_B": "Good",
+                "question_prompt": "How confident are you of course outcomes",
+                "tag": 1,
+                "option_C": "Average"
+            },
+            {
+                "option_A": "Very Good",
+                "option_D": "Bad",
+                "option_B": "Good",
+                "question_prompt": "How was theory and practical integration",
+                "tag": 2,
+                "option_C": "Average"
+            }
+        ],
+        "Survey_ID": "DSMonsoon2023",
+        "SubjectID": "DS",
+        "Sem_ID": "Monsoon2023",
+        "facultyEmail": "testmsd@gmail.com",
+        "id": "DSMonsoon2023"
+    }
 
 
-    // const CESResponsesArr = [
-    //     {
-    //         "Enrolment_No": "M220256CS",
-    //         "Survey_ID": "DSMonsoon2023",
-    //         "StudentEmail": "testy@gmail.com",
-    //         "SubjectID": "DS",
-    //         "Responses": {
-    //             "0": "A",
-    //             "1": "B",
-    //             "2": "C",
+    const CESResponsesArr = [
+        {
+            "Enrolment_No": "M220256CS",
+            "Survey_ID": "DSMonsoon2023",
+            "StudentEmail": "testy@gmail.com",
+            "SubjectID": "DS",
+            "Responses": {
+                "0": "A",
+                "1": "B",
+                "2": "C",
 
-    //         },
-    //         "id": "DSMonsoon2023testy@gmail.com"
-    //     },
-    //     {
-    //         "Enrolment_No": "M220255CS",
-    //         "Survey_ID": "DSMonsoon2023",
-    //         "StudentEmail": "testy1@gmail.com",
-    //         "SubjectID": "DS",
-    //         "Responses": {
-    //             "0": "A",
-    //             "1": "A",
-    //             "2": "A",
+            },
+            "id": "DSMonsoon2023testy@gmail.com"
+        },
+        {
+            "Enrolment_No": "M220255CS",
+            "Survey_ID": "DSMonsoon2023",
+            "StudentEmail": "testy1@gmail.com",
+            "SubjectID": "DS",
+            "Responses": {
+                "0": "A",
+                "1": "A",
+                "2": "A",
 
-    //         },
-    //         "id": "DSMonsoon2023testy@gmail.com"
-    //     },
-    //     {
-    //         "Enrolment_No": "M220255CS",
-    //         "Survey_ID": "DSMonsoon2023",
-    //         "StudentEmail": "testy1@gmail.com",
-    //         "SubjectID": "DS",
-    //         "Responses": {
-    //             "0": "C",
-    //             "1": "A",
-    //             "2": "B",
+            },
+            "id": "DSMonsoon2023testy@gmail.com"
+        },
+        {
+            "Enrolment_No": "M220255CS",
+            "Survey_ID": "DSMonsoon2023",
+            "StudentEmail": "testy1@gmail.com",
+            "SubjectID": "DS",
+            "Responses": {
+                "0": "C",
+                "1": "A",
+                "2": "B",
 
-    //         },
-    //         "id": "DSMonsoon2023testy@gmail.com"
-    //     },
-    // ];
+            },
+            "id": "DSMonsoon2023testy@gmail.com"
+        },
+    ];
     function CESconsolidate(respArr) {
 
         const dict_consolidate = {};

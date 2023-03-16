@@ -31,8 +31,9 @@ function AddCESPage() {
         const fetch_and_update_subject = async () => {
             try {
                 const subjectsRef = collection(db, "subject");
-                //const query_x = query(subjectsRef, where("Faculty_Assigned", "==", faculty_mail_from_prop), where("CourseExitSurveyAvailable", "==", false));
-                const querySnapshot = await getDocs(collection(db, "subject"));
+                const query_x = query(subjectsRef, where("Faculty_Assigned", "==", faculty_mail_from_prop), where("CourseExitSurveyAvailable", "==", false));
+                //const querySnapshot = await getDocs(collection(db, "subject"));
+                const querySnapshot = await getDocs(query_x);
                 const fetched_sub_wo_CES = []
                 querySnapshot.forEach((doc) => {
                     fetched_sub_wo_CES.push(doc.data());
