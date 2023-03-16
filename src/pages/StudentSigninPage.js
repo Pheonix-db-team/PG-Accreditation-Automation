@@ -56,6 +56,10 @@ function StudentSigninPage() {
     return (
         <div>
             <br></br>
+            <button className='styledbutton' onClick={() => navigate(-1)}>Back</button>
+            <br></br>
+
+            <br></br>
             <form onSubmit={handleSubmit
             }>
                 <div > Signin Student</div>

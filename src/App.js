@@ -5,6 +5,7 @@ import NavBar from './components/NavBar';
 import './App.css';
 //import Greeting from './components/Greeting';
 import { useState } from 'react';
+import HomePage from './pages/HomePage';
 function App() {
   //  const num = 46;
   //const str = "xyz";
@@ -30,26 +31,26 @@ function App() {
     margin: 3
   }}  > {student} < button className='deletebutton' onClick={() => handleDelete(student)}> Delete</button ></li >);
 
+  return (<div>HomePage()</div>);
+  // return (
+  //   <div className="App">
+  //     <NavBar></NavBar>
+  //     <br></br>
 
-  return (
-    <div className="App">
-      <NavBar></NavBar>
-      <br></br>
-
-      <Link to="/signup" ><button className='styledbutton'>SignUp</button></Link>
-      <br></br>
-      <br></br>
-      <Link to="/login" ><button className='styledbutton'>Login</button></Link>
-      <form onSubmit={handleSubmit
-      }>
-        <div > Add new Student</div>
-        <input type="text" value={name} onChange={(e) => setName(e.target.value)}></input>
-        <input type="submit"></input>
-      </form>
-      Student List
-      <li>{listItems}</li>
-    </div>
-  );
+  //     <Link to="/signup" ><button className='styledbutton'>SignUp</button></Link>
+  //     <br></br>
+  //     <br></br>
+  //     <Link to="/login" ><button className='styledbutton'>Login</button></Link>
+  //     <form onSubmit={handleSubmit
+  //     }>
+  //       <div > Add new Student</div>
+  //       <input type="text" value={name} onChange={(e) => setName(e.target.value)}></input>
+  //       <input type="submit"></input>
+  //     </form>
+  //     Student List
+  //     <li>{listItems}</li>
+  //   </div>
+  // );
 }
 export function getValueByKey(data, key, value_to_look,) {
   var i, len = data.length;

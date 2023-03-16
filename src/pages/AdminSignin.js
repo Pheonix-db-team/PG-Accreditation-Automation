@@ -64,6 +64,10 @@ function AdminSigninPage() {
     return (
         <div>
             <br></br>
+            <button className='styledbutton' onClick={() => navigate(-1)}>Back</button>
+            <br></br>
+
+            <br></br>
             <form onSubmit={handleSubmit
             }>
                 <div > Signin Admin</div>
