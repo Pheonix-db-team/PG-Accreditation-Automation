@@ -4,17 +4,17 @@ import { db } from '../config/firebase';
 import { useNavigate, useLocation } from "react-router-dom";
 import AuthIssueComponent from '../components/AuthIssueComponent';
 import { faculties_arr_test } from '../App';
-function FacultyListPage() {
+function StudentListPage() {
     const navigate = useNavigate();
     let { state } = useLocation();
     // const subjectlistArr = state.subject_arr;
     //   const facultylistArr = [...faculties_arr_test];
-    var facultylistArr = []
-    if (state && state.faculty_arr) {
-        facultylistArr = [...state.faculty_arr];
+    var studentlistArr = []
+    if (state && state.student_arr) {
+        studentlistArr = [...state.student_arr];
     }
     else {
-        facultylistArr = [...faculties_arr_test];
+        studentlistArr = [...faculties_arr_test];
     }
     // const handleTap = async (subject_tapped) => {
     //     //Modify acc to delete, delete not required as of now
@@ -38,21 +38,21 @@ function FacultyListPage() {
         return AuthIssueComponent();
     }
     return (
-        <div>Faculty List
+        <div>Student List
             <br></br>
             <button className="styledbutton" onClick={() => navigate(-1)}>Back</button>
             <br></br>
             <br></br>
             <table>
 
-                <tr> <th>Name </th> <th>EmailID</th> <th>FacultyID</th><th>Department</th> </tr>
+                <tr> <th>Name </th> <th>EmailID</th> <th>Enrolment number</th><th>Department</th> </tr>
                 {
-                    facultylistArr.map((faculty) => <tr key={faculty.Name}>
-                        <td>{faculty.Name}</td> <td>{faculty.EmailID}</td><td>{faculty.FacultyID}</td><td>{faculty.Department}</td></tr>)
+                    studentlistArr.map((student) => <tr key={student.Name}>
+                        <td>{student.Name}</td> <td>{student.EmailID}</td><td>{student.Enrolment_No}</td><td>{student.Department}</td></tr>)
                 }
             </table>
         </div>
     )
 }
 
-export default FacultyListPage
+export default StudentListPage

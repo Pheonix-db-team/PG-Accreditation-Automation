@@ -79,6 +79,19 @@ export const student_test = {
   "Courses_Registered": [],
   "Department": "COMPUTER SCIENCE AND ENGINEERING"
 };
+export const student_test_arr = [{
+  "Name": "Yugam Parashar",
+  "EmailID": "testy@gmail.com",
+  "Enrolment_No": "M220256CS",
+  "Courses_Registered": [],
+  "Department": "COMPUTER SCIENCE AND ENGINEERING"
+}, {
+  "Name": "Yugam Parashar2",
+  "EmailID": "2testy@gmail.com",
+  "Enrolment_No": "2M220256CS",
+  "Courses_Registered": [],
+  "Department": "COMPUTER SCIENCE AND ENGINEERING"
+},];
 export const faculties_arr_test = [{
   "Courses_assigned": [], "Name": "Vinod Patheri",
   "EmailID": "pathari@nitc.ac.in", "FacultyID": "VPatheri",

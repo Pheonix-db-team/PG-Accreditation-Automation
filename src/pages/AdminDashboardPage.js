@@ -46,6 +46,20 @@ function AdminDashboardPage() {
         navigate('/viewfacultylist', { state: { admin: state.admin, faculty_arr: filtered_data } });
         // navigate('/subjectlist', { state: { student: state.student, subject_arr: filtered_data } });
     }
+    const viewStudentNavigation = async () => {
+        var filtered_data = [];
+        try {
+            const data = await getDocs(collection(db, "Student"));
+            filtered_data = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+            console.log(filtered_data);
+        }
+        catch (err) {
+            console.error(err);
+            alert("⚠" + err.message);
+        }
+        navigate('/viewstudentlist', { state: { admin: state.admin, student_arr: filtered_data } });
+        // navigate('/subjectlist', { state: { student: state.student, subject_arr: filtered_data } });
+    }
     if (!(state && state.admin)) {
         return AuthIssueComponent();
     }
@@ -60,6 +74,8 @@ function AdminDashboardPage() {
             <button className='styledbutton' onClick={() => addSubjectNavigation()}>Add Subject</button>
             <br></br>
             <button className='styledbutton' onClick={() => viewFacultyNavigation()}>View Faculties</button>
+            <br></br>
+            <button className='styledbutton' onClick={() => viewStudentNavigation()}>View Students</button>
 
         </body>
     );

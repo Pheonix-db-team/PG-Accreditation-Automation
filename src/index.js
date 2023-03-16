@@ -30,6 +30,7 @@ import SurveyListPage from './pages/SurveyListPage';
 import AdminSigninPage from './pages/AdminSignin';
 import AdminDashboardPage from './pages/AdminDashboardPage';
 import FacultyListPage from './pages/ViewFacultyPage';
+import StudentListPage from './pages/ViewStudentPage';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -179,6 +180,11 @@ const router = createBrowserRouter([
   {
     path: "viewfacultylist",
     element: <FacultyListPage />,
+
+  },
+  {
+    path: "viewstudentlist",
+    element: <StudentListPage />,
 
   },
 
