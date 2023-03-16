@@ -1,5 +1,6 @@
 # PG Accreditation Automation to learn and build basics
 
+[Contributor's guidelines](notes/Contributors_guidelines.md)
 
 
 ## Get scripts after clone
