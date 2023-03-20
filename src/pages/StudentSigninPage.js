@@ -5,6 +5,14 @@ import { auth } from '../config/firebase'
 import { useNavigate } from "react-router-dom";
 import { getDoc, doc } from 'firebase/firestore';
 import { db } from '../config/firebase';
+import Grid from '@mui/material/Grid'; 
+import Card from 'react-bootstrap/Card';
+import Typography from '@mui/material/Typography';
+import CardContent from '@mui/material/CardContent';
+//Css
+import Admin from '../css/Student.css';
+import img1  from '../image/NiTC1.png';
+
 function StudentSigninPage() {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
@@ -54,26 +62,50 @@ function StudentSigninPage() {
     }
 
     return (
+        <Grid
+        container
+        spacing={0}
+        direction="column"
+        alignItems="center"
+        justify="center"
+        style={{ minHeight: '100vh' }}
+        bgcolor='grey'
+        >
+    <Grid item xs={3}>
+    <Card className='StudentCard' >
+    <div>
+    <div>
+        <img className='showlogo' src={img1} width="15%" />
+    </div> 
         <div>
-            <br></br>
-            <button className='styledbutton' onClick={() => navigate(-1)}>Back</button>
-            <br></br>
-
-            <br></br>
+            
             <form onSubmit={handleSubmit
             }>
-                <div > Signin Student</div>
+                 <CardContent>
+                 <Typography gutterBottom variant="h5" component="div">
+                    Student Signin 
+                </Typography>
+                
+                <div>Email:
+                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Student Email" required ></input>
+                </div>
                 <br></br>
-                <div>Email</div>
-                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required ></input>
-                <div>Password</div>
-                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required ></input>
+                <div>Password:
+                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" required ></input>
+                </div>
                 <br></br>
 
-                <input type="submit"></input>
+                <div>
+                <input type="submit"></input>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button className='styledbutton' onClick={() => navigate(-1)}>Back</button>
+                </div>
+                </CardContent>
             </form>
-
+            </div>
         </div>
+        </Card>
+       </Grid>      
+    </Grid>  
     )
 }
 

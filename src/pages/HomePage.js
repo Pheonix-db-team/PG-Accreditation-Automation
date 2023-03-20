@@ -6,15 +6,16 @@ function HomePage() {
         <div>Welcome
             <br></br>
             <button className="styledbutton" onClick={() => navigate('/adminsignin', { state: {} })}>Admin Login</button>
-            <br></br>
-            <br></br>
-            <button className="styledbutton" onClick={() => navigate('/studentsignin', { state: {} })}>Student Login</button>
-            <br></br>
-            <br></br>
+            {/* <br></br>
+            <br></br> */}
             <button className="styledbutton" onClick={() => navigate('/facultysignin', { state: {} })}>Faculty Login</button>
-            <br></br>
-            <br></br>
+            {/* <br></br>
+            <br></br> */}
+            <button className="styledbutton" onClick={() => navigate('/studentsignin', { state: {} })}>Student Login</button>
+            {/* <br></br>
+            <br></br> */}
 
+        </div>
         </div>
     )
 }

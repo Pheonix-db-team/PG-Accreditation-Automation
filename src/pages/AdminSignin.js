@@ -5,11 +5,26 @@ import { auth } from '../config/firebase'
 import { useNavigate } from "react-router-dom";
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../config/firebase';
+ 
+import Card from 'react-bootstrap/Card';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import CardContent from '@mui/material/CardContent';
+import Button from '@mui/material/Button';
+import CardActions from '@mui/material/CardActions';
+import Grid from '@mui/material/Grid'; 
+import { grey } from '@mui/material/colors';
+//Css
+import Admin from '../css/Admin.css';
+import img1  from '../image/NiTC1.png';
+
+ 
 function AdminSigninPage() {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [fac, setFac] = useState({});
+    
     useEffect(() => {
         //No Need
     }
@@ -62,26 +77,56 @@ function AdminSigninPage() {
 
 
     return (
-        <div>
-            <br></br>
-            <button className='styledbutton' onClick={() => navigate(-1)}>Back</button>
-            <br></br>
-
-            <br></br>
+    <Grid
+    container
+    spacing={0}
+    direction="column"
+    alignItems="center"
+    justify="center"
+    style={{ minHeight: '100vh' }}
+    bgcolor='grey'
+    >
+    <Grid item xs={3}>
+    <Card className='AdminCard' >
+    <div>
+    <div>
+        <img className='showlogo' src={img1} width="15%" />
+    </div>
+         <div >
+            {/* <br></br> */}
             <form onSubmit={handleSubmit
             }>
-                <div > Signin Admin</div>
+     
+                <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                Admin Signin 
+                </Typography>
+               
+                <div>
+                    Email: 
+                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Admin Email" required></input>
+                </div>
                 <br></br>
-                <div>Email</div>
-                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required></input>
-                <div>Password</div>
-                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required ></input>
+                
+                <div>
+                Password: 
+                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" required ></input>
+                </div>
                 <br></br>
-
-                <input type="submit"></input>
-            </form>
+                <div>
+                <input type="submit"></input> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button className='styledbutton' onClick={() => navigate(-1)}>Back</button>
+                </div> 
+             </CardContent>
+            <br></br>
+        </form>
 
         </div>
+        </div>
+    </Card>
+    </Grid>      
+ </Grid>
+  
     )
 }
 

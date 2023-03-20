@@ -3,6 +3,9 @@ import { useNavigate, useLocation } from "react-router-dom";
 import AuthIssueComponent from '../components/AuthIssueComponent';
 import { getDocs, collection, setDoc, getDoc, doc } from 'firebase/firestore';
 import { db } from '../config/firebase';
+import Admin from '../css/Admin.css';
+import { Card, Grid } from '@mui/material';
+
 function AdminDashboardPage() {
     const navigate = useNavigate();
     const { state } = useLocation();
@@ -64,20 +67,35 @@ function AdminDashboardPage() {
         return AuthIssueComponent();
     }
     return (
-        <body>
-            <button className='styledbutton' onClick={() => navigate(-1)}>Logout</button>
-            <br></br>
-            <button className='styledbutton' onClick={() => addStudentNavigation()}>Add student</button>
-            <br></br>
-            <button className='styledbutton' onClick={() => addFacultyNavigation()}>Add Faculty</button>
-            <br></br>
-            <button className='styledbutton' onClick={() => addSubjectNavigation()}>Add Subject</button>
-            <br></br>
-            <button className='styledbutton' onClick={() => viewFacultyNavigation()}>View Faculties</button>
-            <br></br>
-            <button className='styledbutton' onClick={() => viewStudentNavigation()}>View Students</button>
+        <Grid  
+        container
+        spacing={0}
+        direction="column"
+        alignItems="center"
+        justify="center"
+        style={{ minHeight: '100vh' }}
+        bgcolor='grey'
+        >
+        <body className='mybody'>
+            
+    <div className='vh-100 d-flex justify-content-center align-items-center'>
 
+        <button className='admindashbutton' onClick={() => addStudentNavigation()}>Add student</button>
+        <br></br><br></br>
+        <button className='admindashbutton' onClick={() => addFacultyNavigation()}>Add Faculty</button>
+        <br></br><br></br>
+        <button className='admindashbutton' onClick={() => addSubjectNavigation()}>Add Subject</button>
+        <br></br><br></br>
+        <button className='admindashbutton' onClick={() => viewFacultyNavigation()}>View Faculties</button>
+        <br></br><br></br>
+        <button className='admindashbutton' onClick={() => viewStudentNavigation()}>View Students</button>
+        <br></br><br></br>
+        <button className='admindashbutton' onClick={() => navigate(-1)}>Logout</button>
+
+    </div>
+          
         </body>
+        </Grid>
     );
 
 
