@@ -9,6 +9,9 @@ import Grid from '@mui/material/Grid';
 import Card from 'react-bootstrap/Card';
 import Typography from '@mui/material/Typography';
 import CardContent from '@mui/material/CardContent';
+//Css
+import Admin from '../css/Student.css';
+import img1  from '../image/NiTC1.png';
 
 function StudentSigninPage() {
     const navigate = useNavigate();
@@ -69,22 +72,27 @@ function StudentSigninPage() {
         bgcolor='grey'
         >
     <Grid item xs={3}>
-    <Card > 
+    <Card className='StudentCard' >
+    <div>
+    <div>
+        <img className='showlogo' src={img1} width="15%" />
+    </div> 
         <div>
-          
-            <br></br>
+            
             <form onSubmit={handleSubmit
             }>
                  <CardContent>
                  <Typography gutterBottom variant="h5" component="div">
                     Student Signin 
                 </Typography>
-                {/* <div > Signin Student</div> */}
-                <br></br>
-                <div>Email</div>
+                
+                <div>Email:
                 <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Student Email" required ></input>
-                <div>Password</div>
+                </div>
+                <br></br>
+                <div>Password:
                 <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" required ></input>
+                </div>
                 <br></br>
 
                 <div>
@@ -93,7 +101,7 @@ function StudentSigninPage() {
                 </div>
                 </CardContent>
             </form>
-
+            </div>
         </div>
         </Card>
        </Grid>      

@@ -14,6 +14,10 @@ import Button from '@mui/material/Button';
 import CardActions from '@mui/material/CardActions';
 import Grid from '@mui/material/Grid'; 
 import { grey } from '@mui/material/colors';
+//Css
+import Admin from '../css/Admin.css';
+import img1  from '../image/NiTC1.png';
+
  
 function AdminSigninPage() {
     const navigate = useNavigate();
@@ -83,9 +87,13 @@ function AdminSigninPage() {
     bgcolor='grey'
     >
     <Grid item xs={3}>
-    <Card >
+    <Card className='AdminCard' >
+    <div>
+    <div>
+        <img className='showlogo' src={img1} width="15%" />
+    </div>
          <div >
-            <br></br>
+            {/* <br></br> */}
             <form onSubmit={handleSubmit
             }>
      
@@ -93,14 +101,15 @@ function AdminSigninPage() {
                 <Typography gutterBottom variant="h5" component="div">
                 Admin Signin 
                 </Typography>
-                {/* <br></br> */}
-                <div>Email</div>
+               
                 <div>
+                    Email: 
                 <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Admin Email" required></input>
                 </div>
                 <br></br>
-                <div>Password</div>
+                
                 <div>
+                Password: 
                 <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" required ></input>
                 </div>
                 <br></br>
@@ -112,6 +121,7 @@ function AdminSigninPage() {
             <br></br>
         </form>
 
+        </div>
         </div>
     </Card>
     </Grid>      

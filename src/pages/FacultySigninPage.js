@@ -9,7 +9,9 @@ import Grid from '@mui/material/Grid';
 import Card from 'react-bootstrap/Card';
 import Typography from '@mui/material/Typography';
 import CardContent from '@mui/material/CardContent';
-
+//Css
+import Admin from '../css/Faculty.css';
+import img1  from '../image/NiTC1.png';
 
 
 function FacultySigninPage() {
@@ -79,24 +81,28 @@ function FacultySigninPage() {
         bgcolor='grey'
         >
     <Grid item xs={3}>
-    <Card > 
-
-        <div>
-             
-            <br></br>
-            <form onSubmit={handleSubmit
+    <Card className='FacultyCard' >
+    <div>
+    <div>
+        <img className='showlogo' src={img1} width="15%" />
+     </div> 
+         <div>
+             <form onSubmit={handleSubmit
             }>
                 <CardContent>
                  <Typography gutterBottom variant="h5" component="div">
                  Faculty Signin 
                 </Typography>
-                <br></br>
-                <div>Email</div>
+                <div>Email:
                 <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Faculty Email" required></input>
-                <div>Password</div>
-                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" required ></input>
+                </div>
                 <br></br>
-
+               
+                <div>Password:
+                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" required ></input>
+                </div>
+                 <br></br>
+               
                 <div>
                 <input type="submit"></input>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <button className='styledbutton' onClick={() => navigate(-1)}>Back</button>
@@ -104,6 +110,7 @@ function FacultySigninPage() {
                 </CardContent>
             </form>
 
+        </div>
         </div>
         </Card>
        </Grid>      
