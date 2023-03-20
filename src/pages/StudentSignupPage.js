@@ -2,14 +2,14 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth"
 import { auth } from '../config/firebase'
-import { getDocs, collection, doc, setDoc } from 'firebase/firestore';
+import { getDocs, collection, doc, setDoc, getDoc } from 'firebase/firestore';
 import { db } from '../config/firebase';
-import { password_from_prop, email_from_prop, departments } from "../App.js";
+import { password_from_prop, email_from_prop, departments, isValidEmail } from "../App.js";
 import AuthIssueComponent from '../components/AuthIssueComponent';
 import { useNavigate, useLocation } from "react-router-dom";
 import Card from 'react-bootstrap/Card';
 import '../App.css';
-import img1  from '../image/NiTC1.png';
+import img1 from '../image/NiTC1.png';
 //import {password_from_prop} from 
 function StudentSignupPage() {
     // const password_from_prop = "test123";
@@ -57,6 +57,22 @@ function StudentSignupPage() {
     const handleSubmit = async (event) => {
 
         event.preventDefault();
+        if (!(email && email.length && email.match(isValidEmail))) {
+            alert("Error invalid email");
+            return -1;
+        }
+        const docRefCheck = doc(db, "Student", email);
+        //var docRefcheck = db.collection("faculty").doc(email);
+        var docSnap = ""
+        try { docSnap = await getDoc(docRefCheck); } catch (e) {
+            alert(e.message);
+        }
+
+        if (docSnap.exists) {
+            alert("Student email already exists")
+            return -1;
+            //console.log("Document data:", docSnap.data());
+        }
         const docRef = await setDoc(doc(db, "Student", email), {
 
             Courses_Registered: [], Department: department, EmailID: email,
@@ -87,7 +103,7 @@ function StudentSignupPage() {
                 const errorMessage = error.message;
                 alert("Error " + errorMessage);
 
-
+                return -1;
             });
         console.log("Now you are " + auth.currentUser.email);
         await signInWithEmailAndPassword(auth, email_from_prop, password_from_prop)
@@ -99,6 +115,7 @@ function StudentSignupPage() {
             })
             .catch((error) => {
                 alert("⚠" + error.message);
+                return -1;
                 //const errorCode = error.code;
                 //const errorMessage = error.message;
             });
@@ -116,54 +133,54 @@ function StudentSignupPage() {
     }
     return (
         <Card className='studentcard'>
-        <div>
-         <img className='showlogo' src={img1} width="15%" />
-     </div>
-        <div>
-            <br></br>
-           
-            <br></br>
-            <form onSubmit={handleSubmit
-            }>
-                <div > <h2><b>Add Student</b></h2></div>
+            <div>
+                <img className='showlogo' src={img1} width="15%" />
+            </div>
+            <div>
                 <br></br>
-                <div> Student ID:
-                <input type="text" value={enrolmentNo} onChange={(e) => setEnrolmentNo(e.target.value)}placeholder='  must be unique'></input>
-                </div>
-                <br></br>
-                <div>Student Name:
-                <input type="text" value={name} onChange={(e) => setName(e.target.value)}placeholder='Student name'></input>
-                </div>
-                <br></br>
-                {department}
-                
-                {/* {"⬇️ Select department ⬇️"} */}
-                
-                <div>Selected department:
-                <select onChange={handleDepartmentChange}>
 
-                    {departments.map((department) => <option key={department.label
-                    } value={department.value}>{department.label}</option>)}
-                </select>
-                </div>
                 <br></br>
-                <div>Email:
-                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)}placeholder='Email'></input>
-                </div>
-                <br></br>
-                <div>Password:
-                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}placeholder='Password'></input>
-                </div>
-                <br></br>
-                
-                <div>
+                <form onSubmit={handleSubmit
+                }>
+                    <div > <h2><b>Add Student</b></h2></div>
+                    <br></br>
+                    <div> Student ID:
+                        <input type="text" value={enrolmentNo} onChange={(e) => setEnrolmentNo(e.target.value)} placeholder='  must be unique' required ></input>
+                    </div>
+                    <br></br>
+                    <div>Student Name:
+                        <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder='Student name' required ></input>
+                    </div>
+                    <br></br>
+                    {department}
 
-                <input className='submitbutton'  type="submit"></input>
-                <button className='buttonleft' onClick={() => navigate(-1)}>Back</button>
-                </div>
-            </form>
+                    {/* {"⬇️ Select department ⬇️"} */}
 
-        </div>
+                    <div>Selected department:
+                        <select onChange={handleDepartmentChange}>
+
+                            {departments.map((department) => <option key={department.label
+                            } value={department.value}>{department.label}</option>)}
+                        </select>
+                    </div>
+                    <br></br>
+                    <div>Email:
+                        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Email' required ></input>
+                    </div>
+                    <br></br>
+                    <div>Password:
+                        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Password' required ></input>
+                    </div>
+                    <br></br>
+
+                    <div>
+
+                        <input className='submitbutton' type="submit"></input>
+                        <button className='buttonleft' onClick={() => navigate(-1)}>Back</button>
+                    </div>
+                </form>
+
+            </div>
         </Card>
     )
 }

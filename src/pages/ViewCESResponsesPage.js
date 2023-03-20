@@ -96,7 +96,9 @@ function ViewCESResponsesPage() {
     //     },
     // ];
     function CESconsolidate(respArr) {
-
+        if (respArr.length == 0) {
+            return;
+        }
         const dict_consolidate = {};
         const resp_temp_prep = respArr[0]['Responses'];
         for (const [key, value] of Object.entries(resp_temp_prep)) {
@@ -107,6 +109,7 @@ function ViewCESResponsesPage() {
                 'D': 0,
             }
         }
+
         respArr.map((ele) => {
             const resp_ele = ele["Responses"];
             for (const [key, value] of Object.entries(resp_ele)) {
@@ -147,6 +150,7 @@ function ViewCESResponsesPage() {
 
     }
     useEffect(() => {
+
         const fetchResponses = async () => {
             try {
                 const data_1 = await getDocs(collection(db, "CESResponses"));
@@ -180,7 +184,14 @@ function ViewCESResponsesPage() {
     }
         , []);
 
+
+    if ((state.responsesArr.length == 0)) {
+        return <div>No responses<br></br>
+            <button className="styledbutton" onClick={() => navigate(-1)}>Back</button>
+        </div>
+    }
     CESconsolidate(CESResponsesArr)
+
     Chart.register(...registerables)
 
     return (<div>

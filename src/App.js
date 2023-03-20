@@ -125,3 +125,4 @@ export const subject_test_array = [{
   "Department": "COMPUTER SCIENCE AND ENGINEERING", "last_date": null,
   "id": "saAx"
 }]
+export const isValidEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;

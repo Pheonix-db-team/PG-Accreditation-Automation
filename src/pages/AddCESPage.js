@@ -116,6 +116,8 @@ function AddCESPage() {
             console.log(error.code)
             alert("CES Submission Issue" + error.message);
         }
+        alert("CES Submission Added");
+        setQuesArr([])
     }
     if (!state) {
         return AuthIssueComponent();
