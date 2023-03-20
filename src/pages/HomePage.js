@@ -3,9 +3,7 @@ import { useNavigate } from "react-router-dom";
 function HomePage() {
     const navigate = useNavigate();
     return (
-        <div>
-            <div>HomePage</div>
-        <div>
+        <div>Welcome
             <br></br>
             <button className="styledbutton" onClick={() => navigate('/adminsignin', { state: {} })}>Admin Login</button>
             {/* <br></br>
