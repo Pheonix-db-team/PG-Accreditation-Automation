@@ -39,7 +39,7 @@ function StudentListPage() {
     }
     return (
         <div>
-             <h2 className='center'><b>Faculty List</b></h2>
+             <h2 className='center'><b>Student List</b></h2>
             
             <table className='facultytable'>
 
