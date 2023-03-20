@@ -32,6 +32,7 @@ import AdminDashboardPage from './pages/AdminDashboardPage';
 import FacultyListPage from './pages/ViewFacultyPage';
 import StudentListPage from './pages/ViewStudentPage';
 import HomePage from './pages/HomePage';
+import AboutPage from './pages/AboutPage';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -191,6 +192,11 @@ const router = createBrowserRouter([
   {
     path: "/homepage",
     element: <HomePage />,
+
+  },
+  {
+    path: "/aboutpage",
+    element: <AboutPage />,
 
   },
 

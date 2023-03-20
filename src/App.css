@@ -161,8 +161,8 @@ input[type=submit]:hover {
   font-family:helvetica,sans-serif;
   font-size:14px;
   margin:10px auto;
-  
-   
+
+
   /* align-items: center;
   justify-content: center;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -175,13 +175,13 @@ input[type=submit]:hover {
   margin-right: auto;
   float: left;
 */
-   
+
 }
 .buttonleft{
-  /* margin-left: 40px; 
+  /* margin-left: 40px;
   background-color: #74BDCB;
   border-radius: 20px; */
-  margin-left: 40px; 
+  margin-left: 40px;
   padding: 5px 15px;
   background: var(--color_primary);
   border: 0 none;
@@ -196,7 +196,7 @@ input[type=submit]:hover {
 .submitbutton{
   background-color: #74BDCB;
   border-radius: 20px;
-  
+
 }
 .facultytable{
   background:#81BEF7;
@@ -233,5 +233,19 @@ input[type=submit]:hover {
   background:#81BEF7 center 20px no-repeat;
   padding-top:0px;
   padding-left:0px;
-  width: fit-content; 
+  width: fit-content;
  }
+
+ .swapback{
+  /* background: #000; */
+  font-family: var(--bs-font-sans-serif);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #02264a;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  text-decoration-color: #02264a;
+  padding-left: 30px;
+}
