@@ -7,6 +7,9 @@ import { db } from '../config/firebase';
 import { password_from_prop, email_from_prop, departments } from "../App.js";
 import AuthIssueComponent from '../components/AuthIssueComponent';
 import { useNavigate, useLocation } from "react-router-dom";
+import Card from 'react-bootstrap/Card';
+import '../App.css';
+import img1  from '../image/NiTC1.png';
 //import {password_from_prop} from 
 function StudentSignupPage() {
     // const password_from_prop = "test123";
@@ -112,43 +115,56 @@ function StudentSignupPage() {
         return AuthIssueComponent();
     }
     return (
+        <Card className='studentcard'>
+        <div>
+         <img className='showlogo' src={img1} width="15%" />
+     </div>
         <div>
             <br></br>
-            <button className='styledbutton' onClick={() => navigate(-1)}>Back</button>
+           
             <br></br>
             <form onSubmit={handleSubmit
             }>
-                <div > Add Student</div>
+                <div > <h2><b>Add Student</b></h2></div>
                 <br></br>
-                Student ID
+                <div> Student ID:
+                <input type="text" value={enrolmentNo} onChange={(e) => setEnrolmentNo(e.target.value)}placeholder='  must be unique'></input>
+                </div>
                 <br></br>
-                <input type="text" value={enrolmentNo} onChange={(e) => setEnrolmentNo(e.target.value)}></input>
-                <br></br>
-                Student Name
-                <br></br>
-                <input type="text" value={name} onChange={(e) => setName(e.target.value)}></input>
-                <br></br>
-                *Student ID must be unique
+                <div>Student Name:
+                <input type="text" value={name} onChange={(e) => setName(e.target.value)}placeholder='Student name'></input>
+                </div>
                 <br></br>
                 {department}
-                <br></br>
-                {"⬇️ Select department ⬇️"}
-                <br></br>
+                
+                {/* {"⬇️ Select department ⬇️"} */}
+                
+                <div>Selected department:
                 <select onChange={handleDepartmentChange}>
 
                     {departments.map((department) => <option key={department.label
                     } value={department.value}>{department.label}</option>)}
                 </select>
-                <div>Email</div>
-                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)}></input>
-                <div>Password</div>
-                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
+                </div>
                 <br></br>
+                <div>Email:
+                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)}placeholder='Email'></input>
+                </div>
+                <br></br>
+                <div>Password:
+                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}placeholder='Password'></input>
+                </div>
+                <br></br>
+                
+                <div>
 
-                <input type="submit"></input>
+                <input className='submitbutton'  type="submit"></input>
+                <button className='buttonleft' onClick={() => navigate(-1)}>Back</button>
+                </div>
             </form>
 
         </div>
+        </Card>
     )
 }
 

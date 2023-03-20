@@ -74,25 +74,25 @@ function AdminDashboardPage() {
         alignItems="center"
         justify="center"
         style={{ minHeight: '100vh' }}
-        bgcolor='grey'
+        bgcolor='white'
         >
-        <body className='mybody'>
+        <body className='buttonshifting'>
             
-    <div className='vh-100 d-flex justify-content-center align-items-center'>
+   
 
-        <button className='admindashbutton' onClick={() => addStudentNavigation()}>Add student</button>
-        <br></br><br></br>
-        <button className='admindashbutton' onClick={() => addFacultyNavigation()}>Add Faculty</button>
-        <br></br><br></br>
-        <button className='admindashbutton' onClick={() => addSubjectNavigation()}>Add Subject</button>
-        <br></br><br></br>
-        <button className='admindashbutton' onClick={() => viewFacultyNavigation()}>View Faculties</button>
-        <br></br><br></br>
-        <button className='admindashbutton' onClick={() => viewStudentNavigation()}>View Students</button>
-        <br></br><br></br>
-        <button className='admindashbutton' onClick={() => navigate(-1)}>Logout</button>
+        <button className='styledbutton' onClick={() => addStudentNavigation()}>Add student</button>
+        {/* <br></br><br></br> */}
+        <button className='styledbutton' onClick={() => addFacultyNavigation()}>Add Faculty</button>
+        {/* <br></br><br></br> */}
+        <button className='styledbutton' onClick={() => addSubjectNavigation()}>Add Subject</button>
+        {/* <br></br><br></br> */}
+        <button className='styledbutton' onClick={() => viewFacultyNavigation()}>View Faculties</button>
+        {/* <br></br><br></br> */}
+        <button className='styledbutton' onClick={() => viewStudentNavigation()}>View Students</button>
+        {/* <br></br><br></br> */}
+        <button className='styledbutton' onClick={() => navigate(-1)}>Logout</button>
 
-    </div>
+    
           
         </body>
         </Grid>

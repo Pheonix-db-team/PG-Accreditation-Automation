@@ -38,12 +38,10 @@ function StudentListPage() {
         return AuthIssueComponent();
     }
     return (
-        <div>Student List
-            <br></br>
-            <button className="styledbutton" onClick={() => navigate(-1)}>Back</button>
-            <br></br>
-            <br></br>
-            <table>
+        <div>
+             <h2 className='center'><b>Faculty List</b></h2>
+            
+            <table className='facultytable'>
 
                 <tr> <th>Name </th> <th>EmailID</th> <th>Enrolment number</th><th>Department</th> </tr>
                 {
@@ -51,6 +49,9 @@ function StudentListPage() {
                         <td>{student.Name}</td> <td>{student.EmailID}</td><td>{student.Enrolment_No}</td><td>{student.Department}</td></tr>)
                 }
             </table>
+            <div className='center'>
+            <button className="styledbutton" onClick={() => navigate(-1)}>Back</button>
+            </div>
         </div>
     )
 }

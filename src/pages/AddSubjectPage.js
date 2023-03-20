@@ -5,6 +5,9 @@ import { db } from '../config/firebase';
 import { useLocation } from 'react-router-dom';
 import { departments, getValueByKey } from "../App.js";
 import { useNavigate } from 'react-router-dom';
+import Card from 'react-bootstrap/Card';
+import '../App.css';
+import img1  from '../image/NiTC1.png';
 function AddSubjectPage() {
     const { state } = useLocation();
     const navigate = useNavigate();
@@ -85,45 +88,55 @@ function AddSubjectPage() {
     }
 
     return (
+        <Card className='studentcard'>
+        <div>
+         <img className='showlogo' src={img1} width="15%" />
+     </div>
         <div>
             <br></br>
-            <button className="styledbutton" onClick={() => navigate(-1)}>Back</button>
+           
             <form onSubmit={handleSubmit
             }>
-                <div > Add subject</div>
+                <div ><h2><b>Add subject</b></h2> </div>
                 <br></br>
-                subject ID
+                <div>Subject ID: 
+                     <input type="text" value={subjectID} onChange={(e) => setsubjectID(e.target.value)}placeholder='must be unique'></input>
+                </div>
                 <br></br>
-                <input type="text" value={subjectID} onChange={(e) => setsubjectID(e.target.value)}></input>
-                <br></br>
-                *subject ID must be unique
-                <br></br>
-                subject Name
-                <br></br>
-                <input type="text" value={name} onChange={(e) => setName(e.target.value)}></input>
+                {/* *subject ID must be unique */}
+                {/* <br></br> */}
+                <div>Subject Name:
+                <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder='Student name'></input>
+                </div>
                 <br></br>
                 {department}
-                <br></br>
-                {"⬇️ Select department ⬇️"}
-                <br></br>
+                {/* <br></br> */}
+                {/* {"⬇️ Select department ⬇️"} */}
+                {/* <br></br> */}
+                <div>Select Department:
                 <select onChange={handleDepartmentChange}>
 
                     {departments.map((department) => <option key={department.label
                     } value={department.value}>{department.label}</option>)}
                 </select>
+                </div>
                 <br></br>
-                {"⬇️ Assign Faculty ⬇️"}
-                <br></br>
+                {/* {"⬇️ Assign Faculty ⬇️"} */}
+                
+                <div>Select Faculty:
                 <select onChange={handleFacultyChange}>
 
                     {faculties_from_prop.map((faculty) => <option key={faculty.Name
                     } value={faculty.EmailID}>{faculty.Name}</option>)}
                 </select>
+                </div>
                 <br></br>
-                <input type="submit"></input>
+                <input  className='submitbutton' type="submit"></input>
+                <button className='buttonleft' onClick={() => navigate(-1)}>Back</button>
             </form>
 
         </div>
+        </Card>
     )
 }
 

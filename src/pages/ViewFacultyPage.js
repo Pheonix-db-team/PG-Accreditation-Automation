@@ -38,12 +38,11 @@ function FacultyListPage() {
         return AuthIssueComponent();
     }
     return (
-        <div>Faculty List
-            <br></br>
-            <button className="styledbutton" onClick={() => navigate(-1)}>Back</button>
-            <br></br>
-            <br></br>
-            <table>
+        <div>
+        <h2 className='center'><b>Faculty List</b></h2>
+        
+ 
+            <table className='facultytable'>
 
                 <tr> <th>Name </th> <th>EmailID</th> <th>FacultyID</th><th>Department</th> </tr>
                 {
@@ -51,6 +50,9 @@ function FacultyListPage() {
                         <td>{faculty.Name}</td> <td>{faculty.EmailID}</td><td>{faculty.FacultyID}</td><td>{faculty.Department}</td></tr>)
                 }
             </table>
+            <div className='center'>
+            <button className="styledbutton" onClick={() => navigate(-1)}>Back</button>
+            </div>
         </div>
     )
 }
