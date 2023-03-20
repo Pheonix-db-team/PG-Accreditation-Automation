@@ -81,15 +81,15 @@ function AdminDashboardPage() {
     <div className='vh-100 d-flex justify-content-center align-items-center'>
 
         <button className='admindashbutton' onClick={() => addStudentNavigation()}>Add student</button>
-        {/* <br></br><br></br> */}
+        <br></br><br></br>
         <button className='admindashbutton' onClick={() => addFacultyNavigation()}>Add Faculty</button>
-        {/* <br></br><br></br> */}
+        <br></br><br></br>
         <button className='admindashbutton' onClick={() => addSubjectNavigation()}>Add Subject</button>
-        {/* <br></br><br></br> */}
+        <br></br><br></br>
         <button className='admindashbutton' onClick={() => viewFacultyNavigation()}>View Faculties</button>
-        {/* <br></br><br></br> */}
+        <br></br><br></br>
         <button className='admindashbutton' onClick={() => viewStudentNavigation()}>View Students</button>
-        {/* <br></br><br></br> */}
+        <br></br><br></br>
         <button className='admindashbutton' onClick={() => navigate(-1)}>Logout</button>
 
     </div>
