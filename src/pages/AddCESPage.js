@@ -7,6 +7,9 @@ import DatePicker from "react-datepicker";
 import { useNavigate } from 'react-router-dom';
 import "react-datepicker/dist/react-datepicker.css";
 import AuthIssueComponent from '../components/AuthIssueComponent';
+import Card from 'react-bootstrap/Card';
+import '../App.css';
+import img1 from '../image/NiTC1.png';
 function AddCESPage() {
     const navigate = useNavigate();
     let { state } = useLocation();
@@ -126,59 +129,74 @@ function AddCESPage() {
         return (<body><button className="styledbutton" onClick={goBack}>Back</button>	No course available for ces</body>)
     }
     return (
+        <Card className='studentcard'>
+        <div>
+            <img className='showlogo' src={img1} width="15%" />
+        </div>
         <body>
-            Add CES
-            <br></br>
-            <button className='styledbutton' onClick={goBack}>Back</button>
+            
             <form onSubmit={handleAddQuestion
             }>
-                <div > Add CES</div>
+                <div > <h2><b>Add CES</b></h2></div>
                 <br></br>
-                {"⬇️ Select Subject ⬇️"}
-                <br></br>
-                <div>
+                 
+                <div>Select Subject:
                     <select onChange={handleSubjectChange}>                        {subjectArr.map((sub) => <option key={sub.SubjectID
                     } value={sub.SubjectID}>{sub.Name}</option>)}
                     </select>
                 </div>
-                <br></br>                Question Prompt
-                <br></br>
+               
+                <br></br> Question Prompt:
+                {/* <br></br> */}
                 <input type="text" value={questionPrompt} onChange={(e) => setQuestionPrompt(e.target.value)}></input>
                 <br></br>
                 <br></br>
-                OptionA
-                <br></br>
+                OptionA:
+                 
                 <input type="text" value={optionA} onChange={(e) => setOptionA(e.target.value)}></input>
-                <br></br>
-                OptionB
-                <br></br>
+                <br></br><br></br>
+                OptionB:
+                {/* <br></br> */}
                 <input type="text" value={optionB} onChange={(e) => setOptionB(e.target.value)}></input>
-                <br></br>
-                OptionC
-                <br></br>
+                <br></br><br></br>
+                OptionC:
+                {/* <br></br> */}
                 <input type="text" value={optionC} onChange={(e) => setOptionC(e.target.value)}></input>
-                <br></br>
-                OptionD
-                <br></br>
+                <br></br><br></br>
+                OptionD:
+                {/* <br></br> */}
+                
                 <input type="text" value={optionD} onChange={(e) => setOptionD(e.target.value)}></input>
-                <br></br>                <input type="submit" value="Add" ></input>
-            </form>            <br></br>
-            CES Closing Date
-            <div>
-                <DatePicker selected={lastDate} onChange={(date) => setLastDate(date)} />            </div>
-            <div>
+                <br></br>  
+                <br></br>
+                              <input type="submit" value="Add" ></input>
+            </form>           
+             <br></br>
+             <DatePicker selected={lastDate} onChange={(date) => setLastDate(date)} />
+             <div >CES Closing Date</div>   
+              
+            
+             <br></br>
+            <div className='center'>
                 <button className='styledbutton' onClick={() => handleSubmit()}>Submit CES</button>
-                Questions
+                <button className='styledbutton' onClick={goBack}>Back</button>
+                <br></br><br></br>
+                Question:
                 {quesArr.map((ques, index) =>
                     <div key={index}>
                         {ques.question_prompt}
                         <br></br>
-                        A. {ques.option_A} B. {ques.option_B} C. {ques.option_C} D. {ques.option_D}
+                        A.{ques.option_A} B.{ques.option_B} C. {ques.option_C} D. {ques.option_D}
+                        <br></br>
                         <button className='deletebutton' onClick={() => handleDelete(ques)}>Delete</button>
+                      
                     </div>
+                     
                 )
                 }
             </div>
+           
         </body>
+        </Card>
     )
 } export default AddCESPage

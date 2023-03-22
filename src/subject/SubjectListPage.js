@@ -29,10 +29,7 @@ function SubjectListPage() {
         }
     }
     return (
-        <div>SubjectList Page
-            <br></br>
-            <button className="styledbutton" onClick={() => navigate(-1)}>Back</button>
-            <br></br>
+        <div><h2 className='center'><b>SubjectList Page</b></h2>
             <br></br>
             <table>
                 <tr> <th>SubjectID </th> <th>Subject Name</th> <th>Faculty_Assigned</th><th>view surveys</th> </tr>
@@ -42,6 +39,9 @@ function SubjectListPage() {
                     </tr>)
                 }
             </table>
+            <div className='center'>
+            <button className="styledbutton" onClick={() => navigate(-1)}>Back</button>
+            </div>
         </div>
     )
 }

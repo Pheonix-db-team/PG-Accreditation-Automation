@@ -50,10 +50,11 @@ function SurveyListPage() {
             <br></br>
 
             <div>
-                <button className="styledbutton" onClick={() => navigate(-1)}>Back</button>
+                
                 <br></br>
-                {state.subject['Name']} Surveys
-                <br></br>
+               <h2 className='center'><b>Survey of</b></h2>
+               <div className='center'>{state.subject['Name']} </div>
+               
                 <table>
                     <tr> <th>SemesterID </th> <th>Faculty Name</th><th>view responses</th> </tr>
                     {
@@ -62,6 +63,9 @@ function SurveyListPage() {
                         </tr>)
                     }
                 </table>
+                <div className='center'>
+                <button className="styledbutton" onClick={() => navigate(-1)}>Back</button>
+                </div>
 
             </div>
         </div>);

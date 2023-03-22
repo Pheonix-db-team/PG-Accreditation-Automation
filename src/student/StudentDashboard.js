@@ -5,6 +5,9 @@ import { db } from '../config/firebase';
 import { useNavigate, useLocation } from "react-router-dom";
 //import { student_test_email } from "../App.js";
 import AuthIssueComponent from '../components/AuthIssueComponent';
+import Card from 'react-bootstrap/Card';
+import '../App.css';
+import img1 from '../image/NiTC1.png';
 function StudentDashboard() {
     const { state } = useLocation();
     const navigate = useNavigate();
@@ -124,6 +127,10 @@ function StudentDashboard() {
         return (AuthIssueComponent());
     }
     return (
+        <Card className='studentcard'>
+        <div>
+            <img className='showlogo' src={img1} width="15%" />
+        </div>
         <body>
             <div className='div-margin'>Student Dashboard
                 <br></br>
@@ -142,6 +149,7 @@ function StudentDashboard() {
             <button className='styledbutton' onClick={() => SubjectListPageNavigation()}>CES Subjectwise</button>
             <button className='styledbutton' onClick={() => navigate(-1)}>Logout</button>
         </body >
+        </Card>
     )
 }
 

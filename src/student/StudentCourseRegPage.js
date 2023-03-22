@@ -5,6 +5,8 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { getDocs, collection, doc, setDoc } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { getValueByKey } from '../App';
+import Card from 'react-bootstrap/Card';
+import '../App.css';
 //import { student_test } from "../App.js";
 function StudentCourseRegPage(navigation) {
     const { state } = useLocation();
@@ -74,13 +76,11 @@ function StudentCourseRegPage(navigation) {
     }
     if (student_data.Courses_Registered.length == 0)
         return (
+            <Card className='studentcard'>
 
             <body>
-                <button className='styledbutton' onClick={() => navigate(-1)}>Back</button>
-                <br></br>
-
-                <div>Student Course RegPage
-                    <br></br>
+              <div><h2><b>Student Course RegPage</b></h2>
+                    
                     <ul >
                         {subject_array.map(({ SubjectName, SubjectID }, index) => {
                             console.log(SubjectID);
@@ -103,6 +103,9 @@ function StudentCourseRegPage(navigation) {
                             );
                         })}
                         <button className='styledbutton' onClick={handleRegisterSubmit} >Register</button>
+                        <button className='styledbutton' onClick={() => navigate(-1)}>Back</button>
+                       <br></br>
+                       <br></br>
                         <div >Subjects selected :</div>
                         <div>{ssubjects.map((subject) => <li> <div key={subject}>
                             <h6> {subject_from_id(subject_array, subject)}</h6>
@@ -112,6 +115,7 @@ function StudentCourseRegPage(navigation) {
                     </ul>
                 </div>
             </body>
+            </Card>
         );
     else {
         return (<div>Registered </div>)
