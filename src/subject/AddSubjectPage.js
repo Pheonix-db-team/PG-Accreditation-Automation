@@ -122,7 +122,7 @@ function AddSubjectPage() {
                     {/* *subject ID must be unique */}
                     {/* <br></br> */}
                     <div>Subject Name:
-                        <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder='Student name' required></input>
+                        <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder='Subject name' required></input>
                     </div>
                     <br></br>
                     {department}
