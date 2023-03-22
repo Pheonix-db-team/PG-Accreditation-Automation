@@ -62,13 +62,13 @@ function StudentSignupPage() {
             return -1;
         }
         const docRefCheck = doc(db, "Student", email);
-        //var docRefcheck = db.collection("faculty").doc(email);
+        // const docRefCheck = doc(db, "Student", "test_z");
         var docSnap = ""
         try { docSnap = await getDoc(docRefCheck); } catch (e) {
             alert(e.message);
         }
-
-        if (docSnap.exists) {
+        if (docSnap.exists()) {
+            console.log(docSnap.data())
             alert("Student email already exists")
             return -1;
             //console.log("Document data:", docSnap.data());
