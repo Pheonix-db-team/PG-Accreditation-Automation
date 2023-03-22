@@ -112,11 +112,14 @@ function AddCESPage() {
             });
             var temp_ls_date = lastDate
             temp_ls_date.setHours(23, 59, 59)
+            console.log(temp_ls_date)
             const docRef1 = await setDoc(doc(db, "subject", subject), {
                 "Question_List": quesArr, "CourseExitSurveyAvailable": true,
                 "last_date":temp_ls_date , Survey_ID: survey_id,
             }, { merge: true }); console.log(docRef);
             console.log("Added " + survey_id);
+            alert("Added " + survey_id)
+            navigate(-1);
         } catch (error) {
             console.log(error.code)
             alert("CES Submission Issue" + error.message);
