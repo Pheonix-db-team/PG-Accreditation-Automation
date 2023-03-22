@@ -7,6 +7,9 @@ import { useNavigate } from 'react-router-dom';
 import { getValueByKey } from '../App';
 import "react-datepicker/dist/react-datepicker.css";
 import AuthIssueComponent from '../components/AuthIssueComponent';
+import Card from 'react-bootstrap/Card';
+import '../App.css';
+import img1 from '../image/NiTC1.png';
 function StudentCESResponsePage() {
     const navigate = useNavigate();
     let { state } = useLocation();
@@ -152,15 +155,22 @@ function StudentCESResponsePage() {
         return (<body><button className="styledbutton" onClick={goBack}>Back</button>	<br></br>No CES survey available for you</body>)
     }
     return (
+        <Card className='studentcard'>
+                <div>
+                <img className='showlogo' src={img1} width="15%" />
+            </div>
         <body>
+            <h2 className='center '><b> CES Response Form</b></h2>
             <br></br>
 
-            {"⬇️ Select Subject ⬇️"}
-            <br></br>
-            <div key="Subject">
+            {/* {"⬇️ Select Subject ⬇️"} */}
+            <div>
+            
+            <div key="Subject">Select Subject:
                 <select onChange={handleSubjectChange}>                        {subjectArr.map((sub) => <option key={sub.SubjectID
                 } value={sub.SubjectID}>{sub.Name}</option>)}
                 </select>
+            </div>
             </div>
             {quesArr.map((ques, index) =>
                 <div key={index}>
@@ -176,7 +186,11 @@ function StudentCESResponsePage() {
                 </div>
             )
             }
+            
+            <div className='center'>
             {(quesArr.length) ? <button className='styledbutton' onClick={() => handleSubmit()}>Submit CES Response</button> : <div>No questions</div>}
+        </div>
         </body>
+        </Card>
     )
 } export default StudentCESResponsePage

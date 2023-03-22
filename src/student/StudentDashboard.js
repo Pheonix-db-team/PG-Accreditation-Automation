@@ -132,8 +132,8 @@ function StudentDashboard() {
             <img className='showlogo' src={img1} width="15%" />
         </div>
         <body>
-            <div className='div-margin'>Student Dashboard
-                <br></br>
+            <div className='stdDash'> <h2 className='center'><b>Student Dashboard</b></h2>
+               
                 Name :{student['Name']}
                 <br></br>
                 Email :{student['EmailID']}
@@ -145,9 +145,9 @@ function StudentDashboard() {
                 {(Array.isArray(student['Courses_Registered']) && student['Courses_Registered'].length) ? <button className='styledbutton' onClick={() => CESResponsePageNavigation()}>CES Available</button>
                     : <button className='styledbutton' onClick={() => CourseRegPageNavigation()}>Register for Courses</button>}
                 <br></br>
-            </div>
-            <button className='styledbutton' onClick={() => SubjectListPageNavigation()}>CES Subjectwise</button>
-            <button className='styledbutton' onClick={() => navigate(-1)}>Logout</button>
+            </div >
+            <button className='styledbutton1' onClick={() => SubjectListPageNavigation()}>CES Subjectwise</button>
+            <button className='styledbutton1' onClick={() => navigate(-1)}>Logout</button>
         </body >
         </Card>
     )

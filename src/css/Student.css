@@ -21,4 +21,18 @@
   */
      
 }
- 
+ .stdDash{
+  padding-left: 20px;
+ }
+ .styledbutton1{
+  display: inline-block;
+  padding: .5rem 1rem;
+  border: none;
+  border-radius: 5rem;
+  background-color: var(--color_primary);
+  z-index: 1;
+  cursor: pointer;
+  transition-duration: 0.4s;
+  margin-right: 30px;
+  padding-left: 20px;
+ }
