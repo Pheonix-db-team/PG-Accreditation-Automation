@@ -110,9 +110,11 @@ function AddCESPage() {
                 Survey_ID: survey_id, Sem_ID: sem_id, SubjectID: subject,
                 faculty_name: fac_details['Name']
             });
+            var temp_ls_date = lastDate
+            temp_ls_date.setHours(23, 59, 59)
             const docRef1 = await setDoc(doc(db, "subject", subject), {
                 "Question_List": quesArr, "CourseExitSurveyAvailable": true,
-                "last_date": lastDate.setHours(23, 59, 59), Survey_ID: survey_id,
+                "last_date":temp_ls_date , Survey_ID: survey_id,
             }, { merge: true }); console.log(docRef);
             console.log("Added " + survey_id);
         } catch (error) {
