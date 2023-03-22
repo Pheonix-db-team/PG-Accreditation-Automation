@@ -63,7 +63,7 @@ function AddSubjectPage() {
                 alert(e.message);
             }
 
-            if (docSnap.exists) {
+            if (docSnap.exists()) {
                 alert("Subject id already exists")
                 return -1;
                 //console.log("Document data:", docSnap.data());
