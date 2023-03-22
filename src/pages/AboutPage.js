@@ -2,11 +2,13 @@ import React from 'react'
 import NavBar from '../components/NavBar'
 import { useLocation } from 'react-router-dom';
 import { StyleSheet, View, Image, Text } from 'react-native';
+import { useNavigate } from "react-router-dom";
 
 function AboutPage() {
-
+  const navigate = useNavigate();
     return (
         <div>
+          <button className='styledbuttonabout' onClick={() => navigate(-1)}>Back</button>
                <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}><h1>About Page</h1></div>
                 <h2>Course Exit Survey</h2>
                 <span>
@@ -20,8 +22,7 @@ function AboutPage() {
                       user end will also affect the system performance.
                   </p1>
                 </span>
-
-
+ 
 <h2>Team</h2>
 <View style={styles.Container}>
 
@@ -30,9 +31,7 @@ function AboutPage() {
           style={styles.circleImageLayout}
         />
         <Text style={styles.text}>Lead Developer: YUGAM PARASHAR</Text>
-
-
-        <Image
+         <Image
           source={require('../image/subedar.png')}
           style={styles.circleImageLayout}
         />

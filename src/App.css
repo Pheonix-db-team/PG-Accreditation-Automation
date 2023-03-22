@@ -272,3 +272,20 @@ span{
   text-decoration-color: #02264a;
   padding-left: 30px;
 }
+.styledbuttonabout{
+  display: inline-block;
+  padding: .5rem 1rem;
+  border: none;
+  border-radius: 5rem;
+  background-color: var(--color_primary);
+  z-index: 1;
+  cursor: pointer;
+  transition-duration: 0.4s;
+  margin-right: 30px;
+  padding-left: 20px;
+  padding-top: 10px;
+}
+.homeImage{
+  width: 1263px;
+  height: auto;
+}
