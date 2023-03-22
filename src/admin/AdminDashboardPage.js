@@ -79,18 +79,39 @@ function AdminDashboardPage() {
         <body className='buttonshifting'>
             
    
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 
-        <button className='styledbutton' onClick={() => addStudentNavigation()}>Add student</button>
+
+        
+        <button className='styledbutton' onClick={() => addStudentNavigation()}>
+        <i class="fa fa-user " aria-hidden="true" ></i>
+        <span> Add Student</span>
+        </button>
         {/* <br></br><br></br> */}
-        <button className='styledbutton' onClick={() => addFacultyNavigation()}>Add Faculty</button>
+        <button className='styledbutton' onClick={() => addFacultyNavigation()}>
+        <i class="fa fa-user" aria-hidden="true"></i>
+        <span> Add Faculty</span>
+        </button>
         {/* <br></br><br></br> */}
-        <button className='styledbutton' onClick={() => addSubjectNavigation()}>Add Subject</button>
+        <button className='styledbutton' onClick={() => addSubjectNavigation()}>
+        <i class="fa fa-book" aria-hidden="true"></i>
+        <span> Add Subject</span>
+        </button>
         {/* <br></br><br></br> */}
-        <button className='styledbutton' onClick={() => viewFacultyNavigation()}>View Faculties</button>
+        <button className='styledbutton' onClick={() => viewFacultyNavigation()}>
+        <i class="fa fa-table" aria-hidden="true"></i>
+        <span> View Faculties</span>
+        </button>
         {/* <br></br><br></br> */}
-        <button className='styledbutton' onClick={() => viewStudentNavigation()}>View Students</button>
+        <button className='styledbutton' onClick={() => viewStudentNavigation()}>
+        <i class="fa fa-table" aria-hidden="true"></i>
+        <span> View Students</span>
+        </button>
         {/* <br></br><br></br> */}
-        <button className='styledbutton' onClick={() => navigate(-1)}>Logout</button>
+        <button className='styledbutton' onClick={() => navigate(-1)}>
+        <i class="fa fa-sign-out "  aria-hidden="true"></i>
+        <span> Logout </span>
+        </button>
 
     
           

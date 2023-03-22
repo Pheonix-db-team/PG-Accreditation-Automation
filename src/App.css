@@ -62,6 +62,7 @@ input[type=submit]:hover {
   cursor: pointer;
   transition-duration: 0.4s;
   margin-right: 30px;
+
 }
 
 .styledbutton:hover {
@@ -241,8 +242,16 @@ input[type=submit]:hover {
 .buttonshifting{
   padding-top: 30px;
   padding-left: 50px;
-  margin-right: 30px;
+  /*margin-right: 30px;*/
+  margin: auto;
 }
+
+span{
+  display: block;
+}
+
+
+
 .showlogo{
   background:#81BEF7 center 20px no-repeat;
   padding-top:0px;

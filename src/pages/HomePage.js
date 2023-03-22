@@ -43,25 +43,13 @@ function HomePage() {
 	<marquee behavior="scroll" direction="left"><h4 style={{color: "red"}}><span class="glyphicon glyphicon-bullhorn"></span>  Course Exit Survey link is now active... </h4></marquee>
 	</div>
 
-  <Carousel>
-        <Carousel.Item>
+
           <img
             className="d-block w-100"
             src="https://nitc.ac.in/imgserver/uploads/compressed/slider_d__7257f7ac-5273-47c5-8835-78cd6f4fc0ea_0.png"
             alt="First slide"
           />
 
-        </Carousel.Item>
-        <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src="https://via.placeholder.com/800x400"
-            alt="Second slide"
-          />
-
-        </Carousel.Item>
-
-      </Carousel>
 
       <div className="container mt-5">
         <h1>Welcome to the Course Exit Survey</h1>
