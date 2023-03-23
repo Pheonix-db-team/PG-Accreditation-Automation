@@ -1,8 +1,9 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React from 'react'
 import { useNavigate } from "react-router-dom";
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button, Carousel } from 'react-bootstrap';
 import logo from '../logo.svg';
-
+import NaviBar from '../components/NavBar';
 function HomePage() {
   const navigate = useNavigate();
   return (
@@ -10,13 +11,7 @@ function HomePage() {
       <div className='swapback'>
         <img src={"logo-white.svg"} width="500" height="150" />
       </div>
-      <Navbar bg="light" expand="lg" >
-        <Navbar.Brand href="#home"><b>Course Exit Survey</b></Navbar.Brand>
-        <Nav.Link style={{ color: "black" }} href="/adminsignin">Admin Login</Nav.Link>
-        <Nav.Link href="/facultysignin">Faculty Login</Nav.Link>
-        <Nav.Link href="/studentsignin">Student Login</Nav.Link>
-        <Nav.Link href="/aboutpage">About</Nav.Link>
-      </Navbar>
+      <NaviBar></NaviBar>
 
       <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
         <marquee behavior="scroll" direction="left"><h4 style={{ color: "green" }}><span class="glyphicon glyphicon-bullhorn"></span>  Course Exit Survey link is now active... </h4></marquee>

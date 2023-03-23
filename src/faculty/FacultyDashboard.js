@@ -5,7 +5,7 @@ import { db } from '../config/firebase';
 import { useNavigate, useLocation } from "react-router-dom";
 import AuthIssueComponent from '../components/AuthIssueComponent';
 import Card from 'react-bootstrap/Card';
-import '../App.css';
+
 import img1 from '../image/NiTC1.png';
 function FacultyDashboard() {
     const navigate = useNavigate();

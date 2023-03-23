@@ -123,10 +123,18 @@ input[type=submit]:hover {
 
 .navbar {
   display: flex;
+  text-decoration: 'none';
+  color: 'white';
+
   justify-content: space-between;
   background-color: #4066FA;
   padding: 10px;
   margin-bottom: 16px;
+}
+
+.whtlink {
+  text-decoration: 'none';
+  color: 'white'
 }
 
 .navbar-logo {
@@ -136,6 +144,8 @@ input[type=submit]:hover {
 
 .navbar-menu {
   display: flex;
+  text-decoration: 'none';
+  color: 'white';
   list-style-type: none;
   margin: 0;
   gap: 30px;
@@ -229,18 +239,12 @@ input[type=submit]:hover {
 
 }
 
-/* .sitecard {
-  background: #81BEF7;
-  border: 1px solid grey;
-  padding: 0 0 25px 0;
-  width: 85%;
-  border-radius: 10px;
-  width: 85%;
-  font-family: helvetica, sans-serif;
-  font-size: 20px;
-  margin: 10px auto;
-
-} */
+.navbarbrand {
+  font-family: 'Lato', sans-serif;
+  color: grey;
+  font-size: 100px;
+  margin: 0px;
+}
 
 .contentalign {
   padding-left: 20px;
