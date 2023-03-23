@@ -109,14 +109,16 @@ function ViewCESResponsesPage() {
                 'D': 0,
             }
         }
-
+        console.log(dict_consolidate)
+        // console.log(respArr.data())
         respArr.map((ele) => {
             const resp_ele = ele["Responses"];
             for (const [key, value] of Object.entries(resp_ele)) {
+                console.log(key + " k,v " + value)
+                console.log(dict_consolidate[key][value])
                 dict_consolidate[key][value]++;
             }
         });
-
         var temp_label = [];
         var temp_response_count = [];
         var temp_title = "";

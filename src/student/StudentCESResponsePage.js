@@ -23,6 +23,7 @@ function StudentCESResponsePage() {
     const [subjectArr, setSubjectArr] = useState([]);
     const option_selected_dict = {};
     quesArr.map((ques, key) => {
+        console.log("Ques tag ", ques['tag'])
         option_selected_dict[ques['tag']] = 'A';
     })
     const [optionsDict, setOptionsDict] = useState(option_selected_dict);
@@ -58,8 +59,8 @@ function StudentCESResponsePage() {
                 const fetched_sub_w_CES = []
                 const today = new Date().setHours(0, 0, 0);
                 console.log(state.student['Courses_Registered'])
-                const query_x = query(subjectsRef, where("CourseExitSurveyAvailable", "==", true), where("SubjectID", "in", ['DS', 'CS101']),
-                    where("last_date", ">=", today),);
+                // const query_x = query(subjectsRef, where("CourseExitSurveyAvailable", "==", true), where("SubjectID", "in", ['DS', 'CS101']),
+                //     where("last_date", ">=", today),);
                 const querySnapshot = await getDocs(subjectsRef);
                 console.log("Responses")
                 querySnapshot.forEach((doc) => {
@@ -156,41 +157,41 @@ function StudentCESResponsePage() {
     }
     return (
         <Card className='studentcard'>
-                <div>
+            <div>
                 <img className='showlogo' src={img1} width="15%" />
             </div>
-        <body>
-            <h2 className='center '><b> CES Response Form</b></h2>
-            <br></br>
+            <body>
+                <h2 className='center '><b> CES Response Form</b></h2>
+                <br></br>
 
-            {/* {"⬇️ Select Subject ⬇️"} */}
-            <div>
-            
-            <div key="Subject">Select Subject:
-                <select onChange={handleSubjectChange}>                        {subjectArr.map((sub) => <option key={sub.SubjectID
-                } value={sub.SubjectID}>{sub.Name}</option>)}
-                </select>
-            </div>
-            </div>
-            {quesArr.map((ques, index) =>
-                <div key={index}>
-                    <br></br>
-                    Question tag: {ques['tag']}
-                    <br></br>
-                    {ques['question_prompt']}<br></br>
-                    <label ><input type="radio" name={ques['tag']} value='A' defaultChecked={optionsDict[ques['tag']] === "A"} onChange={(e) => handleMultiRadioChange(e, ques['tag'])} />{ques['option_A']}</label>
-                    <label ><input type="radio" name={ques['tag']} value='B' defaultChecked={optionsDict[ques['tag']] === "B"} onChange={(e) => handleMultiRadioChange(e, ques['tag'])} />{ques['option_B']}</label>
-                    <label ><input type="radio" name={ques['tag']} value='C' defaultChecked={optionsDict[ques['tag']] === "C"} onChange={(e) => handleMultiRadioChange(e, ques['tag'])} />{ques['option_C']}</label>
-                    <label ><input type="radio" name={ques['tag']} value='D' defaultChecked={optionsDict[ques['tag']] === "D"} onChange={(e) => handleMultiRadioChange(e, ques['tag'])} />{ques['option_D']}</label>
-                    <br></br>
+                {/* {"⬇️ Select Subject ⬇️"} */}
+                <div>
+
+                    <div key="Subject">Select Subject:
+                        <select onChange={handleSubjectChange}>                        {subjectArr.map((sub) => <option key={sub.SubjectID
+                        } value={sub.SubjectID}>{sub.Name}</option>)}
+                        </select>
+                    </div>
                 </div>
-            )
-            }
-            
-            <div className='center'>
-            {(quesArr.length) ? <button className='styledbutton' onClick={() => handleSubmit()}>Submit CES Response</button> : <div>No questions</div>}
-        </div>
-        </body>
+                {quesArr.map((ques, index) =>
+                    <div key={index}>
+                        <br></br>
+                        Question tag: {ques['tag']}
+                        <br></br>
+                        {ques['question_prompt']}<br></br>
+                        <label ><input type="radio" name={ques['tag']} value='A' defaultChecked={optionsDict[ques['tag']] === "A"} onChange={(e) => handleMultiRadioChange(e, ques['tag'])} />{ques['option_A']}</label>
+                        <label ><input type="radio" name={ques['tag']} value='B' defaultChecked={optionsDict[ques['tag']] === "B"} onChange={(e) => handleMultiRadioChange(e, ques['tag'])} />{ques['option_B']}</label>
+                        <label ><input type="radio" name={ques['tag']} value='C' defaultChecked={optionsDict[ques['tag']] === "C"} onChange={(e) => handleMultiRadioChange(e, ques['tag'])} />{ques['option_C']}</label>
+                        <label ><input type="radio" name={ques['tag']} value='D' defaultChecked={optionsDict[ques['tag']] === "D"} onChange={(e) => handleMultiRadioChange(e, ques['tag'])} />{ques['option_D']}</label>
+                        <br></br>
+                    </div>
+                )
+                }
+
+                <div className='center'>
+                    {(quesArr.length) ? <button className='styledbutton' onClick={() => handleSubmit()}>Submit CES Response</button> : <div>No questions</div>}
+                </div>
+            </body>
         </Card>
     )
 } export default StudentCESResponsePage

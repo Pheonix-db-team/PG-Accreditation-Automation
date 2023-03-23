@@ -80,6 +80,7 @@ function AddCESPage() {
         console.log("Before")
         console.log(quesArr);
         const temp_index = quesArr.length;
+        console.log("curr ques index " + temp_index)
         let temp_ques_arr = [];
         if (quesArr.length) {
             temp_ques_arr = [...quesArr];
@@ -95,12 +96,21 @@ function AddCESPage() {
         temp_ques_arr.push(
             dict_temp
         );
-        console.log("curr " + dict_temp[temp_index])
+        console.log("curr " + dict_temp)
         setQuesArr(temp_ques_arr);
         console.log(quesArr);
+        setQuestionPrompt("")
+        setOptionA("")
+        setOptionB("")
+        setOptionC("")
+        setOptionD("")
     }
     const handleSubmit = async (event) => {
         try {
+            if (quesArr.length == 0) {
+                alert("Empty ques Arr")
+                return;
+            }
             const sem_id = getSemID();
             console.log("sem ID " + sem_id);
             const survey_id = subject + "_" + sem_id;
@@ -115,7 +125,7 @@ function AddCESPage() {
             console.log(temp_ls_date)
             const docRef1 = await setDoc(doc(db, "subject", subject), {
                 "Question_List": quesArr, "CourseExitSurveyAvailable": true,
-                "last_date":temp_ls_date , Survey_ID: survey_id,
+                "last_date": temp_ls_date, Survey_ID: survey_id,
             }, { merge: true }); console.log(docRef);
             console.log("Added " + survey_id);
             alert("Added " + survey_id)
@@ -135,73 +145,73 @@ function AddCESPage() {
     }
     return (
         <Card className='studentcard'>
-        <div>
-            <img className='showlogo' src={img1} width="15%" />
-        </div>
-        <body>
-            
-            <form onSubmit={handleAddQuestion
-            }>
-                <div > <h2><b>Add CES</b></h2></div>
-                <br></br>
-                 
-                <div>Select Subject:
-                    <select onChange={handleSubjectChange}>                        {subjectArr.map((sub) => <option key={sub.SubjectID
-                    } value={sub.SubjectID}>{sub.Name}</option>)}
-                    </select>
-                </div>
-               
-                <br></br> Question Prompt:
-                {/* <br></br> */}
-                <input type="text" value={questionPrompt} onChange={(e) => setQuestionPrompt(e.target.value)}></input>
-                <br></br>
-                <br></br>
-                OptionA:
-                 
-                <input type="text" value={optionA} onChange={(e) => setOptionA(e.target.value)}></input>
-                <br></br><br></br>
-                OptionB:
-                {/* <br></br> */}
-                <input type="text" value={optionB} onChange={(e) => setOptionB(e.target.value)}></input>
-                <br></br><br></br>
-                OptionC:
-                {/* <br></br> */}
-                <input type="text" value={optionC} onChange={(e) => setOptionC(e.target.value)}></input>
-                <br></br><br></br>
-                OptionD:
-                {/* <br></br> */}
-                
-                <input type="text" value={optionD} onChange={(e) => setOptionD(e.target.value)}></input>
-                <br></br>  
-                <br></br>
-                              <input type="submit" value="Add" ></input>
-            </form>           
-             <br></br>
-             <DatePicker selected={lastDate} onChange={(date) => setLastDate(date)} />
-             <div >CES Closing Date</div>   
-              
-            
-             <br></br>
-            <div className='center'>
-                <button className='styledbutton' onClick={() => handleSubmit()}>Submit CES</button>
-                <button className='styledbutton' onClick={goBack}>Back</button>
-                <br></br><br></br>
-                Question:
-                {quesArr.map((ques, index) =>
-                    <div key={index}>
-                        {ques.question_prompt}
-                        <br></br>
-                        A.{ques.option_A} B.{ques.option_B} C. {ques.option_C} D. {ques.option_D}
-                        <br></br>
-                        <button className='deletebutton' onClick={() => handleDelete(ques)}>Delete</button>
-                      
-                    </div>
-                     
-                )
-                }
+            <div>
+                <img className='showlogo' src={img1} width="15%" />
             </div>
-           
-        </body>
+            <body>
+
+                <form onSubmit={handleAddQuestion
+                }>
+                    <div > <h2><b>Add CES</b></h2></div>
+                    <br></br>
+
+                    <div>Select Subject:
+                        <select onChange={handleSubjectChange}>                        {subjectArr.map((sub) => <option key={sub.SubjectID
+                        } value={sub.SubjectID}>{sub.Name}</option>)}
+                        </select>
+                    </div>
+
+                    <br></br> Question Prompt:
+                    {/* <br></br> */}
+                    <input type="text" value={questionPrompt} onChange={(e) => setQuestionPrompt(e.target.value)}></input>
+                    <br></br>
+                    <br></br>
+                    OptionA:
+
+                    <input type="text" value={optionA} onChange={(e) => setOptionA(e.target.value)}></input>
+                    <br></br><br></br>
+                    OptionB:
+                    {/* <br></br> */}
+                    <input type="text" value={optionB} onChange={(e) => setOptionB(e.target.value)}></input>
+                    <br></br><br></br>
+                    OptionC:
+                    {/* <br></br> */}
+                    <input type="text" value={optionC} onChange={(e) => setOptionC(e.target.value)}></input>
+                    <br></br><br></br>
+                    OptionD:
+                    {/* <br></br> */}
+
+                    <input type="text" value={optionD} onChange={(e) => setOptionD(e.target.value)}></input>
+                    <br></br>
+                    <br></br>
+                    <input type="submit" value="Add" ></input>
+                </form>
+                <br></br>
+                <DatePicker selected={lastDate} onChange={(date) => setLastDate(date)} />
+                <div >CES Closing Date</div>
+
+
+                <br></br>
+                <div className='center'>
+                    <button className='styledbutton' onClick={() => handleSubmit()}>Submit CES</button>
+                    <button className='styledbutton' onClick={goBack}>Back</button>
+                    <br></br><br></br>
+                    Question:
+                    {quesArr.map((ques, index) =>
+                        <div key={index}>
+                            {ques.question_prompt}
+                            <br></br>
+                            A. {ques.option_A} B. {ques.option_B} C. {ques.option_C} D. {ques.option_D}
+                            <br></br>
+                            <button className='deletebutton' onClick={() => handleDelete(ques)}>Delete</button>
+
+                        </div>
+
+                    )
+                    }
+                </div>
+
+            </body>
         </Card>
     )
 } export default AddCESPage
