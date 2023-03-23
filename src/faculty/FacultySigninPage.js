@@ -5,13 +5,10 @@ import { auth } from '../config/firebase'
 import { useNavigate } from "react-router-dom";
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../config/firebase';
-import Grid from '@mui/material/Grid'; 
 import Card from 'react-bootstrap/Card';
 import Typography from '@mui/material/Typography';
 import CardContent from '@mui/material/CardContent';
-//Css
-import Admin from '../css/Faculty.css';
-import img1  from '../image/NiTC1.png';
+import img1 from '../image/NiTC1.png';
 
 
 function FacultySigninPage() {
@@ -71,52 +68,40 @@ function FacultySigninPage() {
 
 
     return (
-        <Grid
-        container
-        spacing={0}
-        direction="column"
-        alignItems="center"
-        justify="center"
-        style={{ minHeight: '100vh' }}
-        bgcolor='grey'
-        >
-    <Grid item xs={3}>
-    <Card className='FacultyCard' >
-    <div>
-    <div>
-        <img className='showlogo' src={img1} width="15%" />
-     </div> 
-         <div>
-             <form onSubmit={handleSubmit
-            }>
-                <CardContent>
-                 <Typography gutterBottom variant="h5" component="div">
-                <div > <b >Faculty Signin </b></div>
-                
-                </Typography>
-                <div><b>Email:</b>
-                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Faculty Email" required></input>
+        <Card className='sitecard' >
+            <div>
+                <div>
+                    <center> <img className='showlogo' src={img1} width="85%" alt="Logo" /></center>
                 </div>
-                <br></br>
-               
-                <div><b>Password:</b>
-                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" required ></input>
-                </div>
-                 <br></br>
-               
-                
-                        <div>
-                         <input type="submit" className='styledbutton'></input>
-                         <button className='styledbutton' onClick={() => navigate(-1)}>Back</button>
-                         </div>
-                </CardContent>
-            </form>
+                <div>
+                    <form onSubmit={handleSubmit
+                    }>
+                        <CardContent>
+                            <Typography gutterBottom variant="h5" component="div">
+                                <div > <b >Faculty Signin </b></div>
 
-        </div>
-        </div>
+                            </Typography>
+                            <div><b>Email:</b>
+                                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Faculty Email" required></input>
+                            </div>
+                            <br></br>
+
+                            <div><b>Password:</b>
+                                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" required ></input>
+                            </div>
+                            <br></br>
+
+
+                            <div>
+                                <input type="submit" className='styledbutton'></input>
+                                <button className='styledbutton' onClick={() => navigate(-1)}>Back</button>
+                            </div>
+                        </CardContent>
+                    </form>
+
+                </div>
+            </div>
         </Card>
-       </Grid>      
-    </Grid> 
     )
 }
 

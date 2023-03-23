@@ -1,13 +1,11 @@
 import React from 'react';
 import AuthIssueComponent from '../components/AuthIssueComponent';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate, useLocation } from "react-router-dom";
-import { getDocs, collection, doc, setDoc } from 'firebase/firestore';
+import { doc, setDoc } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { getValueByKey } from '../App';
 import Card from 'react-bootstrap/Card';
-import '../App.css';
-//import { student_test } from "../App.js";
 function StudentCourseRegPage(navigation) {
     const { state } = useLocation();
     const navigate = useNavigate();
@@ -76,7 +74,7 @@ function StudentCourseRegPage(navigation) {
     }
     if (student_data.Courses_Registered.length == 0)
         return (
-            <Card className='studentcard'>
+            <Card className='sitecard'>
                 <br></br>
                 <body>
                     <br></br>

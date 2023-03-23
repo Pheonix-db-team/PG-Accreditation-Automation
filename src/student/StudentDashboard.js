@@ -3,10 +3,8 @@ import { useState, useEffect } from 'react';
 import { getDocs, collection, setDoc, getDoc, doc, query, where, Timestamp } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { useNavigate, useLocation } from "react-router-dom";
-//import { student_test_email } from "../App.js";
 import AuthIssueComponent from '../components/AuthIssueComponent';
 import Card from 'react-bootstrap/Card';
-import '../App.css';
 import img1 from '../image/NiTC1.png';
 function StudentDashboard() {
     const { state } = useLocation();
@@ -127,9 +125,11 @@ function StudentDashboard() {
         return (AuthIssueComponent());
     }
     return (
-        <Card className='studentcard'>
+        <Card className='sitecard'>
             <div>
-                <img className='showlogo' src={img1} width="15%" />
+                <center>
+                    <img className='showlogo' src={img1} width="85%" alt="Logo" />
+                </center>
             </div>
             <body>
                 <div className='stdDash'> <h2 className='center'><b>Student Dashboard</b></h2>
@@ -137,7 +137,7 @@ function StudentDashboard() {
                     <b>Name</b> :{student['Name']}
                     <br></br>
                     <br></br>
-                   <b>Email </b> :{student['EmailID']}
+                    <b>Email </b> :{student['EmailID']}
                     <br></br>
                     <br></br>
                     <b>Department</b> :{student['Department']}
@@ -150,9 +150,9 @@ function StudentDashboard() {
 
                     <br></br>
                     <div >
-                    <button className='styledbutton1' onClick={() => SubjectListPageNavigation()}>CES Subjectwise</button>
-                    
-                    <button className='styledbutton1' onClick={() => navigate(-1)}>Logout</button>
+                        <button className='styledbutton' onClick={() => SubjectListPageNavigation()}>CES Subjectwise</button>
+
+                        <button className='styledbutton' onClick={() => navigate(-1)}>Logout</button>
                     </div>
                     <br></br>
                 </div >

@@ -1,6 +1,4 @@
 import React from 'react'
-import { getDocs, collection, where, query } from 'firebase/firestore';
-import { db } from '../config/firebase';
 import { useNavigate, useLocation } from "react-router-dom";
 import AuthIssueComponent from '../components/AuthIssueComponent';
 import { faculties_arr_test } from '../App';
@@ -39,9 +37,9 @@ function FacultyListPage() {
     }
     return (
         <div>
-        <h2 className='center'><b>Faculty List</b></h2>
-        
- 
+            <h2 className='center'><b>Faculty List</b></h2>
+
+
             <table className='facultytable'>
 
                 <tr> <th>Name </th> <th>EmailID</th> <th>FacultyID</th><th>Department</th> </tr>
@@ -51,7 +49,7 @@ function FacultyListPage() {
                 }
             </table>
             <div className='center'>
-            <button className="styledbutton" onClick={() => navigate(-1)}>Back</button>
+                <button className="styledbutton" onClick={() => navigate(-1)}>Back</button>
             </div>
         </div>
     )

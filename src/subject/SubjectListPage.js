@@ -1,10 +1,7 @@
 import React from 'react'
-import { useState } from 'react'
 import { getDocs, collection, where, query } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { useNavigate, useLocation } from "react-router-dom";
-import AuthIssueComponent from '../components/AuthIssueComponent';
-import { subject_test_array } from '../App';
 function SubjectListPage() {
     const navigate = useNavigate();
     let { state } = useLocation();
@@ -40,7 +37,7 @@ function SubjectListPage() {
                 }
             </table>
             <div className='center'>
-            <button className="styledbutton" onClick={() => navigate(-1)}>Back</button>
+                <button className="styledbutton" onClick={() => navigate(-1)}>Back</button>
             </div>
         </div>
     )

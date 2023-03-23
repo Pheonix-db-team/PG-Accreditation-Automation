@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { getDocs, collection, setDoc, getDoc, doc } from 'firebase/firestore';
+import { getDoc, doc } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { useNavigate, useLocation } from "react-router-dom";
 import AuthIssueComponent from '../components/AuthIssueComponent';
@@ -40,39 +40,39 @@ function FacultyDashboard() {
         return AuthIssueComponent();
     }
     return (
-        <Card className='studentcard'>
-        <div>
-            <img className='showlogo' src={img1} width="15%" />
-        </div>
-        <body>
-            <div className='contentalign'><h2><b>Faculty Dashboard</b></h2>
-                <br></br>
-                <b>Name</b> :{fac['Name']}
-                <br></br>
-                {/* <br></br> */}
-               <b>Email</b>  :{fac['EmailID']}
-                <br></br>
-                <b>Department</b> :{fac['Department']}
-                <br></br>
-               
-                {/* <br></br> */}
-               <div>
-                <b>Subjects:</b>
-                    {
-                         
-                        (state.fac['Courses_assigned'].length > 0) ?
-                            fac['Courses_assigned'].map((course) => <div key={course}>
-                                {course}
-                            </div>) : "No subject assigned"
-                    }
-                   
-                </div>
-                <br></br>
-                
-                <button className='styledbutton' onClick={() => addCESPageNavigation()}>Add CES</button>
-                 <button className='styledbutton' onClick={() => navigate(-1)}>Logout</button>
+        <Card className='sitecard'>
+            <div>
+                <center> <img className='showlogo' src={img1} width="85%" alt="Logo" /></center>
             </div>
-        </body>
+            <body>
+                <div className='contentalign'><h2><b>Faculty Dashboard</b></h2>
+                    <br></br>
+                    <b>Name</b> :{fac['Name']}
+                    <br></br>
+                    {/* <br></br> */}
+                    <b>Email</b>  :{fac['EmailID']}
+                    <br></br>
+                    <b>Department</b> :{fac['Department']}
+                    <br></br>
+
+                    {/* <br></br> */}
+                    <div>
+                        <b>Subjects:</b>
+                        {
+
+                            (state.fac['Courses_assigned'].length > 0) ?
+                                fac['Courses_assigned'].map((course) => <div key={course}>
+                                    {course}
+                                </div>) : "No subject assigned"
+                        }
+
+                    </div>
+                    <br></br>
+
+                    <button className='styledbutton' onClick={() => addCESPageNavigation()}>Add CES</button>
+                    <button className='styledbutton' onClick={() => navigate(-1)}>Logout</button>
+                </div>
+            </body>
         </Card>
     );
 

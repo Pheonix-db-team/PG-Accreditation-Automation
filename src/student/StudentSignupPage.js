@@ -8,9 +8,7 @@ import { password_from_prop, email_from_prop, departments, isValidEmail } from "
 import AuthIssueComponent from '../components/AuthIssueComponent';
 import { useNavigate, useLocation } from "react-router-dom";
 import Card from 'react-bootstrap/Card';
-import '../App.css';
 import img1 from '../image/NiTC1.png';
-//import {password_from_prop} from 
 function StudentSignupPage() {
     // const password_from_prop = "test123";
     // const email_from_prop = "test1@gmail.com";
@@ -132,9 +130,9 @@ function StudentSignupPage() {
         return AuthIssueComponent();
     }
     return (
-        <Card className='studentcard'>
+        <Card className='sitecard'>
             <div  >
-                <img className='showlogo' src={img1} width="15%" />
+                <img className='showlogo' src={img1} width="15%" alt='logo' />
             </div>
             <div className='left_space_div'>
                 <br></br>

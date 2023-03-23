@@ -6,7 +6,6 @@ import { useLocation } from 'react-router-dom';
 import { departments, getValueByKey } from "../App.js";
 import { useNavigate } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
-import '../App.css';
 import img1 from '../image/NiTC1.png';
 function AddSubjectPage() {
     const { state } = useLocation();
@@ -104,58 +103,59 @@ function AddSubjectPage() {
     }
 
     return (
-        <Card className='studentcard'>
+
+        <Card className='sitecard'>
             <div>
-                <img className='showlogo' src={img1} width="15%" />
+                <img className='showlogo' src={img1} width="85%" alt='logo' />
             </div>
             <div>
                 <br></br>
                 <div className='contentalign'>
 
-                <form onSubmit={handleSubmit
-                }>
-                    <div ><h2><b>Add subject</b></h2> </div>
-                    <br></br>
-                    
-                    <div><b>Subject ID:</b>
-                        <input type="text" value={subjectID} onChange={(e) => setsubjectID(e.target.value)} placeholder='must be unique' required></input>
-                    </div>
-                    <br></br>
-                    {/* *subject ID must be unique */}
-                    {/* <br></br> */}
-                    <div><b>Subject Name:</b>
-                        <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder='Subject name' required></input>
-                    </div>
-                    <br></br>
-                    {department}
-                    {/* <br></br> */}
-                    {/* {"⬇️ Select department ⬇️"} */}
-                    {/* <br></br> */}
-                    <div><b>Select Department:</b>
-                        <select onChange={handleDepartmentChange}>
+                    <form onSubmit={handleSubmit
+                    }>
+                        <div ><h2><b>Add subject</b></h2> </div>
+                        <br></br>
 
-                            {departments.map((department) => <option key={department.label
-                            } value={department.value}>{department.label}</option>)}
-                        </select>
-                    </div>
-                    <br></br>
-                    {/* {"⬇️ Assign Faculty ⬇️"} */}
+                        <div><b>Subject ID:</b>
+                            <input type="text" value={subjectID} onChange={(e) => setsubjectID(e.target.value)} placeholder='must be unique' required></input>
+                        </div>
+                        <br></br>
+                        {/* *subject ID must be unique */}
+                        {/* <br></br> */}
+                        <div><b>Subject Name:</b>
+                            <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder='Subject name' required></input>
+                        </div>
+                        <br></br>
+                        {department}
+                        {/* <br></br> */}
+                        {/* {"⬇️ Select department ⬇️"} */}
+                        {/* <br></br> */}
+                        <div><b>Select Department:</b>
+                            <select onChange={handleDepartmentChange}>
 
-                    <div><b>Select Faculty:</b>
-                        <select onChange={handleFacultyChange}>
+                                {departments.map((department) => <option key={department.label
+                                } value={department.value}>{department.label}</option>)}
+                            </select>
+                        </div>
+                        <br></br>
+                        {/* {"⬇️ Assign Faculty ⬇️"} */}
 
-                            {faculties_from_prop.map((faculty) => <option key={faculty.Name
-                            } value={faculty.EmailID}>{faculty.Name}</option>)}
-                        </select>
-                    </div>
-                    
-                    <br></br>
-                       <div>
-                          <input type="submit" className='styledbutton'></input>
-                          <button className='styledbutton' onClick={() => navigate(-1)}>Back</button>
-                         </div>
+                        <div><b>Select Faculty:</b>
+                            <select onChange={handleFacultyChange}>
 
-                </form>
+                                {faculties_from_prop.map((faculty) => <option key={faculty.Name
+                                } value={faculty.EmailID}>{faculty.Name}</option>)}
+                            </select>
+                        </div>
+
+                        <br></br>
+                        <div>
+                            <input type="submit" className='styledbutton'></input>
+                            <button className='styledbutton' onClick={() => navigate(-1)}>Back</button>
+                        </div>
+
+                    </form>
                 </div>
 
             </div>

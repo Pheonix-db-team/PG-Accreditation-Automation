@@ -8,7 +8,6 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { password_from_prop, email_from_prop, departments, isValidEmail } from "../App.js";
 import AuthIssueComponent from '../components/AuthIssueComponent';
 import Card from 'react-bootstrap/Card';
-import '../App.css';
 import img1 from '../image/NiTC1.png';
 function FacultySignupPage() {
     const navigate = useNavigate();
@@ -91,9 +90,9 @@ function FacultySignupPage() {
     }
 
     return (
-        <Card className='facultycard'>
+        <Card className='sitecard'>
             <div>
-                <img className='showlogo' src={img1} width="15%" />
+                <center> <img className='showlogo' src={img1} width="85%" alt="Logo" /></center>
             </div>
             <div>
                 <br></br>
@@ -135,8 +134,8 @@ function FacultySignupPage() {
                     <br></br>
                     <div className='left_space_div'>
 
-                    <input className='styledbutton' type="submit"></input>
-                    <button className='styledbutton' onClick={() => navigate(-1)}>Back</button>
+                        <input className='styledbutton' type="submit"></input>
+                        <button className='styledbutton' onClick={() => navigate(-1)}>Back</button>
                     </div>
                 </form>
 

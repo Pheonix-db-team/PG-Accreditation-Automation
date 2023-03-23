@@ -3,7 +3,6 @@ import { useNavigate, useLocation } from "react-router-dom";
 import AuthIssueComponent from '../components/AuthIssueComponent';
 import { getDocs, collection, setDoc, getDoc, doc } from 'firebase/firestore';
 import { db } from '../config/firebase';
-import Admin from '../css/Admin.css';
 import { Card, Grid } from '@mui/material';
 
 function AdminDashboardPage() {
@@ -67,55 +66,55 @@ function AdminDashboardPage() {
         return AuthIssueComponent();
     }
     return (
-        <Grid  
-        container
-        spacing={0}
-        direction="column"
-        alignItems="center"
-        justify="center"
-        style={{ minHeight: '100vh' }}
-        bgcolor='white'
+        <Grid
+            container
+            spacing={0}
+            direction="column"
+            alignItems="center"
+            justify="center"
+            style={{ minHeight: '100vh' }}
+            bgcolor='white'
         >
-        <body className='buttonshifting'>
-            
-   
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+            <body className='buttonshifting'>
 
 
-        
-        <button className='styledbutton' onClick={() => addStudentNavigation()}>
-        <i class="fa fa-user " aria-hidden="true" ></i>
-        <span> Add Student</span>
-        </button>
-        {/* <br></br><br></br> */}
-        <button className='styledbutton' onClick={() => addFacultyNavigation()}>
-        <i class="fa fa-user" aria-hidden="true"></i>
-        <span> Add Faculty</span>
-        </button>
-        {/* <br></br><br></br> */}
-        <button className='styledbutton' onClick={() => addSubjectNavigation()}>
-        <i class="fa fa-book" aria-hidden="true"></i>
-        <span> Add Subject</span>
-        </button>
-        {/* <br></br><br></br> */}
-        <button className='styledbutton' onClick={() => viewFacultyNavigation()}>
-        <i class="fa fa-table" aria-hidden="true"></i>
-        <span> View Faculties</span>
-        </button>
-        {/* <br></br><br></br> */}
-        <button className='styledbutton' onClick={() => viewStudentNavigation()}>
-        <i class="fa fa-table" aria-hidden="true"></i>
-        <span> View Students</span>
-        </button>
-        {/* <br></br><br></br> */}
-        <button className='styledbutton' onClick={() => navigate(-1)}>
-        <i class="fa fa-sign-out "  aria-hidden="true"></i>
-        <span> Logout </span>
-        </button>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
-    
-          
-        </body>
+
+
+                <button className='styledbutton' onClick={() => addStudentNavigation()}>
+                    <i class="fa fa-user " aria-hidden="true" ></i>
+                    <span> Add Student</span>
+                </button>
+                {/* <br></br><br></br> */}
+                <button className='styledbutton' onClick={() => addFacultyNavigation()}>
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    <span> Add Faculty</span>
+                </button>
+                {/* <br></br><br></br> */}
+                <button className='styledbutton' onClick={() => addSubjectNavigation()}>
+                    <i class="fa fa-book" aria-hidden="true"></i>
+                    <span> Add Subject</span>
+                </button>
+                {/* <br></br><br></br> */}
+                <button className='styledbutton' onClick={() => viewFacultyNavigation()}>
+                    <i class="fa fa-table" aria-hidden="true"></i>
+                    <span> View Faculties</span>
+                </button>
+                {/* <br></br><br></br> */}
+                <button className='styledbutton' onClick={() => viewStudentNavigation()}>
+                    <i class="fa fa-table" aria-hidden="true"></i>
+                    <span> View Students</span>
+                </button>
+                {/* <br></br><br></br> */}
+                <button className='styledbutton' onClick={() => navigate(-1)}>
+                    <i class="fa fa-sign-out " aria-hidden="true"></i>
+                    <span> Logout </span>
+                </button>
+
+
+
+            </body>
         </Grid>
     );
 

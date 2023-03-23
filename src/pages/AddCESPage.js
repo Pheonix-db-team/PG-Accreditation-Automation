@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-import { doc, setDoc, getDocs, collection, arrayUnion, query, where } from 'firebase/firestore';
+import { doc, setDoc, getDocs, collection, query, where } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { useLocation } from 'react-router-dom';
 import DatePicker from "react-datepicker";
@@ -8,7 +8,6 @@ import { useNavigate } from 'react-router-dom';
 import "react-datepicker/dist/react-datepicker.css";
 import AuthIssueComponent from '../components/AuthIssueComponent';
 import Card from 'react-bootstrap/Card';
-import '../App.css';
 import img1 from '../image/NiTC1.png';
 function AddCESPage() {
     const navigate = useNavigate();
@@ -144,9 +143,9 @@ function AddCESPage() {
         return (<body><button className="styledbutton" onClick={goBack}>Back</button>	No course available for ces</body>)
     }
     return (
-        <Card className='studentcard'>
+        <Card className='sitecard'>
             <div className='left_space_div'>
-                <img className='showlogo' src={img1} width="15%" />
+                <center> <img className='showlogo' src={img1} width="85%" alt="Logo" /></center>
             </div>
             <body>
 

@@ -1,8 +1,5 @@
-
-
 import React from 'react'
-import { useState, useEffect } from 'react';
-//import "app.css"
+import { useState } from 'react';
 function CESResponsePage() {
 
     const quesArr = [{

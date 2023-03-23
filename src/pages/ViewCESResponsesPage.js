@@ -1,8 +1,8 @@
 import React from 'react'
 import { getDocs, collection } from 'firebase/firestore';
 import { db } from '../config/firebase';
-import { useState, useEffect } from 'react';
-import { Line, Bar } from 'react-chartjs-2';
+import { useEffect } from 'react';
+import { Bar } from 'react-chartjs-2';
 import { Chart, registerables } from 'chart.js';
 import { getValueByKey } from '../App';
 import { useNavigate, useLocation } from "react-router-dom";

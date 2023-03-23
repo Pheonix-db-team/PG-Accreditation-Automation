@@ -1,9 +1,5 @@
-//import logo from './logo.svg';
 import { Link } from 'react-router-dom';
 import './App.css';
-import NavBar from './components/NavBar';
-import './App.css';
-//import Greeting from './components/Greeting';
 import { useState } from 'react';
 import HomePage from './pages/HomePage';
 function App() {
