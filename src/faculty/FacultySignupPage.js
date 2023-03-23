@@ -91,7 +91,7 @@ function FacultySignupPage() {
     }
 
     return (
-        <Card className='studentcard'>
+        <Card className='facultycard'>
             <div>
                 <img className='showlogo' src={img1} width="15%" />
             </div>
@@ -135,8 +135,8 @@ function FacultySignupPage() {
                     <br></br>
                     <div className='left_space_div'>
 
-                        <input className='styledbutton' type="submit"></input>
-                        <button className='styledbutton' onClick={() => navigate(-1)}>Back</button>
+                    <input className='styledbutton' type="submit"></input>
+                    <button className='styledbutton' onClick={() => navigate(-1)}>Back</button>
                     </div>
                 </form>
 

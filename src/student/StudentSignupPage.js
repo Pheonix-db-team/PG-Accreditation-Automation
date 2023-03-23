@@ -133,7 +133,7 @@ function StudentSignupPage() {
     }
     return (
         <Card className='studentcard'>
-            <div className='left_space_div'>
+            <div  >
                 <img className='showlogo' src={img1} width="15%" />
             </div>
             <div className='left_space_div'>
@@ -156,7 +156,7 @@ function StudentSignupPage() {
 
                     {/* {"⬇️ Select department ⬇️"} */}
 
-                    <div className='left_space_div'>Selected department:
+                    <div  >Selected department:
                         <select onChange={handleDepartmentChange}>
 
                             {departments.map((department) => <option key={department.label

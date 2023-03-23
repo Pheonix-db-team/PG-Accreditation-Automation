@@ -134,23 +134,26 @@ function StudentDashboard() {
             <body>
                 <div className='stdDash'> <h2 className='center'><b>Student Dashboard</b></h2>
 
-                    Name :{student['Name']}
-                    <br></br>
-                    Email :{student['EmailID']}
-                    <br></br>
-                    Department :{student['Department']}
+                    <b>Name</b> :{student['Name']}
                     <br></br>
                     <br></br>
-                    Courses_Registered status:{(Array.isArray(student['Courses_Registered']) && student['Courses_Registered'].length) ? "✅" : "❌        "}
+                   <b>Email </b> :{student['EmailID']}
+                    <br></br>
+                    <br></br>
+                    <b>Department</b> :{student['Department']}
+                    <br></br>
+                    <br></br>
+                    <b>Courses_Registered status</b>:{(Array.isArray(student['Courses_Registered']) && student['Courses_Registered'].length) ? "✅" : "❌        "}
                     {(Array.isArray(student['Courses_Registered']) && student['Courses_Registered'].length) ? <button className='styledbutton' onClick={() => CESResponsePageNavigation()}>CES Available</button>
                         : <button className='styledbutton' onClick={() => CourseRegPageNavigation()}>Register for Courses</button>}
                     <br></br>
 
                     <br></br>
+                    <div >
                     <button className='styledbutton1' onClick={() => SubjectListPageNavigation()}>CES Subjectwise</button>
-                    <br></br>
-                    <br></br>
+                    
                     <button className='styledbutton1' onClick={() => navigate(-1)}>Logout</button>
+                    </div>
                     <br></br>
                 </div >
             </body >

@@ -86,11 +86,11 @@ function StudentSigninPage() {
                                         Student Signin
                                     </Typography>
 
-                                    <div>Email:
+                                    <div><b>Email:</b>
                                         <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Student Email" required ></input>
                                     </div>
                                     <br></br>
-                                    <div>Password:
+                                    <div><b>Password:</b>
                                         <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" required ></input>
                                     </div>
                                     <br></br>

@@ -45,8 +45,8 @@ function FacultyDashboard() {
             <img className='showlogo' src={img1} width="15%" />
         </div>
         <body>
-            <div className='div-margin '><h2><b>Faculty Dashboard</b></h2>
-                {/* <br></br> */}
+            <div className='contentalign'><h2><b>Faculty Dashboard</b></h2>
+                <br></br>
                 <b>Name</b> :{fac['Name']}
                 <br></br>
                 {/* <br></br> */}

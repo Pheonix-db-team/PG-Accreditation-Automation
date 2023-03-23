@@ -12,7 +12,7 @@ function HomePage() {
       <img src={"logo-white.svg"} width="500" height="150" />
       </div>
         <Navbar bg="light" expand="lg" >
-          <Navbar.Brand href="#home">Course Exit Survey</Navbar.Brand>
+          <Navbar.Brand href="#home"><b>Course Exit Survey</b></Navbar.Brand>
           <Nav.Link style={{color: "black"}} href="/adminsignin">Admin Login</Nav.Link>
           <Nav.Link href="/facultysignin">Faculty Login</Nav.Link>
           <Nav.Link href="/studentsignin">Student Login</Nav.Link>

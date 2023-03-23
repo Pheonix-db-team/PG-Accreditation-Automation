@@ -110,18 +110,20 @@ function AddSubjectPage() {
             </div>
             <div>
                 <br></br>
+                <div className='contentalign'>
 
                 <form onSubmit={handleSubmit
                 }>
                     <div ><h2><b>Add subject</b></h2> </div>
                     <br></br>
-                    <div>Subject ID:
+                    
+                    <div><b>Subject ID:</b>
                         <input type="text" value={subjectID} onChange={(e) => setsubjectID(e.target.value)} placeholder='must be unique' required></input>
                     </div>
                     <br></br>
                     {/* *subject ID must be unique */}
                     {/* <br></br> */}
-                    <div>Subject Name:
+                    <div><b>Subject Name:</b>
                         <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder='Subject name' required></input>
                     </div>
                     <br></br>
@@ -129,7 +131,7 @@ function AddSubjectPage() {
                     {/* <br></br> */}
                     {/* {"⬇️ Select department ⬇️"} */}
                     {/* <br></br> */}
-                    <div>Select Department:
+                    <div><b>Select Department:</b>
                         <select onChange={handleDepartmentChange}>
 
                             {departments.map((department) => <option key={department.label
@@ -139,17 +141,22 @@ function AddSubjectPage() {
                     <br></br>
                     {/* {"⬇️ Assign Faculty ⬇️"} */}
 
-                    <div>Select Faculty:
+                    <div><b>Select Faculty:</b>
                         <select onChange={handleFacultyChange}>
 
                             {faculties_from_prop.map((faculty) => <option key={faculty.Name
                             } value={faculty.EmailID}>{faculty.Name}</option>)}
                         </select>
                     </div>
+                    
                     <br></br>
-                    <input className='submitbutton' type="submit"></input>
-                    <button className='buttonleft' onClick={() => navigate(-1)}>Back</button>
+                       <div>
+                          <input type="submit" className='styledbutton'></input>
+                          <button className='styledbutton' onClick={() => navigate(-1)}>Back</button>
+                         </div>
+
                 </form>
+                </div>
 
             </div>
         </Card>

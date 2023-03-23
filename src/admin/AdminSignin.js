@@ -99,24 +99,24 @@ function AdminSigninPage() {
      
                 <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
-                Admin Signin 
+                <b>Admin Signin</b> 
                 </Typography>
                
                 <div>
-                    Email: 
+                    <b>Email:</b> 
                 <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Admin Email" required></input>
                 </div>
                 <br></br>
                 
                 <div>
-                Password: 
+               <b>Password:</b>  
                 <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" required ></input>
                 </div>
                 <br></br>
-                <div>
-                <input type="submit"></input> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <button className='styledbutton' onClick={() => navigate(-1)}>Back</button>
-                </div> 
+                      <div>
+                         <input type="submit" className='styledbutton'></input>
+                         <button className='styledbutton' onClick={() => navigate(-1)}>Back</button>
+                         </div>
              </CardContent>
             <br></br>
         </form>

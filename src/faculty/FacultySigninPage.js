@@ -91,22 +91,24 @@ function FacultySigninPage() {
             }>
                 <CardContent>
                  <Typography gutterBottom variant="h5" component="div">
-                 Faculty Signin 
+                <div > <b >Faculty Signin </b></div>
+                
                 </Typography>
-                <div>Email:
+                <div><b>Email:</b>
                 <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Faculty Email" required></input>
                 </div>
                 <br></br>
                
-                <div>Password:
+                <div><b>Password:</b>
                 <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" required ></input>
                 </div>
                  <br></br>
                
-                <div>
-                <input type="submit"></input>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <button className='styledbutton' onClick={() => navigate(-1)}>Back</button>
-                </div>
+                
+                        <div>
+                         <input type="submit" className='styledbutton'></input>
+                         <button className='styledbutton' onClick={() => navigate(-1)}>Back</button>
+                         </div>
                 </CardContent>
             </form>
 
