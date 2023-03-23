@@ -158,31 +158,32 @@ function StudentCESResponsePage() {
     return (
         <Card className='studentcard'>
             <div>
+                <button className='styledbutton' onClick={() => navigate(-1)}>Back</button>
+
                 <img className='showlogo' src={img1} width="15%" />
             </div>
             <body>
+
                 <h2 className='center '><b> CES Response Form</b></h2>
                 <br></br>
 
                 {/* {"⬇️ Select Subject ⬇️"} */}
                 <div>
 
-                    <div key="Subject">Select Subject:
-                        <select onChange={handleSubjectChange}>                        {subjectArr.map((sub) => <option key={sub.SubjectID
+                    <div className="left_space_div" key="Subject">Select Subject:
+                        <select className='select_bigger' onChange={handleSubjectChange}>                        {subjectArr.map((sub) => <option key={sub.SubjectID
                         } value={sub.SubjectID}>{sub.Name}</option>)}
                         </select>
                     </div>
                 </div>
                 {quesArr.map((ques, index) =>
-                    <div key={index}>
+                    <div key={index} className="left_space_div">
                         <br></br>
-                        Question tag: {ques['tag']}
-                        <br></br>
-                        {ques['question_prompt']}<br></br>
-                        <label ><input type="radio" name={ques['tag']} value='A' defaultChecked={optionsDict[ques['tag']] === "A"} onChange={(e) => handleMultiRadioChange(e, ques['tag'])} />{ques['option_A']}</label>
-                        <label ><input type="radio" name={ques['tag']} value='B' defaultChecked={optionsDict[ques['tag']] === "B"} onChange={(e) => handleMultiRadioChange(e, ques['tag'])} />{ques['option_B']}</label>
-                        <label ><input type="radio" name={ques['tag']} value='C' defaultChecked={optionsDict[ques['tag']] === "C"} onChange={(e) => handleMultiRadioChange(e, ques['tag'])} />{ques['option_C']}</label>
-                        <label ><input type="radio" name={ques['tag']} value='D' defaultChecked={optionsDict[ques['tag']] === "D"} onChange={(e) => handleMultiRadioChange(e, ques['tag'])} />{ques['option_D']}</label>
+                        Q.{index + 1} {ques['question_prompt']} ?<br></br>
+                        <label className='label_spacing'><input type="radio" className="option-input radio" name={ques['tag']} value='A' defaultChecked={optionsDict[ques['tag']] === "A"} onChange={(e) => handleMultiRadioChange(e, ques['tag'])} />{ques['option_A']}</label>
+                        <label className='label_spacing' ><input type="radio" className="option-input radio" name={ques['tag']} value='B' defaultChecked={optionsDict[ques['tag']] === "B"} onChange={(e) => handleMultiRadioChange(e, ques['tag'])} />{ques['option_B']}</label>
+                        <label className='label_spacing' ><input type="radio" className="option-input radio" name={ques['tag']} value='C' defaultChecked={optionsDict[ques['tag']] === "C"} onChange={(e) => handleMultiRadioChange(e, ques['tag'])} />{ques['option_C']}</label>
+                        <label className='label_spacing' ><input type="radio" className="option-input radio" name={ques['tag']} value='D' defaultChecked={optionsDict[ques['tag']] === "D"} onChange={(e) => handleMultiRadioChange(e, ques['tag'])} />{ques['option_D']}</label>
                         <br></br>
                     </div>
                 )

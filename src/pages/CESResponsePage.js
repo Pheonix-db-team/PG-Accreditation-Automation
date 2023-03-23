@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { useState, useEffect } from 'react';
+//import "app.css"
 function CESResponsePage() {
 
     const quesArr = [{
@@ -38,12 +39,12 @@ function CESResponsePage() {
         <body>
             Questions
             {quesArr.map((ques, index) =>
-                <div key={index}>
+                <div key={index} style={{ color: "red" }}>
                     <br></br>
                     Question tag: {ques['tag']}
                     <br></br>
                     {ques['question_prompt']}<br></br>
-                    <label ><input type="radio" name={ques['tag']} value='A' defaultChecked={optionsDict[ques['tag']] === "A"} onChange={(e) => handleMultiRadioChange(e, ques['tag'])} />{ques['option_A']}</label>
+                    <label ><input type="radio" className="option-input radio" name={ques['tag']} value='A' defaultChecked={optionsDict[ques['tag']] === "A"} onChange={(e) => handleMultiRadioChange(e, ques['tag'])} />{ques['option_A']}</label>
                     <label ><input type="radio" name={ques['tag']} value='B' defaultChecked={optionsDict[ques['tag']] === "B"} onChange={(e) => handleMultiRadioChange(e, ques['tag'])} />{ques['option_B']}</label>
                     <label ><input type="radio" name={ques['tag']} value='C' defaultChecked={optionsDict[ques['tag']] === "C"} onChange={(e) => handleMultiRadioChange(e, ques['tag'])} />{ques['option_C']}</label>
                     <label ><input type="radio" name={ques['tag']} value='D' defaultChecked={optionsDict[ques['tag']] === "D"} onChange={(e) => handleMultiRadioChange(e, ques['tag'])} />{ques['option_D']}</label>

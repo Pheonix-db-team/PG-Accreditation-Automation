@@ -78,43 +78,44 @@ function StudentCourseRegPage(navigation) {
         return (
             <Card className='studentcard'>
 
-            <body>
-              <div><h2><b>Student Course RegPage</b></h2>
-                    
-                    <ul >
-                        {subject_array.map(({ SubjectName, SubjectID }, index) => {
-                            console.log(SubjectID);
-                            return (
-                                <li key={index}>
-                                    <div key={SubjectName}>
+                <body>
+                    <div><h2><b>Student Course RegPage</b></h2>
 
-                                        <input
-                                            type="checkbox"
-                                            id={`custom-checkbox-${index}`}
-                                            name={SubjectID}
-                                            value={SubjectName}
-                                            checked={checkedState[index]}
-                                            onChange={() => handleOnChange(index)}
-                                        /><label >{subject_from_id(subject_array, SubjectID)}</label>
+                        <ul >
+                            {subject_array.map(({ SubjectName, SubjectID }, index) => {
+                                console.log(SubjectID);
+                                return (
+                                    <li key={index}>
+                                        <div key={SubjectName}>
 
-                                    </div>
-                                </li>
+                                            <input
+                                                type="checkbox"
+                                                className='option-input checkbox'
+                                                id={`custom-checkbox-${index}`}
+                                                name={SubjectID}
+                                                value={SubjectName}
+                                                checked={checkedState[index]}
+                                                onChange={() => handleOnChange(index)}
+                                            /><label >{subject_from_id(subject_array, SubjectID)}</label>
 
-                            );
-                        })}
-                        <button className='styledbutton' onClick={handleRegisterSubmit} >Register</button>
-                        <button className='styledbutton' onClick={() => navigate(-1)}>Back</button>
-                       <br></br>
-                       <br></br>
-                        <div >Subjects selected :</div>
-                        <div>{ssubjects.map((subject) => <li> <div key={subject}>
-                            <h6> {subject_from_id(subject_array, subject)}</h6>
-                        </div></li>)}
-                        </div>
+                                        </div>
+                                    </li>
 
-                    </ul>
-                </div>
-            </body>
+                                );
+                            })}
+                            <button className='styledbutton' onClick={handleRegisterSubmit} >Register</button>
+                            <button className='styledbutton' onClick={() => navigate(-1)}>Back</button>
+                            <br></br>
+                            <br></br>
+                            <div >Subjects selected :</div>
+                            <div>{ssubjects.map((subject) => <li> <div key={subject}>
+                                <h6> {subject_from_id(subject_array, subject)}</h6>
+                            </div></li>)}
+                            </div>
+
+                        </ul>
+                    </div>
+                </body>
             </Card>
         );
     else {
