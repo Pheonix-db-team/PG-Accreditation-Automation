@@ -101,13 +101,13 @@ function FacultySignupPage() {
                 <br></br>
                 <form onSubmit={handleSubmit
                 }>
-                    <div > <h2><b>Add Faculty</b></h2></div>
+                    <div className='left_space_div'> <h2><b>Add Faculty</b></h2></div>
                     <br></br>
-                    <div>Faculty ID:
+                    <div className='left_space_div'>Faculty ID:
                         <input type="text" value={facultyID} onChange={(e) => setFacultyID(e.target.value)} placeholder='must be unique' required></input>
                     </div>
                     <br></br>
-                    <div>Faculty Name:
+                    <div className='left_space_div'>Faculty Name:
                         {/* <br></br> */}
                         <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder='Faculty name' required></input>
                     </div>
@@ -117,7 +117,7 @@ function FacultySignupPage() {
 
                     {/* {"⬇️ Select department ⬇️"} */}
 
-                    <div>Select Department:
+                    <div className='left_space_div'>Select Department:
                         <select onChange={handleDepartmentChange}>
 
                             {departments.map((department) => <option key={department.label
@@ -125,18 +125,18 @@ function FacultySignupPage() {
                         </select>
                     </div>
                     <br></br>
-                    <div>Email:
+                    <div className='left_space_div'>Email:
                         <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Email' required></input>
                     </div>
                     <br></br>
-                    <div>Password:
+                    <div className='left_space_div'>Password:
                         <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Password' required></input>
                     </div>
                     <br></br>
-                    <div>
+                    <div className='left_space_div'>
 
-                        <input className='submitbutton' type="submit"></input>
-                        <button className='buttonleft' onClick={() => navigate(-1)}>Back</button>
+                        <input className='styledbutton' type="submit"></input>
+                        <button className='styledbutton' onClick={() => navigate(-1)}>Back</button>
                     </div>
                 </form>
 

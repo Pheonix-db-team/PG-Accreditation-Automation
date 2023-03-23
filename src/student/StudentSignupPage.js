@@ -133,22 +133,22 @@ function StudentSignupPage() {
     }
     return (
         <Card className='studentcard'>
-            <div>
+            <div className='left_space_div'>
                 <img className='showlogo' src={img1} width="15%" />
             </div>
-            <div>
+            <div className='left_space_div'>
                 <br></br>
 
                 <br></br>
                 <form onSubmit={handleSubmit
                 }>
-                    <div > <h2><b>Add Student</b></h2></div>
+                    <div className='left_space_div' > <h2><b>Add Student</b></h2></div>
                     <br></br>
-                    <div> Student ID:
+                    <div className='left_space_div'> Student ID:
                         <input type="text" value={enrolmentNo} onChange={(e) => setEnrolmentNo(e.target.value)} placeholder='  must be unique' required ></input>
                     </div>
                     <br></br>
-                    <div>Student Name:
+                    <div className='left_space_div'>Student Name:
                         <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder='Student name' required ></input>
                     </div>
                     <br></br>
@@ -156,7 +156,7 @@ function StudentSignupPage() {
 
                     {/* {"⬇️ Select department ⬇️"} */}
 
-                    <div>Selected department:
+                    <div className='left_space_div'>Selected department:
                         <select onChange={handleDepartmentChange}>
 
                             {departments.map((department) => <option key={department.label
@@ -164,19 +164,19 @@ function StudentSignupPage() {
                         </select>
                     </div>
                     <br></br>
-                    <div>Email:
+                    <div className='left_space_div'>Email:
                         <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Email' required ></input>
                     </div>
                     <br></br>
-                    <div>Password:
+                    <div className='left_space_div'>Password:
                         <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Password' required ></input>
                     </div>
                     <br></br>
 
-                    <div>
+                    <div className='left_space_div'>
 
-                        <input className='submitbutton' type="submit"></input>
-                        <button className='buttonleft' onClick={() => navigate(-1)}>Back</button>
+                        <input className='styledbutton' type="submit"></input>
+                        <button className='styledbutton' onClick={() => navigate(-1)}>Back</button>
                     </div>
                 </form>
 

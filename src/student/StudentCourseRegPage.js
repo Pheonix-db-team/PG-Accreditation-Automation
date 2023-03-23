@@ -77,16 +77,17 @@ function StudentCourseRegPage(navigation) {
     if (student_data.Courses_Registered.length == 0)
         return (
             <Card className='studentcard'>
-
+                <br></br>
                 <body>
-                    <div><h2><b>Student Course RegPage</b></h2>
+                    <br></br>
+                    <div className="left_space_div" ><h2><center>Student Course RegPage</center></h2>
 
                         <ul >
                             {subject_array.map(({ SubjectName, SubjectID }, index) => {
                                 console.log(SubjectID);
                                 return (
-                                    <li key={index}>
-                                        <div key={SubjectName}>
+                                    <li key={index} className='nobull'>
+                                        <div key={SubjectName} className="left_space_div lef">
 
                                             <input
                                                 type="checkbox"
@@ -103,13 +104,14 @@ function StudentCourseRegPage(navigation) {
 
                                 );
                             })}
+                            <br></br>
                             <button className='styledbutton' onClick={handleRegisterSubmit} >Register</button>
                             <button className='styledbutton' onClick={() => navigate(-1)}>Back</button>
                             <br></br>
                             <br></br>
-                            <div >Subjects selected :</div>
-                            <div>{ssubjects.map((subject) => <li> <div key={subject}>
-                                <h6> {subject_from_id(subject_array, subject)}</h6>
+                            <div className="left_space_div" ><h2>Subjects selected :</h2></div>
+                            <div className="left_more_space_div">{ssubjects.map((subject) => <li> <div className="left_space_div" key={subject}>
+                                <h5> {subject_from_id(subject_array, subject)}</h5>
                             </div></li>)}
                             </div>
 

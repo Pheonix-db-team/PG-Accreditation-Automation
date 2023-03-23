@@ -128,27 +128,32 @@ function StudentDashboard() {
     }
     return (
         <Card className='studentcard'>
-        <div>
-            <img className='showlogo' src={img1} width="15%" />
-        </div>
-        <body>
-            <div className='stdDash'> <h2 className='center'><b>Student Dashboard</b></h2>
-               
-                Name :{student['Name']}
-                <br></br>
-                Email :{student['EmailID']}
-                <br></br>
-                Department :{student['Department']}
-                <br></br>
-                <br></br>
-                Courses_Registered status:{(Array.isArray(student['Courses_Registered']) && student['Courses_Registered'].length) ? "✅" : "❌"}
-                {(Array.isArray(student['Courses_Registered']) && student['Courses_Registered'].length) ? <button className='styledbutton' onClick={() => CESResponsePageNavigation()}>CES Available</button>
-                    : <button className='styledbutton' onClick={() => CourseRegPageNavigation()}>Register for Courses</button>}
-                <br></br>
-            </div >
-            <button className='styledbutton1' onClick={() => SubjectListPageNavigation()}>CES Subjectwise</button>
-            <button className='styledbutton1' onClick={() => navigate(-1)}>Logout</button>
-        </body >
+            <div>
+                <img className='showlogo' src={img1} width="15%" />
+            </div>
+            <body>
+                <div className='stdDash'> <h2 className='center'><b>Student Dashboard</b></h2>
+
+                    Name :{student['Name']}
+                    <br></br>
+                    Email :{student['EmailID']}
+                    <br></br>
+                    Department :{student['Department']}
+                    <br></br>
+                    <br></br>
+                    Courses_Registered status:{(Array.isArray(student['Courses_Registered']) && student['Courses_Registered'].length) ? "✅" : "❌        "}
+                    {(Array.isArray(student['Courses_Registered']) && student['Courses_Registered'].length) ? <button className='styledbutton' onClick={() => CESResponsePageNavigation()}>CES Available</button>
+                        : <button className='styledbutton' onClick={() => CourseRegPageNavigation()}>Register for Courses</button>}
+                    <br></br>
+
+                    <br></br>
+                    <button className='styledbutton1' onClick={() => SubjectListPageNavigation()}>CES Subjectwise</button>
+                    <br></br>
+                    <br></br>
+                    <button className='styledbutton1' onClick={() => navigate(-1)}>Logout</button>
+                    <br></br>
+                </div >
+            </body >
         </Card>
     )
 }

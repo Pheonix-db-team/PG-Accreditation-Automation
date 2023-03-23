@@ -63,8 +63,10 @@ input[type=submit]:hover {
 }
 
 .styledbutton {
+  font-size: 20px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   display: inline-block;
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
   border: none;
   border-radius: 5rem;
   background-color: var(--color_primary);
@@ -139,6 +141,12 @@ input[type=submit]:hover {
   font-size: 20px;
 }
 
+.left_more_space_div {
+  padding-left: 20px;
+  padding-right: 10px;
+  font-size: 20px;
+}
+
 .label_spacing {
   padding-left: 10px;
   padding-right: 10px;
@@ -190,8 +198,12 @@ input[type=submit]:hover {
   }
 }
 
-.select {
-  font-size: 50px;
+.nobull {
+  list-style-type: none;
+}
+
+.select_bigger {
+  font-size: 20px;
 }
 
 .studentcard {

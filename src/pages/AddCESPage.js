@@ -145,60 +145,66 @@ function AddCESPage() {
     }
     return (
         <Card className='studentcard'>
-            <div>
+            <div className='left_space_div'>
                 <img className='showlogo' src={img1} width="15%" />
             </div>
             <body>
 
                 <form onSubmit={handleAddQuestion
                 }>
-                    <div > <h2><b>Add CES</b></h2></div>
-                    <br></br>
+                    <div className='left_space_div' > <h2>Add CES Form </h2>
+                        <br></br>
 
-                    <div>Select Subject:
-                        <select onChange={handleSubjectChange}>                        {subjectArr.map((sub) => <option key={sub.SubjectID
-                        } value={sub.SubjectID}>{sub.Name}</option>)}
-                        </select>
+                        <div className='left_more_space_div'>Select Subject:
+                            <select onChange={handleSubjectChange}>                        {subjectArr.map((sub) => <option key={sub.SubjectID
+                            } value={sub.SubjectID}>{sub.Name}</option>)}
+                            </select>
+                        </div>
+
+                        <br></br> Question Prompt:
+                        {/* <br></br> */}
+                        <input type="text" value={questionPrompt} onChange={(e) => setQuestionPrompt(e.target.value)}></input>
+                        <br></br>
+                        <br></br>
+                        Option A:
+
+                        <input type="text" value={optionA} onChange={(e) => setOptionA(e.target.value)}></input>
+                        <br></br><br></br>
+                        Option B:
+                        {/* <br></br> */}
+                        <input type="text" value={optionB} onChange={(e) => setOptionB(e.target.value)}></input>
+                        <br></br><br></br>
+                        Option C:
+                        {/* <br></br> */}
+                        <input type="text" value={optionC} onChange={(e) => setOptionC(e.target.value)}></input>
+                        <br></br><br></br>
+                        Option D:
+                        {/* <br></br> */}
+
+                        <input type="text" value={optionD} onChange={(e) => setOptionD(e.target.value)}></input>
+                        <br></br>
+                        <br></br>
+                        <input type="submit" value="Add" ></input>
+
                     </div>
-
-                    <br></br> Question Prompt:
-                    {/* <br></br> */}
-                    <input type="text" value={questionPrompt} onChange={(e) => setQuestionPrompt(e.target.value)}></input>
-                    <br></br>
-                    <br></br>
-                    OptionA:
-
-                    <input type="text" value={optionA} onChange={(e) => setOptionA(e.target.value)}></input>
-                    <br></br><br></br>
-                    OptionB:
-                    {/* <br></br> */}
-                    <input type="text" value={optionB} onChange={(e) => setOptionB(e.target.value)}></input>
-                    <br></br><br></br>
-                    OptionC:
-                    {/* <br></br> */}
-                    <input type="text" value={optionC} onChange={(e) => setOptionC(e.target.value)}></input>
-                    <br></br><br></br>
-                    OptionD:
-                    {/* <br></br> */}
-
-                    <input type="text" value={optionD} onChange={(e) => setOptionD(e.target.value)}></input>
-                    <br></br>
-                    <br></br>
-                    <input type="submit" value="Add" ></input>
                 </form>
                 <br></br>
-                <DatePicker selected={lastDate} onChange={(date) => setLastDate(date)} />
-                <div >CES Closing Date</div>
+                <div className='left_more_space_div'>
+                    <div className='left_space_div' >CES Closing Date</div>
+                    <DatePicker selected={lastDate} onChange={(date) => setLastDate(date)} />
+
+                </div>
+
 
 
                 <br></br>
-                <div className='center'>
+                <div className='left_space_div' >
                     <button className='styledbutton' onClick={() => handleSubmit()}>Submit CES</button>
                     <button className='styledbutton' onClick={goBack}>Back</button>
                     <br></br><br></br>
-                    Question:
+                    Questions:
                     {quesArr.map((ques, index) =>
-                        <div key={index}>
+                        <div className='left_space_div' key={ques['tag']}>
                             {ques.question_prompt}
                             <br></br>
                             A. {ques.option_A} B. {ques.option_B} C. {ques.option_C} D. {ques.option_D}

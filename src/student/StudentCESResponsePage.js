@@ -157,7 +157,7 @@ function StudentCESResponsePage() {
     }
     return (
         <Card className='studentcard'>
-            <div>
+            <div className='left_space_div'>
                 <button className='styledbutton' onClick={() => navigate(-1)}>Back</button>
 
                 <img className='showlogo' src={img1} width="15%" />
@@ -168,16 +168,16 @@ function StudentCESResponsePage() {
                 <br></br>
 
                 {/* {"⬇️ Select Subject ⬇️"} */}
-                <div>
+                <div className='left_space_div'>
 
-                    <div className="left_space_div" key="Subject">Select Subject:
+                    <div className='left_space_div' key="Subject">Select Subject:
                         <select className='select_bigger' onChange={handleSubjectChange}>                        {subjectArr.map((sub) => <option key={sub.SubjectID
                         } value={sub.SubjectID}>{sub.Name}</option>)}
                         </select>
                     </div>
                 </div>
                 {quesArr.map((ques, index) =>
-                    <div key={index} className="left_space_div">
+                    <div className='left_space_div' key={index} >
                         <br></br>
                         Q.{index + 1} {ques['question_prompt']} ?<br></br>
                         <label className='label_spacing'><input type="radio" className="option-input radio" name={ques['tag']} value='A' defaultChecked={optionsDict[ques['tag']] === "A"} onChange={(e) => handleMultiRadioChange(e, ques['tag'])} />{ques['option_A']}</label>
@@ -189,8 +189,8 @@ function StudentCESResponsePage() {
                 )
                 }
 
-                <div className='center'>
-                    {(quesArr.length) ? <button className='styledbutton' onClick={() => handleSubmit()}>Submit CES Response</button> : <div>No questions</div>}
+                <div className='left_space_div'>
+                    {(quesArr.length) ? <button className='styledbutton' onClick={() => handleSubmit()}>Submit CES Response</button> : <div className='left_space_div'>No questions</div>}
                 </div>
             </body>
         </Card>
