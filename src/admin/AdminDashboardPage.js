@@ -1,9 +1,9 @@
 import React from 'react';
 import { useNavigate, useLocation } from "react-router-dom";
 import AuthIssueComponent from '../components/AuthIssueComponent';
-import { getDocs, collection, setDoc, getDoc, doc } from 'firebase/firestore';
-import { db } from '../config/firebase';
-import { Card, Grid } from '@mui/material';
+import { getDocs, collection } from 'firebase/firestore';
+import { auth, db } from '../config/firebase';
+import { Grid } from '@mui/material';
 
 function AdminDashboardPage() {
     const navigate = useNavigate();
@@ -107,9 +107,12 @@ function AdminDashboardPage() {
                     <span> View Students</span>
                 </button>
                 {/* <br></br><br></br> */}
-                <button className='styledbutton' onClick={() => navigate(-1)}>
-                    <i class="fa fa-sign-out " aria-hidden="true"></i>
-                    <span> Logout </span>
+                <button className='styledbutton' onClick={() => {
+                    auth.signOut();
+                    navigate(-1)
+                }}>
+
+                    Logout
                 </button>
 
 

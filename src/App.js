@@ -3,29 +3,29 @@ import './App.css';
 import { useState } from 'react';
 import HomePage from './pages/HomePage';
 function App() {
-  //  const num = 46;
-  //const str = "xyz";
-  //const students = ['A', 'B', 'C', 'D'];
-  const [name, setName] = useState("");
-  const [students, setStudents] = useState(['A', 'B', 'C', 'D']);
+  // //  const num = 46;
+  // //const str = "xyz";
+  // //const students = ['A', 'B', 'C', 'D'];
+  // const [name, setName] = useState("");
+  // const [students, setStudents] = useState(['A', 'B', 'C', 'D']);
 
-  const handleSubmit = (event) => {
-    //prevent redirect to oth. page
-    event.preventDefault();
-    //alert("My name is " + name);
-    // spread syntax   commonly used to make shallow copies
-    setStudents(currentStudents => [...currentStudents, name]);
-    setName('');
-  }
-  const handleDelete = (deleting_student) => {
-    const newStudents = students.filter((student) => student !== deleting_student);
-    //prevent redirect to oth. page
-    setStudents(newStudents)
-    alert(deleting_student + " Deleted!");
-  }
-  const listItems = students.map(student => <li style={{
-    margin: 3
-  }}  > {student} < button className='deletebutton' onClick={() => handleDelete(student)}> Delete</button ></li >);
+  // const handleSubmit = (event) => {
+  //   //prevent redirect to oth. page
+  //   event.preventDefault();
+  //   //alert("My name is " + name);
+  //   // spread syntax   commonly used to make shallow copies
+  //   setStudents(currentStudents => [...currentStudents, name]);
+  //   setName('');
+  // }
+  // const handleDelete = (deleting_student) => {
+  //   const newStudents = students.filter((student) => student !== deleting_student);
+  //   //prevent redirect to oth. page
+  //   setStudents(newStudents)
+  //   alert(deleting_student + " Deleted!");
+  // }
+  // const listItems = students.map(student => <li style={{
+  //   margin: 3
+  // }}  > {student} < button className='deletebutton' onClick={() => handleDelete(student)}> Delete</button ></li >);
 
   return (<div>{HomePage()}</div>);
   // return (

@@ -18,12 +18,12 @@ function AdminSigninPage() {
     const [password, setPassword] = useState("");
     const [fac, setFac] = useState({});
 
-    useEffect(() => {
-        //No Need
-    }
-        , []);
+    // useEffect(() => {
+    //     //No Need
+    // }
+    //     , []);
     const handleSubmit = async (event) => {
-
+        console.log("Submit call")
         event.preventDefault();
         try {
             const userCredential = await signInWithEmailAndPassword(auth, email, password)
@@ -71,7 +71,7 @@ function AdminSigninPage() {
 
     return (
 
-        <Card className='sitecard' >
+        <Card className='logincard ' >
             <div>
                 <div>
                     <center> <img className='showlogo' src={img1} width="85%" alt="Logo" /></center>
@@ -99,11 +99,15 @@ function AdminSigninPage() {
                             <br></br>
                             <div>
                                 <input type="submit" className='styledbutton'></input>
-                                <button className='styledbutton' onClick={() => navigate(-1)}>Back</button>
+
                             </div>
                         </CardContent>
                         <br></br>
                     </form>
+                    <button className='styledbutton' onClick={() => {
+                        console.log("culprit in call")
+                        navigate("/");
+                    }}>Back</button>
 
                 </div>
             </div>

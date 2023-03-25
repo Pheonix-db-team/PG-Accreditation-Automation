@@ -15,15 +15,15 @@ function StudentSigninPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    useEffect(() => {
-        signOut(auth).then(() => {
-            // Sign-out successful.
-        }).catch((error) => {
-            alert("⚠" + error.message);
-            // An error happened.
-        });
-    }
-        , []);
+    // useEffect(() => {
+    //     signOut(auth).then(() => {
+    //         // Sign-out successful.
+    //     }).catch((error) => {
+    //         alert("⚠" + error.message);
+    //         // An error happened.
+    //     });
+    // }
+    //     , []);
     const handleSubmit = async (event) => {
 
         event.preventDefault();
@@ -60,10 +60,10 @@ function StudentSigninPage() {
 
     return (
 
-        <Card className='sitecard' >
+        <Card className='logincard' >
             <div>
                 <div>
-                    <center> <img className='showlogo' src={img1} width="85%" alt="Logo" /></center>
+                    <center> <img className='showlogo' src={img1} width="100%" alt="Logo" /></center>
                 </div>
                 <div>
 
@@ -85,10 +85,11 @@ function StudentSigninPage() {
 
                             <div>
                                 <input type="submit" className='styledbutton'></input>
-                                <button className='styledbutton' onClick={() => navigate(-1)}>Back</button>
+
                             </div>
                         </CardContent>
                     </form>
+                    <button className='styledbutton' onClick={() => navigate(-1)}>Back</button>
                 </div>
             </div>
         </Card>

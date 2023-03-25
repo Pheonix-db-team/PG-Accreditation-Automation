@@ -9,7 +9,7 @@ import img1 from '../image/NiTC1.png';
 function StudentDashboard() {
     const { state } = useLocation();
     const navigate = useNavigate();
-    const [student, setStudent] = useState({});
+    const [student, setStudent] = useState(state.student);
     async function subjectCESAv() {
         try {
             const subjectsRef = collection(db, "subject");
@@ -47,8 +47,8 @@ function StudentDashboard() {
         try {
             const data = await getDoc(doc(db, "Student", state.student['EmailID']));
             const filtered_data = data.data();
-            console.log("Fetched data");
-            console.log(filtered_data);
+            //console.log("Fetched data");
+            //console.log(filtered_data);
             setStudent(filtered_data);
         }
         catch (err) {
@@ -56,12 +56,13 @@ function StudentDashboard() {
             alert("⚠" + err.message);
         }
     };
-    useEffect((event) => {
-        if (state) {
-            setStudent(state.student);
-        }
-    }
-        , []);
+    // useEffect((event) => {
+    //     if (state) {
+    //         console.log("culprit")
+    //         setStudent(state.student);
+    //     }
+    // }
+    //     , []);
     function CESResponsePageNavigation() {
         console.log("CES Button tapped Calling navigation ")
         navigate('/studentcesresponse', { state: { student: state.student } });
@@ -98,28 +99,28 @@ function StudentDashboard() {
         console.log("course Reg Page tapped Calling navigation ")
         navigate('/studentcoursereg', { state: { student: state.student, subject_arr: filtered_data } });
     }
-    useEffect(() => {
-        const fetchDetails = async () => {
-            try {
-                const data = await getDoc(doc(db, "Student", state.student.EmailID));
-                const filtered_data = data.data();
-                console.log("Fetched data");
-                console.log(filtered_data);
-                setStudent(filtered_data);
-            }
-            catch (err) {
-                console.error(err);
-                alert("⚠" + err.message);
-            }
+    // useEffect(() => {
+    //     const fetchDetails = async () => {
+    //         try {
+    //             const data = await getDoc(doc(db, "Student", state.student.EmailID));
+    //             const filtered_data = data.data();
+    //             console.log("Fetched data");
+    //             console.log(filtered_data);
+    //             setStudent(filtered_data);
+    //         }
+    //         catch (err) {
+    //             console.error(err);
+    //             alert("⚠" + err.message);
+    //         }
 
-        };
-        console.log("use Effect called");
-        if (state) {
-            setStudent(state.student);
-            fetchDetails();
-        }
-    }
-        , []);
+    //     };
+    //     console.log("use Effect called");
+    //     if (state) {
+    //         setStudent(state.student);
+    //         fetchDetails();
+    //     }
+    // }
+    //     , []);
     console.log(student);
     if (!(state)) {
         return (AuthIssueComponent());

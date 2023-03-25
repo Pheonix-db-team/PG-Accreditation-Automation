@@ -68,7 +68,7 @@ function FacultySigninPage() {
 
 
     return (
-        <Card className='sitecard' >
+        <Card className='logincard' >
             <div>
                 <div>
                     <center> <img className='showlogo' src={img1} width="85%" alt="Logo" /></center>
@@ -94,11 +94,11 @@ function FacultySigninPage() {
 
                             <div>
                                 <input type="submit" className='styledbutton'></input>
-                                <button className='styledbutton' onClick={() => navigate(-1)}>Back</button>
+
                             </div>
                         </CardContent>
                     </form>
-
+                    <button className='styledbutton' onClick={() => navigate(-1)}>Back</button>
                 </div>
             </div>
         </Card>
