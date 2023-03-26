@@ -5,6 +5,7 @@ import { getDocs, collection, setDoc, getDoc, doc } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { Card, Grid } from '@mui/material';
 
+
 function AdminDashboardPage() {
     const navigate = useNavigate();
     const { state } = useLocation();
@@ -72,49 +73,69 @@ function AdminDashboardPage() {
             direction="column"
             alignItems="center"
             justify="center"
-            style={{ minHeight: '100vh' }}
-            bgcolor='white'
+            style={{ minHeight: '100vh', backgroundColor: '#81BEF7' }}
+            
         >
-            <body className='buttonshifting'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+<div className='dashback'>
+        <img src={"logo-white.svg"} width="500" height="150" />
+      </div>
 
+      <body className='bodycolor'>
+      <Card className='sitecardadmin' >
+      <h2 class ="center"><b>ADMIN DASHBOARD</b></h2>
+            
 
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-
-
-
+  
+                <div class = "center">
                 <button className='styledbutton' onClick={() => addStudentNavigation()}>
                     <i class="fa fa-user " aria-hidden="true" ></i>
-                    <span> Add Student</span>
+                     Add Student
                 </button>
-                {/* <br></br><br></br> */}
-                <button className='styledbutton' onClick={() => addFacultyNavigation()}>
+                <br></br>                
+                 <br></br>
+                 <button className='styledbutton' onClick={() => addFacultyNavigation()}>
                     <i class="fa fa-user" aria-hidden="true"></i>
-                    <span> Add Faculty</span>
+                     Add Faculty
                 </button>
+                <br></br>
+                <br></br>
                 {/* <br></br><br></br> */}
                 <button className='styledbutton' onClick={() => addSubjectNavigation()}>
                     <i class="fa fa-book" aria-hidden="true"></i>
-                    <span> Add Subject</span>
+                     Add Subject
                 </button>
-                {/* <br></br><br></br> */}
+                
+                <br></br>
+                <br></br>
+                
+                
                 <button className='styledbutton' onClick={() => viewFacultyNavigation()}>
                     <i class="fa fa-table" aria-hidden="true"></i>
-                    <span> View Faculties</span>
+                    View Faculties
                 </button>
+                
+                <br></br>
+                <br></br>
                 {/* <br></br><br></br> */}
                 <button className='styledbutton' onClick={() => viewStudentNavigation()}>
                     <i class="fa fa-table" aria-hidden="true"></i>
-                    <span> View Students</span>
+                     View Students
                 </button>
+                
+                <br></br>
+                <br></br>
                 {/* <br></br><br></br> */}
                 <button className='styledbutton' onClick={() => navigate(-1)}>
                     <i class="fa fa-sign-out " aria-hidden="true"></i>
                     <span> Logout </span>
                 </button>
+                </div>
 
 
-
-            </body>
+            
+        </Card>
+        </body>
         </Grid>
     );
 
