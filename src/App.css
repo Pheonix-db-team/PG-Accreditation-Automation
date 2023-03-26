@@ -229,7 +229,7 @@ input[type=submit]:hover {
   border: 1px solid #000007;
   padding: 0 0 25px 0;
   border-radius: 5px;
-  width: 85%;
+  width: 480px;
   font-family: helvetica, sans-serif;
   font-size: 20px;
   margin: 10px auto;
@@ -241,17 +241,23 @@ input[type=submit]:hover {
 
 .sitecardadmin{
   /* background: #81BEF7; */
-  background-color: #81BEF7;
+  background-color: #9f81f7;
   border: 1px solid #000007;
   color: '#81BEF7';
   padding: 0 0 25px 0;
   border-radius: 5px;
-  width: 100%;
+  width: 700px;
   font-family: helvetica, sans-serif;
   font-size: 20px;
-  margin: 10px auto;
-  box-shadow: 20px 20px 60px #bebebe,
+  /* margin: 0 auto; */
+  align-content: center;
+  height: 300px;
+
+  box-shadow: 20px 20px 60px #bc7417,
     -20px -20px 60px skyblue;
+}
+.divstyle{
+  margin-right: 30px;
 }
 
 
@@ -483,6 +489,9 @@ span {
 
 .option-input.radio::after {
   border-radius: 100%;
+}
+.stylebuttonadmin{
+  padding-left: 80px;
 }
 
 @keyframes click-wave {

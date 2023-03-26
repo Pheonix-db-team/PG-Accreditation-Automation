@@ -70,11 +70,9 @@ function AdminDashboardPage() {
         <Grid
             container
             spacing={0}
-            direction="column"
-            alignItems="center"
-            justify="center"
-            style={{ minHeight: '100vh', backgroundColor: '#81BEF7' }}
-            
+            style={{ minHeight: '100vh',margin:0, backgroundColor: '#81BEF7' }}
+            width="1535px"
+             
         >
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 <div className='dashback'>
@@ -82,54 +80,53 @@ function AdminDashboardPage() {
       </div>
 
       <body className='bodycolor'>
-      <Card className='sitecardadmin' >
+      <Card className='sitecardadmin'  >
       <h2 class ="center"><b>ADMIN DASHBOARD</b></h2>
             
 
   
-                <div class = "center">
+                <div>
+                <div  className='stylebuttonadmin'>
+
                 <button className='styledbutton' onClick={() => addStudentNavigation()}>
                     <i class="fa fa-user " aria-hidden="true" ></i>
                      Add Student
                 </button>
-                <br></br>                
-                 <br></br>
+                {/* <br></br>                 */}
+                 {/* <br></br> */}
                  <button className='styledbutton' onClick={() => addFacultyNavigation()}>
                     <i class="fa fa-user" aria-hidden="true"></i>
                      Add Faculty
                 </button>
-                <br></br>
-                <br></br>
-                {/* <br></br><br></br> */}
+                
                 <button className='styledbutton' onClick={() => addSubjectNavigation()}>
                     <i class="fa fa-book" aria-hidden="true"></i>
                      Add Subject
                 </button>
+                </div>
+
+             
                 
-                <br></br>
-                <br></br>
-                
-                
+                <div  className='stylebuttonadmin'>
+                    <br></br>
                 <button className='styledbutton' onClick={() => viewFacultyNavigation()}>
                     <i class="fa fa-table" aria-hidden="true"></i>
                     View Faculties
                 </button>
                 
-                <br></br>
-                <br></br>
+                
                 {/* <br></br><br></br> */}
                 <button className='styledbutton' onClick={() => viewStudentNavigation()}>
                     <i class="fa fa-table" aria-hidden="true"></i>
                      View Students
                 </button>
-                
-                <br></br>
-                <br></br>
+            
                 {/* <br></br><br></br> */}
                 <button className='styledbutton' onClick={() => navigate(-1)}>
                     <i class="fa fa-sign-out " aria-hidden="true"></i>
-                    <span> Logout </span>
+                     Logout 
                 </button>
+                </div>
                 </div>
 
 
