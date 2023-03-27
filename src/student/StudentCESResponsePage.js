@@ -157,7 +157,7 @@ function StudentCESResponsePage() {
     return (
         <Card className='sitecard'>
             <div className='left_space_div'>
-                <button className='styledbutton' onClick={() => navigate(-1)}>Back</button>
+                
 
                 <center> <img className='showlogo' src={img1} width="85%" alt="Logo" /></center>
             </div>
@@ -190,8 +190,10 @@ function StudentCESResponsePage() {
 
                 <div className='left_space_div'>
                     {(quesArr.length) ? <button className='styledbutton' onClick={() => handleSubmit()}>Submit CES Response</button> : <div className='left_space_div'>No questions</div>}
+                    <button className='styledbutton' onClick={() => navigate(-1)}>Back</button>
                 </div>
             </body>
+
         </Card>
     )
 } export default StudentCESResponsePage
