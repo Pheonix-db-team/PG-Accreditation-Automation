@@ -118,6 +118,14 @@ function StudentCESResponsePage() {
         const sub_index_from_arr = getValueByKey(subjectArr, 'SubjectID', sub_id);
         setSubjectMap(subjectArr[sub_index_from_arr]);
         setQuesArr(subjectArr[sub_index_from_arr]['Question_List']);
+        var temp_option_dict = {}
+        quesArr.map((ques, key) => {
+            console.log("Ques tag ", ques['tag'])
+            temp_option_dict[ques['tag']] = 'A';
+        });
+        setOptionsDict(temp_option_dict);
+        console.log(option_selected_dict)
+
     }
 
     const handleSubmit = async (event) => {
@@ -157,7 +165,7 @@ function StudentCESResponsePage() {
     return (
         <Card className='sitecard'>
             <div className='left_space_div'>
-                <button className='styledbutton' onClick={() => navigate(-1)}>Back</button>
+
 
                 <center> <img className='showlogo' src={img1} width="85%" alt="Logo" /></center>
             </div>
@@ -190,8 +198,10 @@ function StudentCESResponsePage() {
 
                 <div className='left_space_div'>
                     {(quesArr.length) ? <button className='styledbutton' onClick={() => handleSubmit()}>Submit CES Response</button> : <div className='left_space_div'>No questions</div>}
+                    <button className='styledbutton' onClick={() => navigate(-1)}>Back</button>
                 </div>
             </body>
+
         </Card>
     )
 } export default StudentCESResponsePage

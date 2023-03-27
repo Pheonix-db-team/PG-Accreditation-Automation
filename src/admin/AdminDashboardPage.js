@@ -1,9 +1,9 @@
 import React from 'react';
 import { useNavigate, useLocation } from "react-router-dom";
 import AuthIssueComponent from '../components/AuthIssueComponent';
-import { getDocs, collection } from 'firebase/firestore';
-import { auth, db } from '../config/firebase';
-import { Grid } from '@mui/material';
+import { getDocs, collection, setDoc, getDoc, doc } from 'firebase/firestore';
+import { db } from '../config/firebase';
+import { Card, Grid } from '@mui/material';
 
 function AdminDashboardPage() {
     const navigate = useNavigate();
@@ -69,54 +69,68 @@ function AdminDashboardPage() {
         <Grid
             container
             spacing={0}
-            direction="column"
-            alignItems="center"
-            justify="center"
-            style={{ minHeight: '100vh' }}
-            bgcolor='white'
+            style={{ minHeight: '100vh', margin: 0, backgroundColor: '#81BEF7' }}
+            width="1535px"
+
         >
-            <body className='buttonshifting'>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+            <div className='dashback'>
+                <img src={"logo-white.svg"} width="500" height="150" />
+            </div>
 
-
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-
-
-
-                <button className='styledbutton' onClick={() => addStudentNavigation()}>
-                    <i class="fa fa-user " aria-hidden="true" ></i>
-                    <span> Add Student</span>
-                </button>
-                {/* <br></br><br></br> */}
-                <button className='styledbutton' onClick={() => addFacultyNavigation()}>
-                    <i class="fa fa-user" aria-hidden="true"></i>
-                    <span> Add Faculty</span>
-                </button>
-                {/* <br></br><br></br> */}
-                <button className='styledbutton' onClick={() => addSubjectNavigation()}>
-                    <i class="fa fa-book" aria-hidden="true"></i>
-                    <span> Add Subject</span>
-                </button>
-                {/* <br></br><br></br> */}
-                <button className='styledbutton' onClick={() => viewFacultyNavigation()}>
-                    <i class="fa fa-table" aria-hidden="true"></i>
-                    <span> View Faculties</span>
-                </button>
-                {/* <br></br><br></br> */}
-                <button className='styledbutton' onClick={() => viewStudentNavigation()}>
-                    <i class="fa fa-table" aria-hidden="true"></i>
-                    <span> View Students</span>
-                </button>
-                {/* <br></br><br></br> */}
-                <button className='styledbutton' onClick={() => {
-                    auth.signOut();
-                    navigate(-1)
-                }}>
-
-                    Logout
-                </button>
+            <body className='bodycolor'>
+                <Card className='sitecardadmin'  >
+                    <h2 class="center"><b>ADMIN DASHBOARD</b></h2>
 
 
 
+                    <div>
+                        <div className='stylebuttonadmin'>
+
+                            <button className='styledbutton' onClick={() => addStudentNavigation()}>
+                                <i class="fa fa-user " aria-hidden="true" ></i>
+                                Add Student
+                            </button>
+                            {/* <br></br>                 */}
+                            {/* <br></br> */}
+                            <button className='styledbutton' onClick={() => addFacultyNavigation()}>
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                                Add Faculty
+                            </button>
+
+                            <button className='styledbutton' onClick={() => addSubjectNavigation()}>
+                                <i class="fa fa-book" aria-hidden="true"></i>
+                                Add Subject
+                            </button>
+                        </div>
+
+
+
+                        <div className='stylebuttonadmin'>
+                            <br></br>
+                            <button className='styledbutton' onClick={() => viewFacultyNavigation()}>
+                                <i class="fa fa-table" aria-hidden="true"></i>
+                                View Faculties
+                            </button>
+
+
+                            {/* <br></br><br></br> */}
+                            <button className='styledbutton' onClick={() => viewStudentNavigation()}>
+                                <i class="fa fa-table" aria-hidden="true"></i>
+                                View Students
+                            </button>
+
+                            {/* <br></br><br></br> */}
+                            <button className='styledbutton' onClick={() => navigate(-1)}>
+                                <i class="fa fa-sign-out " aria-hidden="true"></i>
+                                <span> Logout </span>
+                            </button>
+                        </div>
+                    </div>
+
+
+
+                </Card>
             </body>
         </Grid>
     );

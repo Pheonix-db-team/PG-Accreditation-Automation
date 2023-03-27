@@ -229,7 +229,7 @@ input[type=submit]:hover {
   border: 1px solid #000007;
   padding: 0 0 25px 0;
   border-radius: 5px;
-  width: 85%;
+  width: 480px;
   font-family: helvetica, sans-serif;
   font-size: 20px;
   margin: 10px auto;
@@ -249,6 +249,65 @@ input[type=submit]:hover {
   font-size: 20px;
   margin: 10px auto;
 
+}
+
+.sitecardadmin {
+  /* background: #81BEF7; */
+  background-color: #9f81f7;
+  border: 1px solid #000007;
+  color: '#81BEF7';
+  padding: 0 0 25px 0;
+  border-radius: 5px;
+  width: 700px;
+  font-family: helvetica, sans-serif;
+  font-size: 20px;
+  /* margin: 0 auto; */
+  align-content: center;
+  height: 300px;
+
+  box-shadow: 20px 20px 60px #bc7417,
+    -20px -20px 60px skyblue;
+}
+
+.divstyle {
+  margin-right: 30px;
+}
+
+
+
+
+
+
+
+
+.dashback {
+  font-family: var(--bs-font-sans-serif);
+  background-color: '#81BEF7';
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #02264a;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  text-decoration-color: #02264a;
+  width: 1535px;
+  /* padding-left: 30px; */
+
+}
+
+.swapback1 {
+  font-family: var(--bs-font-sans-serif);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #02264a;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  text-decoration-color: #02264a;
+  width: 1535px;
+  /* padding-left: 30px; */
 
 }
 
@@ -316,6 +375,14 @@ input[type=submit]:hover {
 }
 
 .buttonshifting {
+  padding-top: 30px;
+  padding-left: 50px;
+  /*margin-right: 30px;*/
+  margin: auto;
+}
+
+.bodycolor {
+  color: #81BEF7;
   padding-top: 30px;
   padding-left: 50px;
   /*margin-right: 30px;*/
@@ -437,6 +504,10 @@ span {
 
 .option-input.radio::after {
   border-radius: 100%;
+}
+
+.stylebuttonadmin {
+  padding-left: 80px;
 }
 
 @keyframes click-wave {
