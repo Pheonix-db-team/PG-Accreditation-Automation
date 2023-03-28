@@ -33,6 +33,7 @@ import FacultyListPage from './faculty/ViewFacultyPage';
 import StudentListPage from './student/ViewStudentPage';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
+import NotFoundPage from './pages/404Page';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -197,6 +198,16 @@ const router = createBrowserRouter([
   {
     path: "/aboutpage",
     element: <AboutPage />,
+
+  },
+  {
+    path: "/404path",
+    element: < NotFoundPage />,
+
+  },
+  {
+    path: "/*",
+    element: < NotFoundPage />,
 
   },
 

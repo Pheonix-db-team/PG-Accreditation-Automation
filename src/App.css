@@ -526,3 +526,42 @@ span {
     opacity: 0;
   }
 }
+
+.not-found-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #FFA384;
+  font-family: Arial, sans-serif;
+}
+
+.not-found-page h1 {
+  color: blueviolet;
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.not-found-page p {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.not-found-page button {
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+.flying-bird {
+  position: absolute;
+  top: 20%;
+  left: -10%;
+  width: 70px;
+  height: auto;
+}
