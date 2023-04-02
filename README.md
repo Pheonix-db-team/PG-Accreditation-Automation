@@ -22,18 +22,18 @@ Runs the app in the development mode.
 
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
+### Home Page
+![Step 1 screenshot](https://images.tango.us/workflows/bb10f09a-9519-4887-ba25-a633c0819c4c/steps/623aba07-21c3-43d8-9158-454be6ee7287/814c1e1e-26d5-44fb-ba82-59decf0fe9a1.png?crop=focalpoint&fit=crop&fp-x=0.2667&fp-y=0.0460&fp-z=1.2758&w=1200&blend-align=bottom&blend-mode=normal&blend-x=800&blend64=aHR0cHM6Ly9pbWFnZXMudGFuZ28udXMvc3RhdGljL21hZGUtd2l0aC10YW5nby13YXRlcm1hcmsucG5n)
+### Add questions
+![Step 6 screenshot](https://images.tango.us/workflows/bb10f09a-9519-4887-ba25-a633c0819c4c/steps/7f7d352a-5d35-479f-8135-3acefa3fa279/4bb806dc-3502-4d77-8c95-e45275d46611.png?crop=focalpoint&fit=crop&fp-x=0.5000&fp-y=0.5000&w=1200&blend-align=bottom&blend-mode=normal&blend-x=800&blend64=aHR0cHM6Ly9pbWFnZXMudGFuZ28udXMvc3RhdGljL21hZGUtd2l0aC10YW5nby13YXRlcm1hcmsucG5n)
 
 
 
-![Home](notes/home.PNG)
-Home 
-![Dashboard](notes/admin_dashboard.png)
-Admin dashboard
-![Form](notes/form.png)
-CES Form
-![Responses](notes/ces.png)
+###  Student Dashboard
+![Step 12 screenshot](https://images.tango.us/workflows/bb10f09a-9519-4887-ba25-a633c0819c4c/steps/cdcb398b-32b6-4d85-9e64-c925fa55cf77/e044c4b9-0d55-4ca6-bedf-756eab211012.png?crop=focalpoint&fit=crop&fp-x=0.5000&fp-y=0.5000&w=1200&blend-align=bottom&blend-mode=normal&blend-x=800&blend64=aHR0cHM6Ly9pbWFnZXMudGFuZ28udXMvc3RhdGljL21hZGUtd2l0aC10YW5nby13YXRlcm1hcmsucG5n)
 
-
+### View Responses
+![Step 17 screenshot](https://images.tango.us/workflows/bb10f09a-9519-4887-ba25-a633c0819c4c/steps/46b907aa-7ece-48cb-b417-6eb9761df74e/77956fb2-fc51-4b0b-b95d-642aab688184.png?crop=focalpoint&fit=crop&fp-x=0.5362&fp-y=0.4485&fp-z=1.1561&w=1200&blend-align=bottom&blend-mode=normal&blend-x=800&blend64=aHR0cHM6Ly9pbWFnZXMudGFuZ28udXMvc3RhdGljL21hZGUtd2l0aC10YW5nby13YXRlcm1hcmsucG5n)
 
 
 ---
@@ -59,6 +59,3 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 Made with [![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
 
 ---
-![class diagram](notes/class_diagram.jpg)
-
-![er diagram](notes/er_diagram.png)
