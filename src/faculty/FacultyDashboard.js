@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { getDoc, doc } from 'firebase/firestore';
-import { db } from '../config/firebase';
+import { getDoc, doc, getDocs, collection } from 'firebase/firestore';
+import { db, } from '../config/firebase';
 import { useNavigate, useLocation } from "react-router-dom";
 import AuthIssueComponent from '../components/AuthIssueComponent';
 import Card from 'react-bootstrap/Card';
@@ -14,6 +14,20 @@ function FacultyDashboard() {
         console.log("CES Button tapped Calling navigation ")
         navigate('/addces', { state: { fac: state.fac } });
 
+    }
+    const SubjectListPageNavigation = async () => {
+        var filtered_data = [];
+        try {
+            const data = await getDocs(collection(db, "subject"));
+            filtered_data = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+            console.log(filtered_data);
+        }
+        catch (err) {
+            console.error(err);
+            alert("⚠" + err.message);
+        }
+        console.log("Subject List Page tapped Calling navigation ")
+        navigate('/subjectlist', { state: { student: state.student, subject_arr: filtered_data } });
     }
     const [fac, setFac] = useState(state ? state.fac : {});
 
@@ -70,6 +84,7 @@ function FacultyDashboard() {
                     <br></br>
 
                     <button className='styledbutton' onClick={() => addCESPageNavigation()}>Add CES</button>
+                    <button className='styledbutton' onClick={() => SubjectListPageNavigation()}>view CES</button>
                     <button className='styledbutton' onClick={() => navigate(-1)}>Logout</button>
                 </div>
             </body>
