@@ -2,6 +2,8 @@
 
 [Tango Workflow](notes/workflow.md)
 
+[Tango Future Scope](notes/future_scope.md)
+
 ## Introduction
 
 At the end of the course session, one must properly solicit feedback from the enrolled students to improve the course structure and outcomes. For this reason, there is a requirement for a simple and hassle-free application that will allow faculty to post the course exit survey. Alongside supporting Automation (Opening and Closing of Course Exit Survey automatically instead of faculty doing it manually) and students to fill out the Course Exit Survey accordingly. Our project’s principal objective is to make this task uncomplicated and simple. To help students and faculty better understand the course experience and outcomes, aim of this project is  to develop an online PG Accreditation Course Exit Survey and Course Survey application.
