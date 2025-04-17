@@ -2,6 +2,7 @@ import React from 'react'
 import { getDocs, collection, where, query } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { useNavigate, useLocation } from "react-router-dom";
+
 function SubjectListPage() {
     const navigate = useNavigate();
     let { state } = useLocation();
@@ -26,20 +27,40 @@ function SubjectListPage() {
         }
     }
     return (
-        <div><h2 className='center'><b>SubjectList Page</b></h2>
-            <br></br>
-            <table>
-                <tr> <th>SubjectID </th> <th>Subject Name</th> <th>Faculty_Assigned</th><th>view surveys</th> </tr>
-                {
-                    subjectlistArr.map((subject) => <tr key={subject.id}>
-                        <td>{subject.SubjectID}</td><td>{subject.Name}</td><td>{subject.Faculty_Assigned}</td> <td> <button className='styledbutton' onClick={() => handleTap(subject)}>View Surveys</button></td>
-                    </tr>)
-                }
-            </table>
-            <div className='center'>
-                <button className="styledbutton" onClick={() => navigate(-1)}>Back</button>
-            </div>
-        </div>
+<div className="subjectlist-page">
+  <h2 className="subjectlist-heading"><b>Subject List Page</b></h2>
+
+  <div className="subjectlist-table-container">
+    <table className="subjectlist-table">
+      <thead>
+        <tr>
+          <th>Subject ID</th>
+          <th>Subject Name</th>
+          <th>Faculty Assigned</th>
+          <th>View Surveys</th>
+        </tr>
+      </thead>
+      <tbody>
+        {subjectlistArr.map((subject) => (
+          <tr key={subject.id}>
+            <td>{subject.SubjectID}</td>
+            <td>{subject.Name}</td>
+            <td>{subject.Faculty_Assigned}</td>
+            <td>
+              <button className="styledbutton" onClick={() => handleTap(subject)}>View Surveys</button>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <div className="center">
+    <button className="styledbutton" onClick={() => navigate(-1)}>Back</button>
+  </div>
+</div>
+
+
     )
 }
 

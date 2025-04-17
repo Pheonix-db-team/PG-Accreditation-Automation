@@ -1,36 +1,28 @@
-
-import React from 'react'
+import React from 'react';
 import { Link } from "react-router-dom";
-const style_item = {
 
-    textDecoration: 'none',
-    backgroundColor: '#9CFF2E',
-    fontSize: '25px',
-    borderRadius: '66px',
-    background: '#e0e0e0',
-    backgroundColor: '#e0e0e0',
-    boxShadow: 'rgba(156, 255, 46) 0px 3px 8px',
-    paddingRight: '10px',
-    paddingLeft: '10px',
-    paddingTop: '5px',
-    paddingBottom: '5px',
+const NaviBar = () => {
+  return (
+    <div className="flex justify-center">
+      <div className="flex flex-wrap justify-center items-center gap-3 px-4">
+        {[
+          { label: 'Home🏠', path: '/' },
+          { label: 'Admin Login🔐', path: '/adminsignin' },
+          { label: 'Faculty Login🔐', path: '/facultysignin' },
+          { label: 'Student Login🔐', path: '/studentsignin' },
+          { label: 'About📄', path: '/aboutpage' },
+        ].map((item) => (
+          <Link
+            key={item.path}
+            to={item.path}
+            className="bg-gray-200 text-black text-sm sm:text-base md:text-lg px-4 py-2 rounded-full font-semibold shadow-md hover:scale-105 hover:shadow-lg transition-all"
+          >
+            {item.label}
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+};
 
-}
-function NaviBar() {
-    return (
-        <div className='navbar'>
-            <div className='navbar-menu'>
-                <Link to="/" style={style_item}>Home🏠</Link>
-                <Link to="/adminsignin" style={style_item} >Admin Login🔐</Link>
-                <Link to="/facultysignin" style={style_item} >Faculty Login🔐</Link>
-                <Link to="/studentsignin" style={style_item} >Student Login🔐</Link>
-                <Link to="/aboutpage" style={style_item} >About📄</Link>
-
-            </div>
-        </div >
-    )
-}
-
-
-
-export default NaviBar
+export default NaviBar;

@@ -9,6 +9,7 @@ import Card from 'react-bootstrap/Card';
 import Typography from '@mui/material/Typography';
 import CardContent from '@mui/material/CardContent';
 import img1 from '../image/NiTC1.png';
+import ParticlesBg from 'particles-bg'
 
 function StudentSigninPage() {
     const navigate = useNavigate();
@@ -59,41 +60,83 @@ function StudentSigninPage() {
     }
 
     return (
+<div style={{ position: 'relative', minHeight: '100vh', overflow: 'hidden' }}>
+<ParticlesBg type="circle" bg={true} />
+<div style={{
+    position: 'relative',
+    zIndex: 1,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    minHeight: '100vh',
+    padding: '1rem'
+  }}>
 
-        <Card className='logincard' >
-            <div>
-                <div>
-                    <center> <img className='showlogo' src={img1} width="100%" alt="Logo" /></center>
+            <Card className='logincard' style={{
+                width: '100%',
+                maxWidth: '400px',
+                padding: '1.5rem',
+                boxSizing: 'border-box',
+                borderRadius: '12px',
+                boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
+            }}>
+
+
+                <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
+                    <img className='showlogo' src={img1} alt="Logo" style={{ maxWidth: '80%', width: '120%', height: 'auto' }} />
                 </div>
-                <div>
 
-                    <form onSubmit={handleSubmit
-                    }>
-                        <CardContent>
-                            <Typography gutterBottom variant="h5" component="div">
-                                Student Signin
-                            </Typography>
+                <form onSubmit={handleSubmit}>
+                    <CardContent>
+                        <Typography gutterBottom variant="h5" component="div" align="center">
+                            Student Login
+                        </Typography>
 
-                            <div><b>Email:</b>
-                                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Student Email" required ></input>
-                            </div>
-                            <br></br>
-                            <div><b>Password:</b>
-                                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" required ></input>
-                            </div>
-                            <br></br>
+                        <div style={{ marginBottom: '1rem' }}>
+                            <b>Email:</b><br />
+                            <input
+                                type="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                placeholder="Student Email"
+                                required
+                                style={{ width: '100%', padding: '0.5rem', borderRadius: '6px', border: '1px solid #ccc' }}
+                            />
+                        </div>
 
-                            <div>
-                                <input type="submit" className='styledbutton'></input>
+                        <div style={{ marginBottom: '1rem' }}>
+                            <b>Password:</b><br />
+                            <input
+                                type="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                placeholder="Password"
+                                required
+                                style={{ width: '100%', padding: '0.5rem', borderRadius: '6px', border: '1px solid #ccc' }}
+                            />
+                        </div>
 
-                            </div>
-                        </CardContent>
-                    </form>
-                    <button className='styledbutton' onClick={() => navigate(-1)}>Back</button>
-                </div>
-            </div>
-        </Card>
+                        <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
+                            <input
+                                type="submit"
+                                className='styledbutton'
+                                value="Sign In"
+                                style={{ padding: '0.5rem 1.5rem', borderRadius: '6px', border: 'none', cursor: 'pointer' }}
+                            />
 
+                            <button
+                                className='styledbutton'
+                                onClick={() => navigate(-1)}
+                                style={{ padding: '0.5rem 1.5rem', borderRadius: '6px', border: 'none', cursor: 'pointer' }}
+                            >
+                                Back
+                            </button>
+                        </div>
+                    </CardContent>
+                </form>
+            </Card>
+        </div>
+        </div>
     )
 }
 

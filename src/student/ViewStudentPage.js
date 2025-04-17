@@ -4,6 +4,8 @@ import { db } from '../config/firebase';
 import { useNavigate, useLocation } from "react-router-dom";
 import AuthIssueComponent from '../components/AuthIssueComponent';
 import { faculties_arr_test } from '../App';
+import Card from 'react-bootstrap/Card';
+
 function StudentListPage() {
     const navigate = useNavigate();
     let { state } = useLocation();
@@ -38,21 +40,38 @@ function StudentListPage() {
         return AuthIssueComponent();
     }
     return (
-        <div>
-             <h2 className='center'><b>Student List</b></h2>
-            
-            <table className='facultytable'>
+        <div className="view-student-list-page">
+        <h2 className="list-heading"><b>Student List</b></h2>
 
-                <tr> <th>Name </th> <th>EmailID</th> <th>Enrolment number</th><th>Department</th> </tr>
-                {
-                    studentlistArr.map((student) => <tr key={student.Name}>
-                        <td>{student.Name}</td> <td>{student.EmailID}</td><td>{student.Enrolment_No}</td><td>{student.Department}</td></tr>)
-                }
-            </table>
-            <div className='center'>
-            <button className="styledbutton" onClick={() => navigate(-1)}>Back</button>
-            </div>
+        <div className="table-container">
+          <table className="custom-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email ID</th>
+                <th>Enrolment Number</th>
+                <th>Department</th>
+              </tr>
+            </thead>
+            <tbody>
+              {studentlistArr.map((student) => (
+                <tr key={student.Enrolment_No}>
+                  <td>{student.Name}</td>
+                  <td>{student.EmailID}</td>
+                  <td>{student.Enrolment_No}</td>
+                  <td>{student.Department}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
+
+        <div className="center">
+          <button className="styledbutton" onClick={() => navigate(-1)}>Back</button>
+        </div>
+      </div>
+
+
     )
 }
 

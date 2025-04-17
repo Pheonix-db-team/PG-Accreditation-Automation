@@ -143,80 +143,89 @@ function AddCESPage() {
         return (<body><button className="styledbutton" onClick={goBack}>Back</button>	No course available for ces</body>)
     }
     return (
-        <Card className='sitecard'>
-            <div className='left_space_div'>
-                <center> <img className='showlogo' src={img1} width="85%" alt="Logo" /></center>
+        <div className="ces-form-page">
+        <Card className="sitecard">
+          <div className="contentalign">
+
+            <h2><b>Add CES Form</b></h2>
+          </div>
+
+          <form onSubmit={handleAddQuestion}>
+            <div className="form-section">
+              <label><b>Select Subject:</b></label>
+              <select onChange={handleSubjectChange}>
+                {subjectArr.map((sub) => (
+                  <option key={sub.SubjectID} value={sub.SubjectID}>
+                    {sub.Name}
+                  </option>
+                ))}
+              </select>
+
+              <label><b>Question Prompt:</b></label>
+              <input
+                type="text"
+                value={questionPrompt}
+                onChange={(e) => setQuestionPrompt(e.target.value)}
+                placeholder="Enter your question here"
+              />
+
+              <label><b>Option A:</b></label>
+              <input
+                type="text"
+                value={optionA}
+                onChange={(e) => setOptionA(e.target.value)}
+              />
+
+              <label><b>Option B:</b></label>
+              <input
+                type="text"
+                value={optionB}
+                onChange={(e) => setOptionB(e.target.value)}
+              />
+
+              <label><b>Option C:</b></label>
+              <input
+                type="text"
+                value={optionC}
+                onChange={(e) => setOptionC(e.target.value)}
+              />
+
+              <label><b>Option D:</b></label>
+              <input
+                type="text"
+                value={optionD}
+                onChange={(e) => setOptionD(e.target.value)}
+              />
+
+              <input type="submit" value="Add Question" className="styledbutton" />
             </div>
-            <body>
+          </form>
 
-                <form onSubmit={handleAddQuestion
-                }>
-                    <div className='left_space_div' > <h2>Add CES Form </h2>
-                        <br></br>
+          <div className="form-section">
+            <label><b>CES Closing Date:</b></label>
+            <DatePicker selected={lastDate} onChange={(date) => setLastDate(date)} />
+          </div>
 
-                        <div className='left_more_space_div'>Select Subject:
-                            <select onChange={handleSubjectChange}>                        {subjectArr.map((sub) => <option key={sub.SubjectID
-                            } value={sub.SubjectID}>{sub.Name}</option>)}
-                            </select>
-                        </div>
+          <div className="button-group">
+            <button className="styledbutton" onClick={handleSubmit}>Submit CES</button>
+            <button className="styledbutton" onClick={goBack}>Back</button>
+          </div>
 
-                        <br></br> Question Prompt:
-                        {/* <br></br> */}
-                        <input type="text" value={questionPrompt} onChange={(e) => setQuestionPrompt(e.target.value)}></input>
-                        <br></br>
-                        <br></br>
-                        Option A:
-
-                        <input type="text" value={optionA} onChange={(e) => setOptionA(e.target.value)}></input>
-                        <br></br><br></br>
-                        Option B:
-                        {/* <br></br> */}
-                        <input type="text" value={optionB} onChange={(e) => setOptionB(e.target.value)}></input>
-                        <br></br><br></br>
-                        Option C:
-                        {/* <br></br> */}
-                        <input type="text" value={optionC} onChange={(e) => setOptionC(e.target.value)}></input>
-                        <br></br><br></br>
-                        Option D:
-                        {/* <br></br> */}
-
-                        <input type="text" value={optionD} onChange={(e) => setOptionD(e.target.value)}></input>
-                        <br></br>
-                        <br></br>
-                        <input type="submit" value="Add" ></input>
-
-                    </div>
-                </form>
-                <br></br>
-                <div className='left_more_space_div'>
-                    <div className='left_space_div' >CES Closing Date</div>
-                    <DatePicker selected={lastDate} onChange={(date) => setLastDate(date)} />
-
-                </div>
-
-
-
-                <br></br>
-                <div className='left_space_div' >
-                    <button className='styledbutton' onClick={() => handleSubmit()}>Submit CES</button>
-                    <button className='styledbutton' onClick={goBack}>Back</button>
-                    <br></br><br></br>
-                    Questions:
-                    {quesArr.map((ques, index) =>
-                        <div className='left_space_div' key={ques['tag']}>
-                            {ques.question_prompt}
-                            <br></br>
-                            A. {ques.option_A} B. {ques.option_B} C. {ques.option_C} D. {ques.option_D}
-                            <br></br>
-                            <button className='deletebutton' onClick={() => handleDelete(ques)}>Delete</button>
-
-                        </div>
-
-                    )
-                    }
-                </div>
-
-            </body>
+          <div className="form-section">
+            <h3>Questions Added:</h3>
+            {quesArr.map((ques) => (
+              <div className="question-box" key={ques['tag']}>
+                <b>{ques.question_prompt}</b>
+                <div>A. {ques.option_A}</div>
+                <div>B. {ques.option_B}</div>
+                <div>C. {ques.option_C}</div>
+                <div>D. {ques.option_D}</div>
+                <button className="deletebutton" onClick={() => handleDelete(ques)}>Delete</button>
+              </div>
+            ))}
+          </div>
         </Card>
+      </div>
+
     )
 } export default AddCESPage

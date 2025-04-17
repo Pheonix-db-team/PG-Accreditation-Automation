@@ -101,65 +101,176 @@ function AddSubjectPage() {
         }
 
     }
+    const inputStyle = {
+      width: '100%',
+      padding: '12px 15px',
+      borderRadius: '8px',
+      border: '1px solid #ddd',
+      fontSize: '16px',
+      transition: 'all 0.3s',
+      boxShadow: 'inset 0 1px 3px rgba(0,0,0,0.1)'
+    };
 
+    const selectStyle = {
+      ...inputStyle,
+      appearance: 'none',
+      background: 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3E%3Cpolyline points=\'6 9 12 15 18 9\'%3E%3C/polyline%3E%3C/svg%3E") no-repeat',
+      backgroundPosition: 'right 10px center',
+      backgroundSize: '1em'
+    };
+
+    const submitButtonStyle = {
+      background: 'linear-gradient(135deg, #103e82 0%, #0c2e66 100%)',
+      color: 'white',
+      padding: '12px 30px',
+      border: 'none',
+      borderRadius: '8px',
+      fontSize: '16px',
+      fontWeight: '600',
+      cursor: 'pointer',
+      transition: 'all 0.3s',
+      boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
+    };
+
+    const backButtonStyle = {
+      ...submitButtonStyle,
+      background: 'linear-gradient(135deg, #6c757d 0%, #495057 100%)'
+    };
     return (
+<div className="add-subject-page" style={{
+  background: 'linear-gradient(135deg, #103e82 0%, #0c2e66 100%)',
+  minHeight: '100vh',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  padding: '20px'
+}}>
+  <Card className="sitecard" style={{
+    width: '100%',
+    maxWidth: '600px',
+    padding: '40px',
+    borderRadius: '15px',
+    boxShadow: '0 10px 30px rgba(0, 0, 0, 0.2)',
+    background: 'rgba(255, 255, 255, 0.95)',
+    position: 'relative',
+    overflow: 'hidden'
+  }}>
+    {/* Decorative corners */}
+    <div style={{
+      position: 'absolute',
+      top: 0,
+      right: 0,
+      width: '100px',
+      height: '100px',
+      background: 'linear-gradient(45deg, #103e82, #0c2e66)',
+      clipPath: 'polygon(0 0, 100% 0, 100% 100%)',
+      opacity: 0.8
+    }}></div>
+    <div style={{
+      position: 'absolute',
+      bottom: 0,
+      left: 0,
+      width: '100px',
+      height: '100px',
+      background: 'linear-gradient(45deg, #103e82, #0c2e66)',
+      clipPath: 'polygon(0 100%, 100% 100%, 0 0)',
+      opacity: 0.8
+    }}></div>
 
-        <Card className='sitecard'>
-            <div>
-                <img className='showlogo' src={img1} width="85%" alt='logo' />
-            </div>
-            <div>
-                <br></br>
-                <div className='contentalign'>
+    {/* Logo */}
+    <div style={{ textAlign: 'center', marginBottom: '20px' }}>
+      <img className="showlogo" src={img1} width="80px" alt="logo" style={{
+        filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))'
+      }} />
+    </div>
 
-                    <form onSubmit={handleSubmit
-                    }>
-                        <div ><h2><b>Add subject</b></h2> </div>
-                        <br></br>
+    {/* Form */}
+    <form onSubmit={handleSubmit} style={{ width: '100%' }}>
+      <h2 style={{
+        color: '#103e82',
+        textAlign: 'center',
+        marginBottom: '30px',
+        fontSize: '28px',
+        position: 'relative'
+      }}>
+        <b>Add Subject</b>
+        <div style={{
+          position: 'absolute',
+          bottom: '-10px',
+          left: '25%',
+          width: '50%',
+          height: '4px',
+          background: 'linear-gradient(90deg, #103e82, #0c2e66)',
+          borderRadius: '2px'
+        }}></div>
+      </h2>
 
-                        <div><b>Subject ID:</b>
-                            <input type="text" value={subjectID} onChange={(e) => setsubjectID(e.target.value)} placeholder='must be unique' required></input>
-                        </div>
-                        <br></br>
-                        {/* *subject ID must be unique */}
-                        {/* <br></br> */}
-                        <div><b>Subject Name:</b>
-                            <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder='Subject name' required></input>
-                        </div>
-                        <br></br>
-                        {department}
-                        {/* <br></br> */}
-                        {/* {"⬇️ Select department ⬇️"} */}
-                        {/* <br></br> */}
-                        <div><b>Select Department:</b>
-                            <select onChange={handleDepartmentChange}>
+      {/* Subject ID */}
+      <div className="form-group" style={{ marginBottom: '25px' }}>
+        <label style={{ display: 'block', marginBottom: '8px', color: '#103e82', fontWeight: '600' }}>Subject ID:</label>
+        <input
+          type="text"
+          value={subjectID}
+          onChange={(e) => setsubjectID(e.target.value)}
+          placeholder="Must be unique"
+          required
+          style={inputStyle}
+        />
+      </div>
 
-                                {departments.map((department) => <option key={department.label
-                                } value={department.value}>{department.label}</option>)}
-                            </select>
-                        </div>
-                        <br></br>
-                        {/* {"⬇️ Assign Faculty ⬇️"} */}
+      {/* Subject Name */}
+      <div className="form-group" style={{ marginBottom: '25px' }}>
+        <label style={{ display: 'block', marginBottom: '8px', color: '#103e82', fontWeight: '600' }}>Subject Name:</label>
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="Subject Name"
+          required
+          style={inputStyle}
+        />
+      </div>
 
-                        <div><b>Select Faculty:</b>
-                            <select onChange={handleFacultyChange}>
+      {/* Department */}
+      <div className="form-group" style={{ marginBottom: '25px' }}>
+        <label style={{ display: 'block', marginBottom: '8px', color: '#103e82', fontWeight: '600' }}>Select Department:</label>
+        <select onChange={handleDepartmentChange} style={selectStyle}>
+          {departments.map((department) => (
+            <option key={department.label} value={department.value}>{department.label}</option>
+          ))}
+        </select>
+      </div>
 
-                                {faculties_from_prop.map((faculty) => <option key={faculty.Name
-                                } value={faculty.EmailID}>{faculty.Name}</option>)}
-                            </select>
-                        </div>
+      {/* Faculty */}
+      <div className="form-group" style={{ marginBottom: '30px' }}>
+        <label style={{ display: 'block', marginBottom: '8px', color: '#103e82', fontWeight: '600' }}>Select Faculty:</label>
+        <select onChange={handleFacultyChange} style={selectStyle}>
+          {faculties_from_prop.map((faculty) => (
+            <option key={faculty.Name} value={faculty.EmailID}>{faculty.Name}</option>
+          ))}
+        </select>
+      </div>
 
-                        <br></br>
-                        <div>
-                            <input type="submit" className='styledbutton'></input>
-                            <button className='styledbutton' onClick={() => navigate(-1)}>Back</button>
-                        </div>
+      {/* Buttons */}
+      <div className="button-group" style={{ display: 'flex', justifyContent: 'center', gap: '20px' }}>
+        <input
+          type="submit"
+          value="Submit"
+          className="styledbutton"
+          style={submitButtonStyle}
+        />
+        <button
+          className="styledbutton"
+          onClick={() => navigate(-1)}
+          style={backButtonStyle}
+        >
+          Back
+        </button>
+      </div>
+    </form>
+  </Card>
+</div>
 
-                    </form>
-                </div>
-
-            </div>
-        </Card>
     )
 }
 

@@ -54,41 +54,44 @@ function FacultyDashboard() {
         return AuthIssueComponent();
     }
     return (
-        <Card className='sitecard'>
+        <div className="dashboard-page">
+        <div className="card-container">
+          <Card className="sitecard">
             <div>
-                <center> <img className='showlogo' src={img1} width="85%" alt="Logo" /></center>
+              <center>
+                <img className="showlogo" src={img1} width="85%" alt="Logo" />
+              </center>
             </div>
-            <body>
-                <div className='contentalign'><h2><b>Faculty Dashboard</b></h2>
-                    <br></br>
-                    <b>Name</b> :{fac['Name']}
-                    <br></br>
-                    {/* <br></br> */}
-                    <b>Email</b>  :{fac['EmailID']}
-                    <br></br>
-                    <b>Department</b> :{fac['Department']}
-                    <br></br>
 
-                    {/* <br></br> */}
-                    <div>
-                        <b>Subjects:</b>
-                        {
+            <div className="contentalign">
+              <h2><b>Faculty Dashboard</b></h2>
+              <br />
+              <b>Name</b> : {fac['Name']}<br />
+              <b>Email</b> : {fac['EmailID']}<br />
+              <b>Department</b> : {fac['Department']}<br />
+              <br />
+              <div>
+                <b>Subjects:</b><br />
+                {
+                  fac['Courses_assigned']?.length > 0
+                    ? fac['Courses_assigned'].map((course) => (
+                        <div key={course}>{course}</div>
+                      ))
+                    : "No subject assigned"
+                }
+              </div>
+              <br />
 
-                            (state.fac['Courses_assigned'].length > 0) ?
-                                fac['Courses_assigned'].map((course) => <div key={course}>
-                                    {course}
-                                </div>) : "No subject assigned"
-                        }
+              <div className="button-group">
+                <button className="styledbutton" onClick={() => addCESPageNavigation()}>Add CES</button>
+                <button className="styledbutton" onClick={() => SubjectListPageNavigation()}>View CES</button>
+                <button className="styledbutton" onClick={() => navigate(-1)}>Logout</button>
+              </div>
+            </div>
+          </Card>
+        </div>
+      </div>
 
-                    </div>
-                    <br></br>
-
-                    <button className='styledbutton' onClick={() => addCESPageNavigation()}>Add CES</button>
-                    <button className='styledbutton' onClick={() => SubjectListPageNavigation()}>view CES</button>
-                    <button className='styledbutton' onClick={() => navigate(-1)}>Logout</button>
-                </div>
-            </body>
-        </Card>
     );
 
 

@@ -2,6 +2,8 @@ import React from 'react'
 import { useNavigate, useLocation } from "react-router-dom";
 import AuthIssueComponent from '../components/AuthIssueComponent';
 import { faculties_arr_test } from '../App';
+
+
 function FacultyListPage() {
     const navigate = useNavigate();
     let { state } = useLocation();
@@ -36,22 +38,38 @@ function FacultyListPage() {
         return AuthIssueComponent();
     }
     return (
-        <div>
-            <h2 className='center'><b>Faculty List</b></h2>
+<div className="facultylist-page">
+  <h2 className="facultylist-heading"><b>Faculty List</b></h2>
+
+  <div className="facultylist-table-container">
+    <table className="facultylist-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email ID</th>
+          <th>Faculty ID</th>
+          <th>Department</th>
+        </tr>
+      </thead>
+      <tbody>
+        {facultylistArr.map((faculty) => (
+          <tr key={faculty.EmailID}>
+            <td>{faculty.Name}</td>
+            <td>{faculty.EmailID}</td>
+            <td>{faculty.FacultyID}</td>
+            <td>{faculty.Department}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <div className="center">
+    <button className="styledbutton" onClick={() => navigate(-1)}>Back</button>
+  </div>
+</div>
 
 
-            <table className='facultytable'>
-
-                <tr> <th>Name </th> <th>EmailID</th> <th>FacultyID</th><th>Department</th> </tr>
-                {
-                    facultylistArr.map((faculty) => <tr key={faculty.Name}>
-                        <td>{faculty.Name}</td> <td>{faculty.EmailID}</td><td>{faculty.FacultyID}</td><td>{faculty.Department}</td></tr>)
-                }
-            </table>
-            <div className='center'>
-                <button className="styledbutton" onClick={() => navigate(-1)}>Back</button>
-            </div>
-        </div>
     )
 }
 

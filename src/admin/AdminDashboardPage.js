@@ -4,6 +4,7 @@ import AuthIssueComponent from '../components/AuthIssueComponent';
 import { getDocs, collection, setDoc, getDoc, doc } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { Card, Grid } from '@mui/material';
+import ParticlesBg from 'particles-bg'
 
 function AdminDashboardPage() {
     const navigate = useNavigate();
@@ -66,73 +67,87 @@ function AdminDashboardPage() {
         return AuthIssueComponent();
     }
     return (
-        <Grid
-            container
-            spacing={0}
-            style={{ minHeight: '100vh', margin: 0, backgroundColor: '#81BEF7' }}
-            width="1535px"
+      <Grid
+      container
+      spacing={0}
+      style={{
+        minHeight: '100vh',
+        margin: 0,
+        background: 'linear-gradient(135deg, #103e82 0%, #0c2e66 100%)',
+        padding: '20px',
+        boxSizing: 'border-box'
+      }}
+      justifyContent="center"
+      alignItems="center"
+    >
+        {/* Animated background elements */}
+  <div style={{
+    position: 'absolute',
+    top: '-50px',
+    right: '-50px',
+    width: '300px',
+    height: '300px',
+    borderRadius: '50%',
+    background: 'rgba(255,255,255,0.05)'
+  }}></div>
 
-        >
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-            <div className='dashback'>
-                <img src={"logo-white.svg"} width="500" height="150" />
-            </div>
+<div style={{
+    position: 'absolute',
+    bottom: '-100px',
+    left: '-100px',
+    width: '400px',
+    height: '400px',
+    borderRadius: '50%',
+    background: 'rgba(255,255,255,0.03)'
+  }}></div>
 
-            <body className='bodycolor'>
-                <Card className='sitecardadmin'  >
-                    <h2 class="center"><b>ADMIN DASHBOARD</b></h2>
+      <div className="admin-dashboard">
+      <Card className="sitecardadmin" style={{
+      position: 'relative',
+      overflow: 'hidden',
+      backdropFilter: 'blur(10px)',
+      backgroundColor: 'rgba(255, 255, 255, 0.9)',
+      border: '1px solid rgba(255, 255, 255, 0.2)'
+    }}>
+      <ParticlesBg
+        type="cobweb"
+        bg={true}
+        color="#103e82"
+        num={50}
+      />
+          <h2 className="center">
+            <b>ADMIN DASHBOARD</b>
+          </h2>
 
+          <div className="button-group-admin">
+            <button className="styledbutton" onClick={addStudentNavigation}>
+              <i className="fa fa-user-plus"></i> Add Student
+            </button>
 
+            <button className="styledbutton" onClick={addFacultyNavigation}>
+              <i className="fa fa-user-tie"></i> Add Faculty
+            </button>
 
-                    <div>
-                        <div className='stylebuttonadmin'>
+            <button className="styledbutton" onClick={addSubjectNavigation}>
+              <i className="fa fa-book-open"></i> Add Subject
+            </button>
 
-                            <button className='styledbutton' onClick={() => addStudentNavigation()}>
-                                <i class="fa fa-user " aria-hidden="true" ></i>
-                                Add Student
-                            </button>
-                            {/* <br></br>                 */}
-                            {/* <br></br> */}
-                            <button className='styledbutton' onClick={() => addFacultyNavigation()}>
-                                <i class="fa fa-user" aria-hidden="true"></i>
-                                Add Faculty
-                            </button>
+            <button className="styledbutton" onClick={viewFacultyNavigation}>
+              <i className="fa fa-users"></i> View Faculties
+            </button>
 
-                            <button className='styledbutton' onClick={() => addSubjectNavigation()}>
-                                <i class="fa fa-book" aria-hidden="true"></i>
-                                Add Subject
-                            </button>
-                        </div>
+            <button className="styledbutton" onClick={viewStudentNavigation}>
+              <i className="fa fa-user-graduate"></i> View Students
+            </button>
 
+            <button className="styledbutton logout-btn" onClick={() => navigate(-1)}>
+              <i className="fa fa-sign-out-alt"></i> Logout
+            </button>
+          </div>
+        </Card>
+      </div>
+    </Grid>
 
-
-                        <div className='stylebuttonadmin'>
-                            <br></br>
-                            <button className='styledbutton' onClick={() => viewFacultyNavigation()}>
-                                <i class="fa fa-table" aria-hidden="true"></i>
-                                View Faculties
-                            </button>
-
-
-                            {/* <br></br><br></br> */}
-                            <button className='styledbutton' onClick={() => viewStudentNavigation()}>
-                                <i class="fa fa-table" aria-hidden="true"></i>
-                                View Students
-                            </button>
-
-                            {/* <br></br><br></br> */}
-                            <button className='styledbutton' onClick={() => navigate(-1)}>
-                                <i class="fa fa-sign-out " aria-hidden="true"></i>
-                                <span> Logout </span>
-                            </button>
-                        </div>
-                    </div>
-
-
-
-                </Card>
-            </body>
-        </Grid>
     );
 
 

@@ -126,39 +126,53 @@ function StudentDashboard() {
         return (AuthIssueComponent());
     }
     return (
-        <Card className='sitecard'>
-            <div>
-                <center>
-                    <img className='showlogo' src={img1} width="85%" alt="Logo" />
-                </center>
-            </div>
-            <body>
-                <div className='stdDash'> <h2 className='center'><b>Student Dashboard</b></h2>
+        <div className="studentdashboardpage">
+              <div className="card-container"></div>
 
-                    <b>Name</b> :{student['Name']}
-                    <br></br>
-                    <br></br>
-                    <b>Email </b> :{student['EmailID']}
-                    <br></br>
-                    <br></br>
-                    <b>Department</b> :{student['Department']}
-                    <br></br>
-                    <br></br>
-                    <b>Courses_Registered status</b>:{(Array.isArray(student['Courses_Registered']) && student['Courses_Registered'].length) ? "✅" : "❌        "}
-                    {(Array.isArray(student['Courses_Registered']) && student['Courses_Registered'].length) ? <button className='styledbutton' onClick={() => CESResponsePageNavigation()}>CES Available</button>
-                        : <button className='styledbutton' onClick={() => CourseRegPageNavigation()}>Register for Courses</button>}
-                    <br></br>
+        <Card className="sitecard" style={{ maxWidth: '600px', margin: '0 auto', padding: '20px' }}>
+        {/* Logo */}
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
+          <img className="showlogo" src={img1} alt="Logo" style={{ width: '85%' }} />
+        </div>
 
-                    <br></br>
-                    <div >
-                        <button className='styledbutton' onClick={() => SubjectListPageNavigation()}>CES Subjectwise</button>
+        {/* Student Dashboard Info */}
+        <div className="stdDash" style={{ textAlign: 'center' }}>
+          <h2 style={{ fontWeight: 'bold', marginBottom: '20px' }}>Student Dashboard</h2>
 
-                        <button className='styledbutton' onClick={() => navigate(-1)}>Logout</button>
-                    </div>
-                    <br></br>
-                </div >
-            </body >
-        </Card>
+          <p><b>Name</b>: {student['Name']}</p>
+          <p><b>Email</b>: {student['EmailID']}</p>
+          <p><b>Department</b>: {student['Department']}</p>
+          <p><b>Courses Registered Status</b>:
+            {(Array.isArray(student['Courses_Registered']) && student['Courses_Registered'].length) ? " ✅" : " ❌"}
+          </p>
+
+          {/* CES Availability Button */}
+          <div style={{ margin: '20px 0' }}>
+            {(Array.isArray(student['Courses_Registered']) && student['Courses_Registered'].length) ? (
+              <button className="styledbutton" onClick={CESResponsePageNavigation}>
+                CES Available
+              </button>
+            ) : (
+              <button className="styledbutton" onClick={CourseRegPageNavigation}>
+                Register for Courses
+              </button>
+            )}
+          </div>
+
+          {/* Action Buttons */}
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '15px' }}>
+            <button className="styledbutton" onClick={SubjectListPageNavigation}>
+              CES Subjectwise
+            </button>
+            <button className="styledbutton" onClick={() => navigate(-1)}>
+              Logout
+            </button>
+          </div>
+        </div>
+      </Card>
+      </div>
+
+
     )
 }
 
