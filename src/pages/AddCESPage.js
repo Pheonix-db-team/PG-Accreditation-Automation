@@ -9,6 +9,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import AuthIssueComponent from '../components/AuthIssueComponent';
 import Card from 'react-bootstrap/Card';
 import img1 from '../image/NiTC1.png';
+
 function AddCESPage() {
     const navigate = useNavigate();
     let { state } = useLocation();
@@ -143,89 +144,235 @@ function AddCESPage() {
         return (<body><button className="styledbutton" onClick={goBack}>Back</button>	No course available for ces</body>)
     }
     return (
-        <div className="ces-form-page">
-        <Card className="sitecard">
-          <div className="contentalign">
-
-            <h2><b>Add CES Form</b></h2>
-          </div>
-
-          <form onSubmit={handleAddQuestion}>
-            <div className="form-section">
-              <label><b>Select Subject:</b></label>
-              <select onChange={handleSubjectChange}>
-                {subjectArr.map((sub) => (
-                  <option key={sub.SubjectID} value={sub.SubjectID}>
-                    {sub.Name}
-                  </option>
-                ))}
-              </select>
-
-              <label><b>Question Prompt:</b></label>
-              <input
-                type="text"
-                value={questionPrompt}
-                onChange={(e) => setQuestionPrompt(e.target.value)}
-                placeholder="Enter your question here"
-              />
-
-              <label><b>Option A:</b></label>
-              <input
-                type="text"
-                value={optionA}
-                onChange={(e) => setOptionA(e.target.value)}
-              />
-
-              <label><b>Option B:</b></label>
-              <input
-                type="text"
-                value={optionB}
-                onChange={(e) => setOptionB(e.target.value)}
-              />
-
-              <label><b>Option C:</b></label>
-              <input
-                type="text"
-                value={optionC}
-                onChange={(e) => setOptionC(e.target.value)}
-              />
-
-              <label><b>Option D:</b></label>
-              <input
-                type="text"
-                value={optionD}
-                onChange={(e) => setOptionD(e.target.value)}
-              />
-
-              <input type="submit" value="Add Question" className="styledbutton" />
+      <div className="ces-form-page" style={{
+        background: 'linear-gradient(135deg, #2c3e50 0%, #1a2930 100%)',
+        minHeight: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: '20px'
+      }}>
+        <Card className="sitecard" style={{
+          width: '100%',
+          maxWidth: '750px',
+          padding: '30px',
+          borderRadius: '12px',
+          background: 'rgba(255, 255, 255, 0.95)',
+          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2)',
+          border: '1px solid rgba(255, 255, 255, 0.3)',
+          backdropFilter: 'blur(10px)'
+        }}>
+          {/* Modern header with icon */}
+          <div style={{ textAlign: 'center', marginBottom: '25px' }}>
+            <div style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '10px',
+              background: 'linear-gradient(90deg, #3498db, #2ecc71)',
+              WebkitBackgroundClip: 'text',
+              backgroundClip: 'text',
+              color: 'transparent',
+              fontSize: '28px',
+              fontWeight: 'bold'
+            }}>
+              <i className="fas fa-poll" style={{ fontSize: '32px' }}></i>
+              <h2 style={{ margin: 0 }}>Create CES Form</h2>
             </div>
-          </form>
-
-          <div className="form-section">
-            <label><b>CES Closing Date:</b></label>
-            <DatePicker selected={lastDate} onChange={(date) => setLastDate(date)} />
+            <div style={{
+              height: '3px',
+              width: '80px',
+              background: 'linear-gradient(90deg, #3498db, #2ecc71)',
+              margin: '10px auto',
+              borderRadius: '3px'
+            }}></div>
           </div>
 
-          <div className="button-group">
-            <button className="styledbutton" onClick={handleSubmit}>Submit CES</button>
-            <button className="styledbutton" onClick={goBack}>Back</button>
-          </div>
-
-          <div className="form-section">
-            <h3>Questions Added:</h3>
-            {quesArr.map((ques) => (
-              <div className="question-box" key={ques['tag']}>
-                <b>{ques.question_prompt}</b>
-                <div>A. {ques.option_A}</div>
-                <div>B. {ques.option_B}</div>
-                <div>C. {ques.option_C}</div>
-                <div>D. {ques.option_D}</div>
-                <button className="deletebutton" onClick={() => handleDelete(ques)}>Delete</button>
+          {/* Two-column layout for form */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '25px' }}>
+            {/* Left column - Form inputs */}
+            <form onSubmit={handleAddQuestion} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                <label style={{ color: '#2c3e50', fontWeight: '600', fontSize: '15px' }}>Select Subject:</label>
+                <select
+                  onChange={handleSubjectChange}
+                  style={{
+                    padding: '12px 15px',
+                    borderRadius: '8px',
+                    border: '1px solid #ddd',
+                    background: 'white',
+                    fontSize: '15px',
+                    boxShadow: '0 2px 4px rgba(0,0,0,0.05)'
+                  }}
+                >
+                  {subjectArr.map((sub) => (
+                    <option key={sub.SubjectID} value={sub.SubjectID}>
+                      {sub.Name}
+                    </option>
+                  ))}
+                </select>
               </div>
-            ))}
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                <label style={{ color: '#2c3e50', fontWeight: '600', fontSize: '15px' }}>Question Prompt:</label>
+                <input
+                  type="text"
+                  value={questionPrompt}
+                  onChange={(e) => setQuestionPrompt(e.target.value)}
+                  placeholder="Enter your question here"
+                  style={{
+                    padding: '12px 15px',
+                    borderRadius: '8px',
+                    border: '1px solid #ddd',
+                    fontSize: '15px',
+                    boxShadow: '0 2px 4px rgba(0,0,0,0.05)'
+                  }}
+                />
+              </div>
+
+              {['A', 'B', 'C', 'D'].map((option) => (
+                <div key={option} style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  <label style={{ color: '#2c3e50', fontWeight: '600', fontSize: '15px' }}>Option {option}:</label>
+                  <input
+                    type="text"
+                    value={eval(`option${option}`)}
+                    onChange={(e) => eval(`setOption${option}(e.target.value)`)}
+                    style={{
+                      padding: '12px 15px',
+                      borderRadius: '8px',
+                      border: '1px solid #ddd',
+                      fontSize: '15px',
+                      boxShadow: '0 2px 4px rgba(0,0,0,0.05)'
+                    }}
+                  />
+                </div>
+              ))}
+
+              <button
+                type="submit"
+                style={{
+                  background: 'linear-gradient(90deg, #3498db, #2ecc71)',
+                  color: 'white',
+                  padding: '12px',
+                  border: 'none',
+                  borderRadius: '8px',
+                  fontWeight: '600',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s',
+                  marginTop: '10px',
+                  boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
+                }}
+              >
+                Add Question
+              </button>
+            </form>
+
+            {/* Right column - Date picker and questions list */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '25px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                <label style={{ color: '#2c3e50', fontWeight: '600', fontSize: '15px' }}>CES Closing Date:</label>
+                <DatePicker
+                  selected={lastDate}
+                  onChange={(date) => setLastDate(date)}
+                  className="custom-datepicker"
+                  style={{ width: '100%' }}
+                />
+              </div>
+
+              <div>
+                <h3 style={{ color: '#2c3e50', marginBottom: '15px', borderBottom: '2px solid #eee', paddingBottom: '8px' }}>Questions Added:</h3>
+                <div style={{
+                  maxHeight: '300px',
+                  overflowY: 'auto',
+                  paddingRight: '10px'
+                }}>
+                  {quesArr.length > 0 ? (
+                    quesArr.map((ques) => (
+                      <div key={ques['tag']} style={{
+                        background: '#f8f9fa',
+                        borderRadius: '8px',
+                        padding: '15px',
+                        marginBottom: '15px',
+                        borderLeft: '4px solid #3498db',
+                        position: 'relative'
+                      }}>
+                        <div style={{
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                          marginBottom: '8px'
+                        }}>
+                          <b style={{ color: '#2c3e50' }}>{ques.question_prompt}</b>
+                          <button
+                            onClick={() => handleDelete(ques)}
+                            style={{
+                              background: '#e74c3c',
+                              color: 'white',
+                              border: 'none',
+                              borderRadius: '4px',
+                              padding: '4px 8px',
+                              cursor: 'pointer',
+                              fontSize: '12px'
+                            }}
+                          >
+                            <i className="fas fa-trash"></i>
+                          </button>
+                        </div>
+                        {['A', 'B', 'C', 'D'].map((opt) => (
+                          <div key={opt} style={{
+                            color: '#7f8c8d',
+                            fontSize: '14px',
+                            marginLeft: '10px'
+                          }}>
+                            {opt}. {ques[`option_${opt}`]}
+                          </div>
+                        ))}
+                      </div>
+                    ))
+                  ) : (
+                    <div style={{
+                      textAlign: 'center',
+                      color: '#95a5a6',
+                      padding: '20px',
+                      border: '2px dashed #ddd',
+                      borderRadius: '8px'
+                    }}>
+                      <i className="fas fa-inbox" style={{ fontSize: '24px', marginBottom: '10px' }}></i>
+                      <div>No questions added yet</div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
           </div>
+
+          {/* Form action buttons */}
+          <div style={{
+  display: 'flex',
+  gap: '20px',
+  marginTop: '30px',
+  justifyContent: 'flex-start' // This moves them to the left
+}}>
+  <button
+    onClick={handleSubmit}
+    className="styledbutton" // Keep your existing button class
+    style={{
+      background: 'linear-gradient(90deg, #2ecc71, #27ae60)',
+      padding: '12px 30px'
+    }}
+  >
+    Submit CES
+  </button>
+  <button
+    onClick={goBack}
+    className="styledbutton" // Keep your existing button class
+    style={{
+      background: 'linear-gradient(90deg, #95a5a6, #7f8c8d)',
+      padding: '12px 30px'
+    }}
+  >
+    Back
+  </button>
+</div>
         </Card>
       </div>
-
     )
 } export default AddCESPage

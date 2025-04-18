@@ -4,7 +4,7 @@ import { db } from '../config/firebase';
 import { useNavigate, useLocation } from "react-router-dom";
 import AuthIssueComponent from '../components/AuthIssueComponent';
 import { faculties_arr_test } from '../App';
-import Card from 'react-bootstrap/Card';
+
 
 function StudentListPage() {
     const navigate = useNavigate();

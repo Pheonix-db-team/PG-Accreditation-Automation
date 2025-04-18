@@ -57,6 +57,35 @@ function SurveyListPage() {
                 alignItems: 'center',
                 padding: '20px'
               }}>
+                <div style={{
+  display: 'flex',
+  justifyContent: 'flex-end',
+  position: 'absolute',
+  top: '20px',
+  right: '20px',
+  zIndex: 10
+}}>
+  <button
+    //onClick={goBack}
+    onClick={() => navigate(-1)}
+    style={{
+background: 'linear-gradient(135deg, #6c757d 0%, #495057 100%)',
+                        color: 'white',
+      padding: '10px 20px',
+      border: 'none',
+      borderRadius: '8px',
+      fontSize: '14px',
+      fontWeight: 'bold',
+      boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+      cursor: 'pointer',
+      transition: 'all 0.3s ease',
+    }}
+    onMouseOver={e => e.currentTarget.style.opacity = 0.85}
+    onMouseOut={e => e.currentTarget.style.opacity = 1}
+  >
+    ← Back
+  </button>
+</div>
                 <Card className="sitecard" style={{
                   width: '100%',
                   maxWidth: '800px',
