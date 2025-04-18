@@ -43,11 +43,12 @@ function AboutPage({ navigate }) {
 
         {/* Column 2 */}
         <View style={styles.column}>
+        <Image source={require('../image/Swapnil.jpg')} style={styles.circleImageLayout} />
+        <Text style={styles.text}>Project Coordinator/UI\UX Designer: SWAPNIL BAVISKAR</Text>
+
           <Image source={require('../image/sushal.jpg')} style={styles.circleImageLayout} />
           <Text style={styles.text}>Developer: SUSHAL DEVASARI</Text>
 
-          <Image source={require('../image/Swapnil.jpg')} style={styles.circleImageLayout} />
-          <Text style={styles.text}>Project Coordinator: SWAPNIL BAVISKAR</Text>
 
           <Image source={require('../image/vaibhav.jpg')} style={styles.circleImageLayout} />
           <Text style={styles.text}>Developer & Query Handler: VAIBHAV RAIBOLE</Text>
