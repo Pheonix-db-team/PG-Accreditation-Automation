@@ -41,8 +41,37 @@ function StudentListPage() {
     }
     return (
         <div className="view-student-list-page">
-        <h2 className="list-heading"><b>Student List</b></h2>
 
+        <h2 className="list-heading"><b>Student List</b></h2>
+        <div style={{
+  display: 'flex',
+  justifyContent: 'flex-end',
+  position: 'absolute',
+  top: '20px',
+  right: '20px',
+  zIndex: 10
+}}>
+  <button
+    //onClick={goBack}
+    onClick={() => navigate(-1)}
+    style={{
+      background: 'linear-gradient(135deg, #103e82 0%, #0c2e66 100%)',
+      color: '#fff',
+      padding: '10px 20px',
+      border: 'none',
+      borderRadius: '8px',
+      fontSize: '14px',
+      fontWeight: 'bold',
+      boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+      cursor: 'pointer',
+      transition: 'all 0.3s ease',
+    }}
+    onMouseOver={e => e.currentTarget.style.opacity = 0.85}
+    onMouseOut={e => e.currentTarget.style.opacity = 1}
+  >
+    ← Back
+  </button>
+</div>
         <div className="table-container">
           <table className="custom-table">
             <thead>
