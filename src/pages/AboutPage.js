@@ -1,8 +1,13 @@
 import React from 'react';
 import { StyleSheet, View, Text, Image, ScrollView, TouchableOpacity } from 'react-native';
+import { useNavigate } from 'react-router-dom';
 import ParticlesBg from 'particles-bg'
 
 function AboutPage({ navigate }) {
+  const navigate1 = useNavigate();
+  const goBack = () => {
+    navigate1(-1);
+}
   return (
     <ScrollView style={styles.scrollView}>
       {/* Particles background doesn't work in React Native, so let's skip it */}
@@ -13,6 +18,34 @@ function AboutPage({ navigate }) {
       <View style={styles.titleContainer}>
         <Text style={styles.title}>About Page</Text>
       </View>
+      <div style={{
+  display: 'flex',
+  justifyContent: 'flex-end',
+  position: 'absolute',
+  top: '20px',
+  right: '20px',
+  zIndex: 10
+}}>
+  <button
+    onClick={goBack}
+    style={{
+      background: 'linear-gradient(135deg, #103e82 0%, #0c2e66 100%)',
+      color: '#fff',
+      padding: '10px 20px',
+      border: 'none',
+      borderRadius: '8px',
+      fontSize: '14px',
+      fontWeight: 'bold',
+      boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+      cursor: 'pointer',
+      transition: 'all 0.3s ease',
+    }}
+    onMouseOver={e => e.currentTarget.style.opacity = 0.85}
+    onMouseOut={e => e.currentTarget.style.opacity = 1}
+  >
+    ← Back
+  </button>
+</div>
 
       {/* Course Exit Survey Info */}
       <Text style={styles.subtitle}>Course Exit Survey</Text>
