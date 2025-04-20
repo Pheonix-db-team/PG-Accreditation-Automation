@@ -1,211 +1,200 @@
-import React from 'react'
-import { getDocs, collection } from 'firebase/firestore';
-import { db } from '../config/firebase';
-import { useEffect } from 'react';
+import React from 'react';
 import { Bar } from 'react-chartjs-2';
 import { Chart, registerables } from 'chart.js';
-import { getValueByKey } from '../App';
 import { useNavigate, useLocation } from "react-router-dom";
+import './ViewCESResponses.css';
+
+Chart.register(...registerables);
 
 function ViewCESResponsesPage() {
     let { state } = useLocation();
-    const data = [];
-    const options_chart = {
-
-    }
     const navigate = useNavigate();
     const CESResponsesArr = state.responsesArr;
     const survey = state.survey;
+    const data = [];
 
-    // const survey =
-
-    // {
-    //     "Question_List": [
-    //         {
-    //             "option_A": "Very Good",
-    //             "option_D": "Bad",
-    //             "option_B": "Good",
-    //             "question_prompt": "How was course experience",
-    //             "tag": 0,
-    //             "option_C": "Average"
-    //         },
-    //         {
-    //             "option_A": "Very Good",
-    //             "option_D": "Bad",
-    //             "option_B": "Good",
-    //             "question_prompt": "How confident are you of course outcomes",
-    //             "tag": 1,
-    //             "option_C": "Average"
-    //         },
-    //         {
-    //             "option_A": "Very Good",
-    //             "option_D": "Bad",
-    //             "option_B": "Good",
-    //             "question_prompt": "How was theory and practical integration",
-    //             "tag": 2,
-    //             "option_C": "Average"
-    //         }
-    //     ],
-    //     "Survey_ID": "DSMonsoon2023",
-    //     "SubjectID": "DS",
-    //     "Sem_ID": "Monsoon2023",
-    //     "facultyEmail": "testmsd@gmail.com",
-    //     "id": "DSMonsoon2023"
-    // }
-
-
-    // const CESResponsesArr = [
-    //     {
-    //         "Enrolment_No": "M220256CS",
-    //         "Survey_ID": "DSMonsoon2023",
-    //         "StudentEmail": "testy@gmail.com",
-    //         "SubjectID": "DS",
-    //         "Responses": {
-    //             "0": "A",
-    //             "1": "B",
-    //             "2": "C",
-
-    //         },
-    //         "id": "DSMonsoon2023testy@gmail.com"
-    //     },
-    //     {
-    //         "Enrolment_No": "M220255CS",
-    //         "Survey_ID": "DSMonsoon2023",
-    //         "StudentEmail": "testy1@gmail.com",
-    //         "SubjectID": "DS",
-    //         "Responses": {
-    //             "0": "A",
-    //             "1": "A",
-    //             "2": "A",
-
-    //         },
-    //         "id": "DSMonsoon2023testy@gmail.com"
-    //     },
-    //     {
-    //         "Enrolment_No": "M220255CS",
-    //         "Survey_ID": "DSMonsoon2023",
-    //         "StudentEmail": "testy1@gmail.com",
-    //         "SubjectID": "DS",
-    //         "Responses": {
-    //             "0": "C",
-    //             "1": "A",
-    //             "2": "B",
-
-    //         },
-    //         "id": "DSMonsoon2023testy@gmail.com"
-    //     },
-    // ];
     function CESconsolidate(respArr) {
-        if (respArr.length == 0) {
+        if (respArr.length === 0) {
             return;
         }
+
         const dict_consolidate = {};
         const resp_temp_prep = respArr[0]['Responses'];
-        for (const [key, value] of Object.entries(resp_temp_prep)) {
+
+        // Initialize response counters
+        for (const [key] of Object.entries(resp_temp_prep)) {
             dict_consolidate[key] = {
                 'A': 0,
                 'B': 0,
                 'C': 0,
                 'D': 0,
-            }
+            };
         }
-        console.log(dict_consolidate)
-        // console.log(respArr.data())
-        respArr.map((ele) => {
+
+        // Count responses
+        respArr.forEach((ele) => {
             const resp_ele = ele["Responses"];
             for (const [key, value] of Object.entries(resp_ele)) {
-                console.log(key + " k,v " + value)
-                console.log(dict_consolidate[key][value])
-                dict_consolidate[key][value]++;
+                if (dict_consolidate[key]) {
+                    dict_consolidate[key][value]++;
+                }
             }
         });
-        var temp_label = [];
-        var temp_response_count = [];
-        var temp_title = "";
-        var dict_temp_set = {};
+
+        // Prepare chart data
         for (const [key_outer, value_outer] of Object.entries(dict_consolidate)) {
-            temp_label = [];
-            temp_response_count = [];
+            const temp_label = [];
+            const temp_response_count = [];
+            let temp_title = "";
 
-            for (const [key, value] of Object.entries(value_outer)) {
-                const index = getValueByKey(survey['Question_List'], "tag", key_outer);
-                temp_label.push(survey['Question_List'][index]['option_' + key]);
-                temp_title = survey['Question_List'][index]['question_prompt'];
-                temp_response_count.push(value);
-            }
-            dict_temp_set = {
-                "labels": temp_label,
-                "datasets": [
-                    {
-                        "label": temp_title,
+            const index = survey['Question_List'].findIndex(
+                (question) => question.tag.toString() === key_outer
+            );
+
+            if (index !== -1) {
+                const question = survey['Question_List'][index];
+                temp_title = question.question_prompt;
+
+                ['A', 'B', 'C', 'D'].forEach((option) => {
+                    temp_label.push(question[`option_${option}`]);
+                    temp_response_count.push(value_outer[option] || 0);
+                });
+
+                data.push({
+                    labels: temp_label,
+                    datasets: [{
+                        label: temp_title,
                         data: temp_response_count,
-
-
-
-                    }
-                ]
-            };
-
-
-            data.push(dict_temp_set);
+                        backgroundColor: [
+                            'rgba(54, 162, 235, 0.7)',
+                            'rgba(75, 192, 192, 0.7)',
+                            'rgba(255, 206, 86, 0.7)',
+                            'rgba(255, 99, 132, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(255, 99, 132, 1)'
+                        ],
+                        borderWidth: 1,
+                        borderRadius: 4,
+                        barPercentage: 0.8,
+                    }]
+                });
+            }
         }
-
     }
-    useEffect(() => {
 
-        const fetchResponses = async () => {
-            try {
-                const data_1 = await getDocs(collection(db, "CESResponses"));
-
-                const filtered_data_1 = data_1.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-                console.log(filtered_data_1);
+    const chartOptions = {
+        responsive: true,
+        plugins: {
+            legend: {
+                display: false
+            },
+            tooltip: {
+                backgroundColor: 'rgba(0,0,0,0.7)',
+                titleFont: {
+                    size: 14,
+                    weight: 'bold'
+                },
+                bodyFont: {
+                    size: 12
+                },
+                padding: 10,
+                cornerRadius: 4
             }
-            catch (err) {
-                console.error(err);
-                alert("⚠" + err.message);
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                grid: {
+                    color: 'rgba(0,0,0,0.05)'
+                },
+                ticks: {
+                    stepSize: 1,
+                    precision: 0
+                }
+            },
+            x: {
+                grid: {
+                    display: false
+                }
             }
+        },
+        animation: {
+            duration: 1000,
+            easing: 'easeInOutQuad'
+        }
+    };
 
-        };
-        const fetchSurveys = async () => {
-
-
-            try {
-                const data_1 = await getDocs(collection(db, "survey"));
-                const filtered_data_1 = data_1.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-                console.log("Survey")
-                console.log(filtered_data_1);
-            }
-            catch (err) {
-                alert("⚠" + err.message);
-                console.error(err);
-            }
-
-        };
-        fetchSurveys();
-
-    }
-        , []);
-
-
-    if ((state.responsesArr.length == 0)) {
-        return <div>No responses<br></br>
-            <button className="styledbutton" onClick={() => navigate(-1)}>Back</button>
-        </div>
-    }
-    CESconsolidate(CESResponsesArr)
-
-    Chart.register(...registerables)
-
-    return (<div>
-        <button className="styledbutton" onClick={() => navigate(-1)}>Back</button>
-        {data.map((data_set, index) =>
-            <div key={survey.Sem_ID} style={{ "height": 200 }}>
-                <Bar data={data_set} options={options_chart} />
+    if (CESResponsesArr.length === 0) {
+        return (
+            <div className="no-responses-container">
+                <div className="no-responses-card">
+                    <h2>No Responses Available</h2>
+                    <p>There are no responses collected for this survey yet.</p>
+                    <button
+                        className="back-button"
+                        onClick={() => navigate(-1)}
+                    >
+                        ← Back to Dashboard
+                    </button>
+                </div>
             </div>
-        )
-        }
+        );
+    }
 
-    </div >);
+    CESconsolidate(CESResponsesArr);
+
+    return (
+        <div className="ces-responses-container">
+            <div className="ces-header">
+                <h1>CES Responses Analysis</h1>
+                <p className="survey-info">
+                    {survey.SubjectID} • {survey.Sem_ID} • {CESResponsesArr.length} Responses
+                </p>
+                <button
+                    className="back-button"
+                    onClick={() => navigate(-1)}
+                >
+                    ← Back to Results
+                </button>
+            </div>
+
+            <div className="charts-grid">
+                {data.map((data_set, index) => (
+                    <div key={index} className="chart-card">
+                        <h3 className="chart-title">{data_set.datasets[0].label}</h3>
+                        <div className="chart-container">
+                            <Bar
+                                data={data_set}
+                                options={chartOptions}
+                            />
+                        </div>
+                        <div className="chart-summary">
+                            <div className="summary-item">
+                                <span className="summary-label">Total:</span>
+                                <span className="summary-value">
+                                    {data_set.datasets[0].data.reduce((a, b) => a + b, 0)}
+                                </span>
+                            </div>
+                            <div className="summary-item">
+                                <span className="summary-label">Top Choice:</span>
+                                <span className="summary-value">
+                                    {data_set.labels[
+                                        data_set.datasets[0].data.indexOf(
+                                            Math.max(...data_set.datasets[0].data)
+                                        )
+                                    ]}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
 }
 
-export default ViewCESResponsesPage
+export default ViewCESResponsesPage;
