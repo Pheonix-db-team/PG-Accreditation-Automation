@@ -1,0 +1,86 @@
+.footer {
+    background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+    color: #ffffff;
+    padding: 40px 30px 20px;
+    font-family: 'Segoe UI', sans-serif;
+    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-left {
+    flex: 1;
+    min-width: 250px;
+}
+
+.phoenix-logo-glow {
+    font-size: 24px;
+    font-weight: bold;
+    color: #FFD700;
+    text-shadow: 0 0 10px #FFD700, 0 0 20px #FFA500;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.phoenix-title {
+    font-size: 26px;
+}
+
+.footer-subtext {
+    font-size: 14px;
+    color: #ddd;
+    margin-bottom: 8px;
+    line-height: 1.6;
+}
+
+.footer-right {
+    min-width: 150px;
+}
+
+.footer-right h4 {
+    color: #ffffff;
+    margin-bottom: 12px;
+    font-size: 18px;
+    border-bottom: 2px solid #FFD700;
+    display: inline-block;
+    padding-bottom: 4px;
+}
+
+.footer-right ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-right ul li {
+    margin-bottom: 8px;
+}
+
+.footer-right ul li a {
+    color: #00d4ff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.footer-right ul li a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 13px;
+    color: #aaa;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 10px;
+}

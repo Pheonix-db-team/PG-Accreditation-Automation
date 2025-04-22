@@ -29,7 +29,10 @@ function App() {
   //   margin: 3
   // }}  > {student} < button className='deletebutton' onClick={() => handleDelete(student)}> Delete</button ></li >);
 
-  return (<div>{HomePage()}</div>);
+  return (
+    <div>{HomePage()}</div>
+
+  );
   // return (
   //   <div className="App">
   //     <NavBar></NavBar>
