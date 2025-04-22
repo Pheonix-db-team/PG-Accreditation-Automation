@@ -126,52 +126,218 @@ function StudentDashboard() {
         return (AuthIssueComponent());
     }
     return (
-        <div className="studentdashboardpage">
-              <div className="card-container"></div>
+      <div className="studentdashboardpage" style={{
+        background: 'linear-gradient(135deg, #103e82 0%, #0c2e66 100%)',
+        minHeight: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: '20px',
+        position: 'relative',
+        overflow: 'hidden'
+      }}>
+        {/* Decorative elements */}
+        <div style={{
+          position: 'absolute',
+          top: '-50px',
+          right: '-50px',
+          width: '300px',
+          height: '300px',
+          borderRadius: '50%',
+          background: 'rgba(255,255,255,0.05)'
+        }}></div>
 
-        <Card className="sitecard" style={{ maxWidth: '600px', margin: '0 auto', padding: '20px' }}>
-        {/* Logo */}
-        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
-          <img className="showlogo" src={img1} alt="Logo" style={{ width: '85%' }} />
-        </div>
+        <div style={{
+          position: 'absolute',
+          bottom: '-100px',
+          left: '-100px',
+          width: '400px',
+          height: '400px',
+          borderRadius: '50%',
+          background: 'rgba(255,255,255,0.03)'
+        }}></div>
 
-        {/* Student Dashboard Info */}
-        <div className="stdDash" style={{ textAlign: 'center' }}>
-          <h2 style={{ fontWeight: 'bold', marginBottom: '20px' }}>Student Dashboard</h2>
+        <Card className="sitecard" style={{
+          width: '100%',
+          maxWidth: '600px',
+          padding: '40px',
+          borderRadius: '15px',
+          background: 'rgba(255, 255, 255, 0.95)',
+          boxShadow: '0 10px 30px rgba(0, 0, 0, 0.2)',
+          border: '1px solid rgba(255, 255, 255, 0.3)',
+          backdropFilter: 'blur(10px)',
+          position: 'relative',
+          overflow: 'hidden'
+        }}>
+          {/* Decorative corner elements */}
+          <div style={{
+            position: 'absolute',
+            top: 0,
+            right: 0,
+            width: '100px',
+            height: '100px',
+            background: 'linear-gradient(45deg, #103e82, #0c2e66)',
+            clipPath: 'polygon(0 0, 100% 0, 100% 100%)',
+            opacity: 0.8
+          }}></div>
 
-          <p><b>Name</b>: {student['Name']}</p>
-          <p><b>Email</b>: {student['EmailID']}</p>
-          <p><b>Department</b>: {student['Department']}</p>
-          <p><b>Courses Registered Status</b>:
-            {(Array.isArray(student['Courses_Registered']) && student['Courses_Registered'].length) ? " ✅" : " ❌"}
-          </p>
+          <div style={{
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+            width: '100px',
+            height: '100px',
+            background: 'linear-gradient(45deg, #103e82, #0c2e66)',
+            clipPath: 'polygon(0 100%, 100% 100%, 0 0)',
+            opacity: 0.8
+          }}></div>
 
-          {/* CES Availability Button */}
-          <div style={{ margin: '20px 0' }}>
-            {(Array.isArray(student['Courses_Registered']) && student['Courses_Registered'].length) ? (
-              <button className="styledbutton" onClick={CESResponsePageNavigation}>
-                CES Available
+          {/* Student Dashboard Info */}
+          <div style={{
+            textAlign: 'center',
+            position: 'relative',
+            zIndex: 1
+          }}>
+            <h2 style={{
+              color: '#103e82',
+              fontSize: '28px',
+              fontWeight: '700',
+              marginBottom: '30px',
+              position: 'relative'
+            }}>
+              Student Dashboard
+              <div style={{
+                position: 'absolute',
+                bottom: '-10px',
+                left: '25%',
+                width: '50%',
+                height: '4px',
+                background: 'linear-gradient(90deg, #103e82, #0c2e66)',
+                borderRadius: '2px'
+              }}></div>
+            </h2>
+
+            <div style={{
+              background: 'rgba(16, 62, 130, 0.05)',
+              borderRadius: '10px',
+              padding: '20px',
+              marginBottom: '25px',
+              textAlign: 'left'
+            }}>
+              <p style={{ marginBottom: '15px' }}>
+                <span style={{ fontWeight: '600', color: '#103e82', display: 'inline-block', width: '150px' }}>Name:</span>
+                <span>{student['Name']}</span>
+              </p>
+              <p style={{ marginBottom: '15px' }}>
+                <span style={{ fontWeight: '600', color: '#103e82', display: 'inline-block', width: '150px' }}>Email:</span>
+                <span>{student['EmailID']}</span>
+              </p>
+              <p style={{ marginBottom: '15px' }}>
+                <span style={{ fontWeight: '600', color: '#103e82', display: 'inline-block', width: '150px' }}>Department:</span>
+                <span>{student['Department']}</span>
+              </p>
+              <p style={{ marginBottom: '15px' }}>
+                <span style={{ fontWeight: '600', color: '#103e82', display: 'inline-block', width: '150px' }}>Courses Status:</span>
+                <span>
+                  {Array.isArray(student['Courses_Registered']) && student['Courses_Registered'].length ? (
+                    <span style={{ color: '#2ecc71' }}>Registered ✅</span>
+                  ) : (
+                    <span style={{ color: '#e74c3c' }}>Not Registered ❌</span>
+                  )}
+                </span>
+              </p>
+            </div>
+
+            {/* Main Action Button */}
+            <div style={{ margin: '30px 0' }}>
+              {Array.isArray(student['Courses_Registered']) && student['Courses_Registered'].length ? (
+                <button
+                  onClick={CESResponsePageNavigation}
+                  style={{
+                    background: 'linear-gradient(135deg, #2ecc71 0%, #27ae60 100%)',
+                    color: 'white',
+                    padding: '12px 30px',
+                    border: 'none',
+                    borderRadius: '8px',
+                    fontSize: '16px',
+                    fontWeight: '600',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s',
+                    boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+                    width: '100%',
+                    maxWidth: '300px'
+                  }}
+                >
+                  Access Course Evaluation
+                </button>
+              ) : (
+                <button
+                  onClick={CourseRegPageNavigation}
+                  style={{
+                    background: 'linear-gradient(135deg, #3498db 0%, #2980b9 100%)',
+                    color: 'white',
+                    padding: '12px 30px',
+                    border: 'none',
+                    borderRadius: '8px',
+                    fontSize: '16px',
+                    fontWeight: '600',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s',
+                    boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+                    width: '100%',
+                    maxWidth: '300px'
+                  }}
+                >
+                  Register for Courses
+                </button>
+              )}
+            </div>
+
+            {/* Secondary Buttons */}
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '15px',
+              marginTop: '30px'
+            }}>
+              <button
+                onClick={SubjectListPageNavigation}
+                style={{
+                  background: 'linear-gradient(135deg, #103e82 0%, #0c2e66 100%)',
+                  color: 'white',
+                  padding: '12px',
+                  border: 'none',
+                  borderRadius: '8px',
+                  fontSize: '16px',
+                  fontWeight: '600',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s',
+                  boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
+                }}
+              >
+                View Subject-wise CES
               </button>
-            ) : (
-              <button className="styledbutton" onClick={CourseRegPageNavigation}>
-                Register for Courses
+              <button
+                onClick={() => navigate(-1)}
+                style={{
+                  background: 'linear-gradient(135deg, #e74c3c 0%, #c0392b 100%)',
+                  color: 'white',
+                  padding: '12px',
+                  border: 'none',
+                  borderRadius: '8px',
+                  fontSize: '16px',
+                  fontWeight: '600',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s',
+                  boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
+                }}
+              >
+                Logout
               </button>
-            )}
+            </div>
           </div>
-
-          {/* Action Buttons */}
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '15px' }}>
-            <button className="styledbutton" onClick={SubjectListPageNavigation}>
-              CES Subjectwise
-            </button>
-            <button className="styledbutton" onClick={() => navigate(-1)}>
-              Logout
-            </button>
-          </div>
-        </div>
-      </Card>
+        </Card>
       </div>
-
 
     )
 }

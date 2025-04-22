@@ -6,7 +6,7 @@ function Greeting() {
     }
     return (
         <div>
-            <button onClick={() => sayHi('Yugam')}>Say Hi</button>
+            <button onClick={() => sayHi('Dragon')}>Say Hi</button>
         </div>
     )
 }

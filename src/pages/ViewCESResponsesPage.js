@@ -1,5 +1,5 @@
 import React from 'react';
-import { Bar } from 'react-chartjs-2';
+import { Bar, Pie } from 'react-chartjs-2';
 import { Chart, registerables } from 'chart.js';
 import { useNavigate, useLocation } from "react-router-dom";
 import './ViewCESResponses.css';
@@ -7,31 +7,23 @@ import './ViewCESResponses.css';
 Chart.register(...registerables);
 
 function ViewCESResponsesPage() {
-    let { state } = useLocation();
+    const { state } = useLocation();
     const navigate = useNavigate();
     const CESResponsesArr = state.responsesArr;
     const survey = state.survey;
     const data = [];
+    const topChoiceCount = { A: 0, B: 0, C: 0, D: 0 };
 
     function CESconsolidate(respArr) {
-        if (respArr.length === 0) {
-            return;
-        }
+        if (respArr.length === 0) return;
 
         const dict_consolidate = {};
         const resp_temp_prep = respArr[0]['Responses'];
 
-        // Initialize response counters
         for (const [key] of Object.entries(resp_temp_prep)) {
-            dict_consolidate[key] = {
-                'A': 0,
-                'B': 0,
-                'C': 0,
-                'D': 0,
-            };
+            dict_consolidate[key] = { A: 0, B: 0, C: 0, D: 0 };
         }
 
-        // Count responses
         respArr.forEach((ele) => {
             const resp_ele = ele["Responses"];
             for (const [key, value] of Object.entries(resp_ele)) {
@@ -41,7 +33,6 @@ function ViewCESResponsesPage() {
             }
         });
 
-        // Prepare chart data
         for (const [key_outer, value_outer] of Object.entries(dict_consolidate)) {
             const temp_label = [];
             const temp_response_count = [];
@@ -59,6 +50,12 @@ function ViewCESResponsesPage() {
                     temp_label.push(question[`option_${option}`]);
                     temp_response_count.push(value_outer[option] || 0);
                 });
+
+                // Update top choice count
+                const max = Math.max(...temp_response_count);
+                const topIndex = temp_response_count.indexOf(max);
+                const topOption = ['A', 'B', 'C', 'D'][topIndex];
+                topChoiceCount[topOption]++;
 
                 data.push({
                     labels: temp_label,
@@ -89,18 +86,11 @@ function ViewCESResponsesPage() {
     const chartOptions = {
         responsive: true,
         plugins: {
-            legend: {
-                display: false
-            },
+            legend: { display: false },
             tooltip: {
                 backgroundColor: 'rgba(0,0,0,0.7)',
-                titleFont: {
-                    size: 14,
-                    weight: 'bold'
-                },
-                bodyFont: {
-                    size: 12
-                },
+                titleFont: { size: 14, weight: 'bold' },
+                bodyFont: { size: 12 },
                 padding: 10,
                 cornerRadius: 4
             }
@@ -108,23 +98,31 @@ function ViewCESResponsesPage() {
         scales: {
             y: {
                 beginAtZero: true,
-                grid: {
-                    color: 'rgba(0,0,0,0.05)'
-                },
-                ticks: {
-                    stepSize: 1,
-                    precision: 0
-                }
+                grid: { color: 'rgba(0,0,0,0.05)' },
+                ticks: { stepSize: 1, precision: 0 }
             },
-            x: {
-                grid: {
-                    display: false
-                }
-            }
+            x: { grid: { display: false } }
         },
         animation: {
             duration: 1000,
             easing: 'easeInOutQuad'
+        }
+    };
+
+    const pieChartOptions = {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'right',
+                labels: {
+                    font: { size: 14 }
+                }
+            },
+            title: {
+                display: true,
+                text: 'Overall Most Selected Choices Across Questions',
+                font: { size: 16, weight: 'bold' }
+            }
         }
     };
 
@@ -134,10 +132,7 @@ function ViewCESResponsesPage() {
                 <div className="no-responses-card">
                     <h2>No Responses Available</h2>
                     <p>There are no responses collected for this survey yet.</p>
-                    <button
-                        className="back-button"
-                        onClick={() => navigate(-1)}
-                    >
+                    <button className="back-button" onClick={() => navigate(-1)}>
                         ← Back to Dashboard
                     </button>
                 </div>
@@ -147,6 +142,32 @@ function ViewCESResponsesPage() {
 
     CESconsolidate(CESResponsesArr);
 
+    const pieData = {
+        labels: ['Poor', 'Fair', 'Good', 'Excellent'],
+        datasets: [{
+            label: 'Top Choices Count',
+            data: [
+                topChoiceCount['A'],
+                topChoiceCount['B'],
+                topChoiceCount['C'],
+                topChoiceCount['D']
+            ],
+            backgroundColor: [
+                'rgba(54, 162, 235, 0.7)',
+                'rgba(75, 192, 192, 0.7)',
+                'rgba(255, 206, 86, 0.7)',
+                'rgba(255, 99, 132, 0.7)'
+            ],
+            borderColor: [
+                'rgba(54, 162, 235, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(255, 99, 132, 1)'
+            ],
+            borderWidth: 1
+        }]
+    };
+
     return (
         <div className="ces-responses-container">
             <div className="ces-header">
@@ -154,23 +175,23 @@ function ViewCESResponsesPage() {
                 <p className="survey-info">
                     {survey.SubjectID} • {survey.Sem_ID} • {CESResponsesArr.length} Responses
                 </p>
-                <button
-                    className="back-button"
-                    onClick={() => navigate(-1)}
-                >
+                <button className="back-button" onClick={() => navigate(-1)}>
                     ← Back to Results
                 </button>
             </div>
 
+            {/* Pie Chart for Top Choices Summary */}
+            <div className="summary-pie-chart">
+                <Pie data={pieData} options={pieChartOptions} />
+            </div>
+
+            {/* Individual Bar Charts */}
             <div className="charts-grid">
                 {data.map((data_set, index) => (
                     <div key={index} className="chart-card">
                         <h3 className="chart-title">{data_set.datasets[0].label}</h3>
                         <div className="chart-container">
-                            <Bar
-                                data={data_set}
-                                options={chartOptions}
-                            />
+                            <Bar data={data_set} options={chartOptions} />
                         </div>
                         <div className="chart-summary">
                             <div className="summary-item">

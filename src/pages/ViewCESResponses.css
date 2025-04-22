@@ -129,3 +129,23 @@
         font-size: 1.8rem;
     }
 }
+
+.overall-feedback-section {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.overall-feedback-section h2 {
+    margin-bottom: 1rem;
+    color: #333;
+    font-size: 1.5rem;
+}
+
+.pie-chart-container {
+    max-width: 500px;
+    margin: 0 auto;
+    height: 400px;
+}
