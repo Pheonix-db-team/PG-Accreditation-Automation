@@ -21,7 +21,12 @@ function Footer() {
                 <div className="footer-right">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><Link to="/about">About Us</Link></li>
+                    <li><Link to="/aboutpage">About Us</Link></li>
+<li>
+  <a href="https://github.com/Pheonix-db-team/PG-Accreditation-Automation" target="_blank" rel="noopener noreferrer">
+    Github
+  </a>
+</li>
                     </ul>
                 </div>
             </div>

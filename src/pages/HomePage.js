@@ -14,10 +14,12 @@ import studentLoginImg from '../image/imgs_home_page/student_login.png';
 import adminDashboardImg from '../image/imgs_home_page/admin_dashboard.png';
 import facultyDashboardImg from '../image/imgs_home_page/faculty_dashboard.png';
 import studentDashboardImg from '../image/imgs_home_page/student_dashboard.png';
-import studentListImg from '../image/imgs_home_page/student_list.jpg';
-import facultyListImg from '../image/imgs_home_page/faculty_list.jpg';
+import addcessformImg from '../image/imgs_home_page/create_cses_form.jpeg';
 import surveyListImg from '../image/imgs_home_page/survey_list.png';
 import cesResponseImg from '../image/imgs_home_page/ces_response.jpeg';
+import subjadd from '../image/imgs_home_page/student_add.jpeg';
+import facultyadd from '../image/imgs_home_page/faculty_add.jpeg';
+import studentadd from '../image/imgs_home_page/student_add.jpeg';
 
 
 const HomePage = () => {
@@ -50,10 +52,22 @@ const HomePage = () => {
     { src: studentDashboardImg, alt: "Student Dashboard", title: "Student Dashboard" }
   ];
 
+  const addfuncImages = [
+    { src: subjadd, alt: "Student Add Function", title: "Student Add Function" },
+    { src: facultyadd, alt: "Faculty Add Function", title: "Faculty Add Function" },
+    { src: studentadd, alt: "Subject Add Function", title: "Subject Add Function" }
+  ];
+
   const listImages = [
-    { src: studentListImg, alt: "Student List", title: "Student Management" },
-    { src: facultyListImg, alt: "Faculty List", title: "Faculty Management" },
     { src: surveyListImg, alt: "Survey List", title: "Survey Management" }
+  ];
+
+  const AddcesImages = [
+    { src: addcessformImg, alt: "Ces Form", title: "CES Form" }
+  ];
+
+  const CESResponseImg = [
+    { src: cesResponseImg, alt: "Ces resp", title: "CES Response" }
   ];
   const defaultOptions = {
     loop: true,
@@ -208,6 +222,196 @@ const HomePage = () => {
           </Carousel>
         </div>
       </div>
+
+         {/* Add functions Section */}
+         <div className="add-views" style={{
+        backgroundColor: 'white',
+        borderRadius: '10px',
+        padding: '20px',
+        boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+        marginBottom: '30px'
+      }}>
+        <h2 style={{
+          color: '#2c3e50',
+          borderBottom: '2px solid #3498db',
+          paddingBottom: '10px',
+          marginBottom: '20px'
+        }}>Add Function Views</h2>
+        <div className="carousel-container" style={{ maxWidth: '800px', margin: '0 auto' }}>
+          <Carousel
+            autoPlay
+            infiniteLoop
+            showThumbs={false}
+            showStatus={false}
+            selectedItem={currentSlide}
+          >
+            {addfuncImages.map((img, index) => (
+              <div key={index} style={{ textAlign: 'center' }}>
+                <img
+                  src={img.src}
+                  alt={img.alt}
+                  style={{
+                    maxHeight: '300px',
+                    width: 'auto',
+                    borderRadius: '8px'
+                  }}
+                />
+                <p style={{
+                  fontSize: '1.2rem',
+                  color: '#2c3e50',
+                  marginTop: '10px'
+                }}>
+                  {img.title}
+                </p>
+              </div>
+            ))}
+          </Carousel>
+        </div>
+      </div>
+
+
+         {/* List Section */}
+         <div className="list-views" style={{
+        backgroundColor: 'white',
+        borderRadius: '10px',
+        padding: '20px',
+        boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+        marginBottom: '30px'
+      }}>
+        <h2 style={{
+          color: '#2c3e50',
+          borderBottom: '2px solid #3498db',
+          paddingBottom: '10px',
+          marginBottom: '20px'
+        }}>Survey Available View</h2>
+
+        <div className="carousel-container" style={{ maxWidth: '800px', margin: '0 auto' }}>
+          <Carousel
+            autoPlay
+            infiniteLoop
+            showThumbs={false}
+            showStatus={false}
+            selectedItem={currentSlide}
+          >
+            {listImages.map((img, index) => (
+              <div key={index} style={{ textAlign: 'center' }}>
+                <img
+                  src={img.src}
+                  alt={img.alt}
+                  style={{
+                    maxHeight: '300px',
+                    width: 'auto',
+                    borderRadius: '8px'
+                  }}
+                />
+                <p style={{
+                  fontSize: '1.2rem',
+                  color: '#2c3e50',
+                  marginTop: '10px'
+                }}>
+                  {img.title}
+                </p>
+              </div>
+            ))}
+          </Carousel>
+        </div>
+      </div>
+
+
+       {/* Add CES Section */}
+       <div className="addces-views" style={{
+        backgroundColor: 'white',
+        borderRadius: '10px',
+        padding: '20px',
+        boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+        marginBottom: '30px'
+      }}>
+        <h2 style={{
+          color: '#2c3e50',
+          borderBottom: '2px solid #3498db',
+          paddingBottom: '10px',
+          marginBottom: '20px'
+        }}>CES Form View</h2>
+
+        <div className="carousel-container" style={{ maxWidth: '800px', margin: '0 auto' }}>
+          <Carousel
+            autoPlay
+            infiniteLoop
+            showThumbs={false}
+            showStatus={false}
+            selectedItem={currentSlide}
+          >
+            {AddcesImages.map((img, index) => (
+              <div key={index} style={{ textAlign: 'center' }}>
+                <img
+                  src={img.src}
+                  alt={img.alt}
+                  style={{
+                    maxHeight: '300px',
+                    width: 'auto',
+                    borderRadius: '8px'
+                  }}
+                />
+                <p style={{
+                  fontSize: '1.2rem',
+                  color: '#2c3e50',
+                  marginTop: '10px'
+                }}>
+                  {img.title}
+                </p>
+              </div>
+            ))}
+          </Carousel>
+        </div>
+      </div>
+
+ {/*CES Response Section */}
+ <div className="cesres-views" style={{
+        backgroundColor: 'white',
+        borderRadius: '10px',
+        padding: '20px',
+        boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+        marginBottom: '30px'
+      }}>
+        <h2 style={{
+          color: '#2c3e50',
+          borderBottom: '2px solid #3498db',
+          paddingBottom: '10px',
+          marginBottom: '20px'
+        }}>CES Response View</h2>
+
+        <div className="carousel-container" style={{ maxWidth: '800px', margin: '0 auto' }}>
+          <Carousel
+            autoPlay
+            infiniteLoop
+            showThumbs={false}
+            showStatus={false}
+            selectedItem={currentSlide}
+          >
+            {CESResponseImg.map((img, index) => (
+              <div key={index} style={{ textAlign: 'center' }}>
+                <img
+                  src={img.src}
+                  alt={img.alt}
+                  style={{
+                    maxHeight: '300px',
+                    width: 'auto',
+                    borderRadius: '8px'
+                  }}
+                />
+                <p style={{
+                  fontSize: '1.2rem',
+                  color: '#2c3e50',
+                  marginTop: '10px'
+                }}>
+                  {img.title}
+                </p>
+              </div>
+            ))}
+          </Carousel>
+        </div>
+      </div>
+
 
       {/* Footer */}
       <div className="footer" style={{

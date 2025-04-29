@@ -1,5 +1,5 @@
 import React from 'react';
-import { Bar, Pie } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 import { Chart, registerables } from 'chart.js';
 import { useNavigate, useLocation } from "react-router-dom";
 import './ViewCESResponses.css';
@@ -12,7 +12,7 @@ function ViewCESResponsesPage() {
     const CESResponsesArr = state.responsesArr;
     const survey = state.survey;
     const data = [];
-    const topChoiceCount = { A: 0, B: 0, C: 0, D: 0 };
+    const choiceCount = { A: 0, B: 0, C: 0, D: 0 }; // Track all choices, not just top ones
 
     function CESconsolidate(respArr) {
         if (respArr.length === 0) return;
@@ -29,6 +29,8 @@ function ViewCESResponsesPage() {
             for (const [key, value] of Object.entries(resp_ele)) {
                 if (dict_consolidate[key]) {
                     dict_consolidate[key][value]++;
+                    // Count all choices for the aggregate
+                    choiceCount[value]++;
                 }
             }
         });
@@ -50,12 +52,6 @@ function ViewCESResponsesPage() {
                     temp_label.push(question[`option_${option}`]);
                     temp_response_count.push(value_outer[option] || 0);
                 });
-
-                // Update top choice count
-                const max = Math.max(...temp_response_count);
-                const topIndex = temp_response_count.indexOf(max);
-                const topOption = ['A', 'B', 'C', 'D'][topIndex];
-                topChoiceCount[topOption]++;
 
                 data.push({
                     labels: temp_label,
@@ -109,18 +105,13 @@ function ViewCESResponsesPage() {
         }
     };
 
-    const pieChartOptions = {
-        responsive: true,
+    const aggregateOptions = {
+        ...chartOptions,
         plugins: {
-            legend: {
-                position: 'right',
-                labels: {
-                    font: { size: 14 }
-                }
-            },
+            ...chartOptions.plugins,
             title: {
                 display: true,
-                text: 'Overall Most Selected Choices Across Questions',
+                text: 'Aggregate Count of All Choices Across Questions',
                 font: { size: 16, weight: 'bold' }
             }
         }
@@ -142,15 +133,16 @@ function ViewCESResponsesPage() {
 
     CESconsolidate(CESResponsesArr);
 
-    const pieData = {
-        labels: ['Poor', 'Fair', 'Good', 'Excellent'],
+    // Prepare data for aggregate bar chart
+    const aggregateData = {
+        labels: ['Poor (A)', 'Fair (B)', 'Good (C)', 'Excellent (D)'],
         datasets: [{
-            label: 'Top Choices Count',
+            label: 'Total Choices',
             data: [
-                topChoiceCount['A'],
-                topChoiceCount['B'],
-                topChoiceCount['C'],
-                topChoiceCount['D']
+                choiceCount['A'],
+                choiceCount['B'],
+                choiceCount['C'],
+                choiceCount['D']
             ],
             backgroundColor: [
                 'rgba(54, 162, 235, 0.7)',
@@ -164,7 +156,9 @@ function ViewCESResponsesPage() {
                 'rgba(255, 206, 86, 1)',
                 'rgba(255, 99, 132, 1)'
             ],
-            borderWidth: 1
+            borderWidth: 1,
+            borderRadius: 4,
+            barPercentage: 0.8,
         }]
     };
 
@@ -180,9 +174,32 @@ function ViewCESResponsesPage() {
                 </button>
             </div>
 
-            {/* Pie Chart for Top Choices Summary */}
-            <div className="summary-pie-chart">
-                <Pie data={pieData} options={pieChartOptions} />
+            {/* Aggregate Bar Chart for All Choices */}
+            <div className="aggregate-bar-chart">
+                <div className="chart-card">
+                    <h3 className="chart-title">Overall Choice Distribution</h3>
+                    <div className="chart-container">
+                        <Bar data={aggregateData} options={aggregateOptions} />
+                    </div>
+                    <div className="chart-summary">
+                        <div className="summary-item">
+                            <span className="summary-label">Total Responses:</span>
+                            <span className="summary-value">
+                                {Object.values(choiceCount).reduce((a, b) => a + b, 0)}
+                            </span>
+                        </div>
+                        <div className="summary-item">
+                            <span className="summary-label">Most Selected:</span>
+                            <span className="summary-value">
+                                {['Poor (A)', 'Fair (B)', 'Good (C)', 'Excellent (D)'][
+                                    Object.values(choiceCount).indexOf(
+                                        Math.max(...Object.values(choiceCount))
+                                    )
+                                ]}
+                            </span>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             {/* Individual Bar Charts */}
